@@ -1,0 +1,109 @@
+.demo-wrapper {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem 1rem;
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07), 0 1.5px 6px rgba(0,0,0,0.03);
+  position: relative; /* Para posicionamento do loading */
+}
+
+.demo-wrapper h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #2e3a59;
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 2rem;
+}
+
+.demo-card {
+  background: #f8fafc;
+  border-radius: 1rem;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  align-items: stretch;
+}
+
+.demo-card h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #3d4b6c;
+}
+
+.demo-card i.fa-solid {
+  color: #0050b3;
+  font-size: 1.15em;
+}
+
+.demo-tabs {
+  min-height: 180px;
+}
+
+/* Estilos para o componente de loading */
+.demo-loading-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loading-hint {
+  font-size: 0.875rem;
+  color: #666;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Estilos para o componente de collapse */
+app-collapse-item {
+  width: 100%;
+  display: block;
+}
+
+app-collapse-item p {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* Estilos para o paginator */
+.paginator-info {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: #555;
+  text-align: center;
+}
+
+/* Estilos para o multi-select */
+app-multi-select {
+  width: 100%;
+}
+
+@media (max-width: 700px) {
+  .demo-wrapper {
+    padding: 1rem 0.25rem;
+  }
+  .demo-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .demo-card {
+    padding: 1.2rem 0.7rem 1rem 0.7rem;
+  }
+}

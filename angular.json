@@ -27,7 +27,9 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "@govbr-ds/core/dist/core.min.css",
+              "@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": []
           },

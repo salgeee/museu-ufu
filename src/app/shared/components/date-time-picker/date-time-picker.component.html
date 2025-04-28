@@ -1,0 +1,46 @@
+<div class="br-datetimepicker" [attr.data-mode]="range ? 'range' : 'single'" [attr.data-type]="type">
+	<label for="timepicker-{{ id }}">{{ label }}</label>
+	<div class="br-input has-icon" [class.disabled]="disabled">
+		<input
+			(blur)="onBlur()"
+			[(ngModel)]="value"
+			id="timepicker-{{ id }}"
+			type="time"
+			[disabled]="disabled"
+			[placeholder]="placeholder"
+			data-input="data-input"
+		/>
+		<button
+			class="br-button circle small"
+			type="button"
+			[disabled]="disabled"
+			aria-label="Abrir Datepicker"
+			data-toggle="data-toggle"
+			id="timepicker-{{ id }}-btn"
+			tabindex="-1"
+			aria-hidden="true"
+		>
+			<i
+				class="fas"
+				[ngClass]="{
+					'fa-clock': type === TypeDatePicker.time,
+					'fa-calendar-alt': type !== TypeDatePicker.time,
+				}"
+				aria-hidden="true"
+			></i>
+		</button>
+	</div>
+	@if (disabled) {
+		<span class="feedback warning" role="alert"
+			><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Campo desabilitado</span
+		>
+	} @else {
+		@if (hint) {
+			<span class="feedback warning" role="alert"
+				><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>{{ hint }}</span
+			>
+		}
+
+		<ng-content></ng-content>
+	}
+</div>

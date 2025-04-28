@@ -1,0 +1,48 @@
+<div class="br-textarea" [ngClass]="{ size }">
+	<label for="textarea-{{ id }}">
+		{{ label }}
+	</label>
+	<textarea
+		aria-controls="limit"
+		id="textarea-{{ id }}"
+		[attr.name]="name"
+		[attr.placeholder]="placeholder"
+		[attr.maxlength]="maxLength"
+		[disabled]="disabled"
+		[required]="required"
+		[readonly]="readonly"
+		[(ngModel)]="value"
+		(blur)="onBlur()"
+		(change)="onChange($event)"
+	></textarea>
+
+	@if (disabled) {
+		<span class="feedback warning" role="alert"
+			><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Campo Desabilitado</span
+		>
+	} @else {
+		@if (showCounter) {
+			<div class="text-base mt-1">
+				@if (maxLength && showLimit) {
+					@if (value.length === 0) {
+						<span class="limit" aria-live="polite"
+							>Limite máximo de <strong>{{ maxLength }}</strong> caracteres</span
+						>
+					} @else {
+						<span class="current" aria-live="polite" role="status" id="limit">
+							Restam <strong>{{ maxLength - value.length }}</strong> caracteres
+						</span>
+					}
+				} @else {
+					<span class="characters" aria-live="assertive"
+						><strong>{{ value.length }}</strong> caracteres digitados</span
+					>
+				}
+			</div>
+		}
+		@if (hint) {
+			<p class="text-base mt-1">Texto auxiliar ao preenchimento.</p>
+		}
+		<ng-content></ng-content>
+	}
+</div>

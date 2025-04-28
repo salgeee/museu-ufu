@@ -1,0 +1,38 @@
+@if (label) {
+	<p class="label">Rótulo</p>
+}
+@if (hint) {
+	<p class="help-text">Informações adicionais</p>
+}
+@if (!horizontal) {
+	@for (option of options; track option.value) {
+		<ng-container [ngTemplateOutlet]="radioRef" [ngTemplateOutletContext]="{ $implicit: option }"></ng-container>
+	}
+} @else {
+	@for (option of options; track option.value) {
+		<div class="d-inline-block mr-5">
+			<ng-container [ngTemplateOutlet]="radioRef" [ngTemplateOutletContext]="{ $implicit: option }"></ng-container>
+		</div>
+	}
+}
+<ng-template #radioRef let-option>
+	<div
+		class="br-radio"
+		[ngClass]="{
+			invalid: option?.state === 'invalid',
+			valid: option?.state === 'valid',
+			disabled: option?.disabled,
+		}"
+	>
+		<input
+			(click)="onChange(option.value)"
+			[id]="'op-' + option.value"
+			type="radio"
+			name="radio"
+			[attr.aria-checked]="option.value === value"
+			[checked]="option.value === value"
+			[value]="option.value"
+		/>
+		<label [for]="'op-' + option.value">{{ option.label }}</label>
+	</div>
+</ng-template>

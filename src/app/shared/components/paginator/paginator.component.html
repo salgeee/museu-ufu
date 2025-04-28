@@ -1,0 +1,97 @@
+<nav
+	(click)="closeAll()"
+	class="br-pagination"
+	aria-label="paginação"
+	[attr.data-total]="length"
+	[attr.data-current]="pageIndex + 1"
+	[attr.data-per-page]="pageSize"
+>
+	<div class="pagination-per-page">
+		<div class="br-select">
+			<div class="br-input" (click)="toggleSizeOptions(listOptionsSize); $event.stopPropagation()">
+				<label for="per-page-selection-{{ uuid }}">Exibir</label>
+				<input id="per-page-selection-{{ uuid }}" readonly [value]="pageSize" type="text" placeholder=" " />
+				<button class="br-button" type="button" aria-label="Exibir lista" tabindex="-1" data-trigger="data-trigger">
+					<i class="fas fa-angle-down" aria-hidden="true"></i>
+				</button>
+			</div>
+			<div id="list-options-size" #listOptionsSize class="br-list" role="menu" tabindex="0">
+				@for (option of pageSizeOptions; track $index) {
+					<div class="br-item" [class.selected]="pageSize === option" tabindex="-1">
+						<div class="br-radio">
+							<input
+								(click)="setPageSize(option); $event.stopPropagation()"
+								id="per-page-{{ option }}-{{ uuid }}"
+								type="radio"
+								name="per-page-{{ option }}-{{ uuid }}"
+								[value]="option"
+								[checked]="pageSize === option"
+							/>
+							<label for="per-page-{{ option }}-{{ uuid }}">{{ option }}</label>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+	<span class="br-divider d-none d-sm-block mx-3"></span>
+	<div class="pagination-information d-none d-sm-flex">
+		<span class="current">{{ 1 + pageSize * (pageIndex - 1) }}</span
+		>&ndash;<span class="per-page">{{ pageIndex * pageSize > length ? length : pageIndex * pageSize }}</span
+		>&nbsp;de&nbsp;<span class="total">{{ length }}</span
+		>&nbsp;itens
+	</div>
+	<div class="pagination-go-to-page d-none d-sm-flex ml-auto">
+		<div class="br-select">
+			<div class="br-input" (click)="toggleSizeOptions(listOptionsPage); $event.stopPropagation()">
+				<label for="go-to-selection-{{ uuid }}">Página</label>
+				<input id="go-to-selection-{{ uuid }}" readonly [value]="pageIndex" type="text" placeholder=" " />
+				<button class="br-button" type="button" aria-label="Exibir lista" tabindex="-1" data-trigger="data-trigger">
+					<i class="fas fa-angle-down" aria-hidden="true"></i>
+				</button>
+			</div>
+			<div #listOptionsPage id="list-options-page" class="br-list" role="menu" tabindex="0">
+				@for (option of pageIndexOptions; track $index) {
+					<div
+						class="br-item"
+						[class.selected]="pageIndex === option"
+						(click)="setPageIndex(option); $event.stopPropagation()"
+						tabindex="-1"
+					>
+						<div class="br-radio">
+							<input
+								id="per-page-{{ option }}-{{ uuid }}"
+								type="radio"
+								name="per-page-{{ option }}-{{ uuid }}"
+								[value]="option"
+								[checked]="pageIndex === option"
+							/>
+							<label for="per-page-{{ option }}-{{ uuid }}">{{ option }}</label>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+	<span class="br-divider d-none d-sm-block mx-3"></span>
+	<div class="pagination-arrows ml-auto ml-sm-0">
+		<button
+			[disabled]="pageIndex === 1"
+			(click)="prevPage()"
+			class="br-button circle"
+			type="button"
+			aria-label="Voltar página"
+		>
+			<i class="fas fa-angle-left" aria-hidden="true"></i>
+		</button>
+		<button
+			[disabled]="pageIndex === totalPages"
+			(click)="nextPage()"
+			class="br-button circle"
+			type="button"
+			aria-label="Página seguinte"
+		>
+			<i class="fas fa-angle-right" aria-hidden="true"></i>
+		</button>
+	</div>
+</nav>

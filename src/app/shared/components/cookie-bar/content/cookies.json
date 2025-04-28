@@ -1,0 +1,94 @@
+[
+	{
+		"lang": "pt-br",
+		"allOptOut": true,
+		"acceptButton": "Aceitar Todos os Cookies",
+		"optInButton": "Aceitar Cookies Selecionados",
+		"optOutButton": "Recusar Todos os Cookies",
+		"infoText": "Utilizamos cookies para melhorar a sua experiência em nosso site. Você pode escolher quais cookies deseja permitir ou desabilitar.",
+		"mainTitle": "Preferências de Cookies",
+		"lastUpdate": "2024-10-01",
+		"entryText": "Este site utiliza cookies para fornecer uma melhor experiência, análise de dados e personalização de conteúdo. Escolha suas preferências abaixo.",
+		"selectAll": false,
+		"allAlertMessage": "Você pode alterar suas preferências de cookies a qualquer momento.",
+		"closeLabel": "Fechar",
+		"lastUpdateLabel": "Última atualização",
+		"cookieGroupsLabel": "Categorias de Cookies",
+		"selectAllLabel": "Selecionar Todos",
+		"unselectAllLabel": "Desmarcar Todos",
+		"selectAllGroupLabel": "Selecionar Todos da Categoria",
+		"unselectAllGroupLabel": "Desmarcar Todos da Categoria",
+		"onLabel": "Ativado",
+		"offLabel": "Desativado",
+		"alwaysActiveLabel": "Sempre Ativo",
+		"cookieNameLabel": "Nome do Cookie",
+		"expiresLabel": "Expiração",
+		"domainLabel": "Domínio",
+		"enterpriseLabel": "Empresa",
+		"purposeLabel": "Finalidade",
+		"descriptionLabel": "Descrição",
+		"cookieGroups": [
+			{
+				"groupId": "necessarios",
+				"groupName": "Cookies Necessários",
+				"groupOptOut": false,
+				"groupSelected": true,
+				"groupAlertMessage": "Esses cookies são essenciais para o funcionamento do site e não podem ser desativados.",
+				"groupText": "Cookies que garantem o funcionamento básico do site, como autenticação e segurança.",
+				"cookieList": [
+					{
+						"cookieId": "session_id",
+						"cookieOptOut": false,
+						"cookieSelected": true,
+						"alertMessage": "",
+						"cookieName": "session_id",
+						"expires": "1 dia",
+						"domain": "universidade.edu.br",
+						"entreprise": "Universidade",
+						"purpose": "Manter a sessão do usuário ativa.",
+						"description": "Cookie utilizado para identificar a sessão do usuário no sistema."
+					}
+				]
+			},
+			{
+				"groupId": "analise",
+				"groupName": "Cookies de Análise",
+				"groupOptOut": true,
+				"groupSelected": false,
+				"groupAlertMessage": "",
+				"groupText": "Cookies usados para analisar o tráfego e o comportamento dos usuários no site.",
+				"cookieList": [
+					{
+						"cookieId": "google_analytics",
+						"cookieOptOut": true,
+						"cookieSelected": false,
+						"alertMessage": "",
+						"cookieName": "_ga",
+						"expires": "2 anos",
+						"domain": "universidade.edu.br",
+						"entreprise": "Google",
+						"purpose": "Coletar dados de uso e desempenho do site.",
+						"description": "Utilizado para distinguir os usuários únicos durante visitas ao site."
+					}
+				]
+			}
+		],
+		"noteTitle": "Perguntas Frequentes",
+		"noteList": [
+			{
+				"question": "O que são cookies?",
+				"answer": "Cookies são pequenos arquivos de texto usados para armazenar informações diretamente no seu navegador."
+			},
+			{
+				"question": "Posso desativar os cookies?",
+				"answer": "Sim, você pode desativar os cookies não essenciais usando as opções acima."
+			}
+		],
+		"links": [
+			{
+				"name": "Política de Privacidade",
+				"url": "https://universidade.edu.br/politica-de-privacidade"
+			}
+		]
+	}
+]

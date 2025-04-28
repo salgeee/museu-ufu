@@ -1,0 +1,29 @@
+<nav class="tab-nav">
+	<ul>
+		@for (tab of tabs; track tab.id) {
+			<li
+				class="tab-item"
+				[class.active]="tab.id == activeTab"
+				[id]="tab.id"
+				[title]="tab.label"
+				[attr.aria-label]="tab.label"
+			>
+				<button type="button" (click)="selectedTab(tab)">
+					<span class="name">
+						<span class="d-flex flex-column flex-sm-row">
+							@if (tab.icon) {
+								<span class="icon mb-1 mb-sm-0 mr-sm-1"><i [class]="tab.icon" aria-hidden="true"></i> </span>
+							}
+							@if (!onlyIcon) {
+								<span class="name">{{ tab.label }}</span>
+							}
+						</span>
+					</span>
+				</button>
+				@if (tab.count) {
+					<span class="results">({{ tab.count }})</span>
+				}
+			</li>
+		}
+	</ul>
+</nav>

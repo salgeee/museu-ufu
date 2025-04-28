@@ -1,0 +1,51 @@
+<form [formGroup]="formLogin" (ngSubmit)="submit()" class="br-card col-sm-5 col-md-4">
+	<div class="card-header">
+		<div class="text-weight-semi-bold text-up-02">Entrar com conta UFU</div>
+	</div>
+	<div class="card-content">
+		<div class="d-flex flex-column gap-2">
+			<app-input
+				formControlName="username"
+				name="username"
+				type="text"
+				autocomplete="username"
+				label="Usuário"
+				id="username"
+			>
+				@if (formLogin.controls.username.invalid && !formLogin.controls.username.untouched) {
+					<span br-feedback state="danger">Campo obrigatório</span>
+				}
+			</app-input>
+			<app-input
+				autocomplete="password"
+				formControlName="password"
+				name="password"
+				label="Senha"
+				type="password"
+				id="password"
+				hasButton
+				icon="fas fa-eye"
+			>
+				@if (formLogin.controls.password.invalid && !formLogin.controls.password.untouched) {
+					<span br-feedback state="danger">Campo obrigatório</span>
+				}
+			</app-input>
+		</div>
+	</div>
+	<div class="card-footer">
+		<div class="d-flex">
+			<div>
+				<button type="submit" br-button color="primary">Entrar</button>
+			</div>
+			<a href="https://www.idufu.ufu.br/forgetMyPassword" target="id@UFU" class="ml-3 br-item" draggable="false"
+				>Esqueceu sua senha?</a
+			>
+		</div>
+		<hr class="br-divider" />
+		<div class="mt-3">
+			<button br-button color="secondary">
+				<div>Entrar com <span class="text-black">gov.br</span></div>
+			</button>
+		</div>
+	</div>
+</form>

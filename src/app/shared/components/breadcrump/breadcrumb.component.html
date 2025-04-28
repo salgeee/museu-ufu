@@ -1,0 +1,20 @@
+@if (showBreadcrumb()) {
+	<ul class="crumb-list">
+		@for (crumb of crumbs; track crumb.label; let first = $first; let last = $last) {
+			<li [ngClass]="{ home: first }" class="crumb" [attr.data-active]="last ? 'active' : null">
+				@if (first) {
+					<a class="br-button circle" [routerLink]="['/home']">
+						<span class="sr-only">Página inicial</span>
+						<i class="fas fa-home"> </i>
+					</a>
+				} @else if (!first && !last) {
+					<i class="icon fas fa-chevron-right"></i>
+					<a [routerLink]="[crumb.url]">{{ crumb.label }}</a>
+				} @else {
+					<i class="icon fas fa-chevron-right"></i>
+					<span>{{ crumb.label }}</span>
+				}
+			</li>
+		}
+	</ul>
+}

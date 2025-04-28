@@ -1,0 +1,13 @@
+.br-textarea.disabled,
+.br-textarea.warning,
+.br-textarea.danger,
+.br-textarea.success,
+.br-textarea.info {
+	.text-base {
+		display: none;
+	}
+
+	p {
+		display: none;
+	}
+}

@@ -1,0 +1,20 @@
+<section class="dialog-confirm">
+	@if (data.icon) {
+		<div class="icon">
+			<i class="fas {{ data.icon }}"></i>
+		</div>
+	}
+
+	<div class="content">
+		<p>{{ data.message }}</p>
+	</div>
+
+	<div class="actions">
+		@if (data.buttonCancelShow) {
+			<button br-button color="secondary" (click)="onCancel()">{{ data.buttonCancelLabel }}</button>
+		}
+		@if (data.buttonConfirmShow) {
+			<button br-button color="primary" (click)="onConfirm()">{{ data.buttonConfirmLabel }}</button>
+		}
+	</div>
+</section>

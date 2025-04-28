@@ -1,0 +1,14 @@
+<div
+	class="br-switch {{ size }}"
+	[ngClass]="{ icon, disabled, right: position === 'right', top: position === 'top' }"
+	role="presentation"
+	(click)="toggle()"
+>
+	<input id="switch-label-{{ id }}}" type="checkbox" name="switch-label-{{ id }}}" [checked]="value" role="switch" />
+	@if (label) {
+		<label for="switch-label-{{ id }}">{{ label }}</label>
+	}
+	@if (hintActive && hintInactive && position === 'left') {
+		<div class="switch-data" [attr.data-enabled]="hintActive" [attr.data-disabled]="hintInactive"></div>
+	}
+</div>

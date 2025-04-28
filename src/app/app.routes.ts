@@ -1,11 +1,43 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'initial', pathMatch: 'full' },
-  {path: 'about', loadChildren: () => import('./pages/about/about.module').then(m => m.AboutModule) },
-  {path: 'initial', loadChildren: () => import('./pages/initial/initial.module').then(m => m.InitialModule) },
-  {path: 'thematic', loadChildren: () => import('./pages/thematic/thematic.module').then(m => m.ThematicModule) },
-  {path: 'news', loadChildren: () => import('./pages/news/news.module').then(m => m.NewsModule) },
-  {path: 'games', loadChildren: () => import('./pages/games/games.module').then(m => m.GamesModule) },
-  {path: 'contact', loadChildren: () => import('./pages/contact/contact.module').then(m => m.ContactModule) },
-];
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  {
+    path: 'login',
+    loadComponent: () => import('./features/login/login.component').then(m => m.LoginComponent),
+    title: 'Login',
+    data: {
+      breadCrumb: false,
+    }
+  },
+  {
+    path: '**',
+    loadComponent: () => import('./features/not-found/not-found.component').then(m => m.NotFoundComponent),
+    title: 'Página Não Encontrada',
+    data: {
+      breadCrumb: 'Página Não Encontrada',
+    }
+  },
+  {
+    path: 'perfil',
+    data: {
+      breadCrumb: 'Perfil',
+    },
+    title: 'Perfil',
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./features/profile/profile.component').then(m => m.ProfileComponent),
+      },
+      {
+        path: 'editar',
+        loadComponent: () =>
+          import('./features/profile/pages/profile-edit/profile-edit.component').then(m => m.ProfileEditComponent),
+        title: 'Editar Perfil',
+        data: {
+          breadCrumb: 'Editar Perfil',
+        },
+      },
+    ]
+  }
+  ]

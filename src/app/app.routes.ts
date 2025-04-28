@@ -11,6 +11,44 @@ export const routes: Routes = [
     }
   },
   {
+    path: 'games',
+    data: {
+      breadCrumb: 'Games',
+    },
+    title: 'Games',
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./pages/games/games.component').then(m => m.GamesComponent),
+      },
+      {
+        path: 'quiz',
+        loadComponent: () =>
+          import('./pages/games/quiz/quiz.component').then(m => m.QuizComponent),
+      },
+      {
+        path: 'puzzles',
+        loadComponent: () =>
+          import('./pages/games/puzzles/puzzles.component').then(m => m.PuzzlesComponent),
+      },
+      {
+        path: 'logic-challenge',
+        loadComponent: () =>
+          import('./pages/games/logic-challenge/logic-challenge.component').then(
+            m => m.LogicChallengeComponent
+          ),
+      },
+    ]
+  },
+  {
+    path: 'home',
+    loadComponent: () => import('./features/home/home.component').then(m => m.HomeComponent),
+    title: 'Home',
+    data: {
+      breadCrumb: 'Home',
+    },
+  },
+  {
     path: '**',
     loadComponent: () => import('./features/not-found/not-found.component').then(m => m.NotFoundComponent),
     title: 'Página Não Encontrada',
@@ -18,26 +56,4 @@ export const routes: Routes = [
       breadCrumb: 'Página Não Encontrada',
     }
   },
-  {
-    path: 'perfil',
-    data: {
-      breadCrumb: 'Perfil',
-    },
-    title: 'Perfil',
-    children: [
-      {
-        path: '',
-        loadComponent: () => import('./features/profile/profile.component').then(m => m.ProfileComponent),
-      },
-      {
-        path: 'editar',
-        loadComponent: () =>
-          import('./features/profile/pages/profile-edit/profile-edit.component').then(m => m.ProfileEditComponent),
-        title: 'Editar Perfil',
-        data: {
-          breadCrumb: 'Editar Perfil',
-        },
-      },
-    ]
-  }
   ]

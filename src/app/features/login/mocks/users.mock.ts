@@ -3,13 +3,6 @@ import { Credentials, Role } from '../models/credentials.model';
 
 export const users: Array<Credentials> = [
 	{
-		username: 'coordenador',
-		role: Role.COORDINATOR,
-		accessToken: 'bearer token',
-		fullName: 'Coordenador',
-		document: '12345678900',
-	},
-	{
 		username: 'aluno',
 		role: Role.STUDENT,
 		accessToken: 'bearer token',
@@ -21,7 +14,7 @@ export const users: Array<Credentials> = [
 		role: Role.PUBLIC,
 		accessToken: '',
 		fullName: 'Publico',
-		document: '12345678900',
+		document: '202819678900',
 	},
 ];
 

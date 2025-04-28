@@ -2,39 +2,9 @@
 	<div class="container-lg">
 		<div class="header-top">
 			<div class="header-logo">
-				<img class="img-fluid" ngSrc="/logos/ufu_blue.png" alt="Logo UFU" height="335" width="647" priority />
+				<img class="img-fluid" ngSrc="/logos/ufu_blue.svg" alt="Logo UFU" height="335" width="647" priority />
 				<span class="br-divider vertical"></span>
 				<div class="header-sign">UFU - Universidade Federal de Uberlândia</div>
-			</div>
-			<div class="header-actions">
-				@if (!hideNavbar()) {
-					<div class="header-login">
-						@if (!user()) {
-							<div class="header-sign-in">
-								<button [routerLink]="['/login']" class="br-sign-in small" type="button" data-trigger="login">
-									<i class="fas fa-user" aria-hidden="true"></i><span class="d-sm-inline">Entrar</span>
-								</button>
-							</div>
-						} @else {
-							<div>
-								<button
-									[cdkMenuTriggerFor]="menu"
-									[cdkMenuPosition]="[{ originX: 'end', originY: 'bottom', overlayX: 'end', overlayY: 'top' }]"
-									class="br-sign-in"
-									type="button"
-									title="Ver mais opções"
-									aria-label="Olá, {{ user().fullName }}"
-								>
-									<span class="br-avatar" [title]="user().fullName"
-										><span class="content bg-orange-vivid-30 text-pure-0">{{ user().fullName.charAt(0) }}</span></span
-									><span class="ml-2 text-gray-80 text-weight-regular"
-										>Olá, <span class="text-weight-semi-bold">{{ user().fullName.split(' ')[0] }}</span></span
-									><i class="fas fa-caret-down" aria-hidden="true"></i>
-								</button>
-							</div>
-						}
-					</div>
-				}
 			</div>
 		</div>
 		<div class="header-bottom">

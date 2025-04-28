@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {RouterOutlet} from '@angular/router';
+import {RouterLinkActive, RouterOutlet} from '@angular/router';
 import {CommonModule} from '@angular/common';
 
 @Component({
@@ -7,11 +7,10 @@ import {CommonModule} from '@angular/common';
   standalone: true,
   imports: [
     RouterOutlet,
-    CommonModule
+    CommonModule,
+    RouterLinkActive
   ],
   templateUrl: './games.component.html',
   styleUrl: './games.component.css'
 })
-export class GamesComponent {
-
-}
+export class GamesComponent {}

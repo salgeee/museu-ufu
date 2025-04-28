@@ -1,0 +1,23 @@
+.games-tabs {
+  margin-bottom: 1rem;
+}
+.tabs {
+  list-style: none;
+  display: flex;
+  border-bottom: 2px solid #ccc;
+  padding: 0;
+  margin: 0;
+}
+.tabs li {
+  margin-right: 1rem;
+}
+.tabs a {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  color: #021c69;
+  display: block;
+}
+.tabs li.active a {
+  border-bottom: 3px solid #021c69;
+}

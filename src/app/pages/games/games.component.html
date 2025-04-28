@@ -1,2 +1,14 @@
-<p>games works!</p>
-<router-outlet></router-outlet>
+<div class="games-tabs">
+  <ul class="tabs">
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <a routerLink="quiz">Quiz</a>
+    </li>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <a routerLink="puzzles">Puzzles</a>
+    </li>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <a routerLink="logic-challenge">Desafio Lógico</a>
+    </li>
+  </ul>
+</div>
+

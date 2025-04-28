@@ -11,7 +11,7 @@ export class CustomPageTitleStrategy extends TitleStrategy {
 	override updateTitle(routerState: RouterStateSnapshot) {
 		const title = this.buildTitle(routerState);
 		if (title !== undefined) {
-			this.title.setTitle(`${title} | Egressos UFU`);
+			this.title.setTitle(`${title} | Museu Virtual Facom`);
 		}
 	}
 }

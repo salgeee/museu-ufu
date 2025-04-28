@@ -1,0 +1,17 @@
+:host {
+	display: block;
+	overflow-x: auto;
+}
+
+.br-table {
+	i,
+	a {
+		color: var(--blue-warm-vivid-70, #1351b4);
+		cursor: pointer;
+	}
+}
+
+.br-item {
+	padding: 16px;
+	min-width: 120px;
+}

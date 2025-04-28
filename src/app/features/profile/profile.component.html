@@ -1,0 +1,39 @@
+<div id="btn-edit-profile">
+	<button [routerLink]="['/perfil/editar']" br-button color="secondary" icon="fa-edit">Editar Informações</button>
+</div>
+<h1>Informações Pessoais</h1>
+<div class="row">
+	<div class="col-12 col-lg-3">
+		<app-item-info label="Nome" [value]="data.name"></app-item-info>
+	</div>
+	<div class="col-12 col-lg-3">
+		<app-item-info label="Nome Social" [value]="data.socialName"></app-item-info>
+	</div>
+	<div class="col-12 col-lg-3">
+		<app-item-info label="CPF" [value]="data.cpf"></app-item-info>
+	</div>
+	<div class="col-12 col-lg-3">
+		<app-item-info label="E-mail" [value]="data.email"></app-item-info>
+	</div>
+	<div class="col-12 col-lg-3">
+		<app-item-info label="E-mail Secundário" [value]="data.secondaryEmail"></app-item-info>
+	</div>
+	<div class="col-12 col-lg-3">
+		<app-item-info label="Telefone" [value]="data.phone"></app-item-info>
+	</div>
+	<div class="col-12 col-lg-3">
+		<app-item-info label="Telefone Secundário" [value]="data.secondaryPhone"></app-item-info>
+	</div>
+	<div class="col-12 col-lg-3">
+		<app-item-info type="email" label="Link do Lattes" [value]="data.lattesLink"></app-item-info>
+	</div>
+	<div class="col-12 col-lg-3">
+		<app-item-info type="email" label="Link do ORCID" [value]="data.orcidLink"></app-item-info>
+	</div>
+	<div class="col-12 col-lg-3">
+		<app-item-info type="email" label="Link do LinkedIn" [value]="data.linkedinLink"></app-item-info>
+	</div>
+</div>
+<div id="btn-edit-profile-mobile">
+	<button [routerLink]="['/perfil/editar']" br-button size="large" color="secondary">Editar informações</button>
+</div>

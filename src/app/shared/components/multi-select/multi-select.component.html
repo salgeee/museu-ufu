@@ -1,0 +1,38 @@
+<div class="br-select mw-100" multiple>
+	<label for="{{ id }}">{{ label }}</label>
+	<div class="br-input" [class.disabled]="disabled">
+		<input (blur)="onBlur()" autocomplete="off" id="{{ id }}" type="text" [attr.placeholder]="placeholder" class="" />
+		<button class="br-button" type="button" aria-label="Exibir lista" tabindex="-1" data-trigger="data-trigger">
+			<i class="fas fa-angle-up" aria-hidden="true"></i>
+		</button>
+	</div>
+	<div class="br-list" tabindex="0">
+		<div class="br-item highlighted" data-all="data-all" tabindex="-1">
+			<div class="br-checkbox">
+				<input id="{{ id + '-all' }}" name="cbsm" type="checkbox" />
+				<label for="{{ id + '-all' }}">Selecionar Todos</label>
+			</div>
+		</div>
+		@for (option of options; let i = $index; track option.value) {
+			<div class="br-item" tabindex="-1" (click)="setSelected()">
+				<div class="br-checkbox">
+					<input id="{{ id + i }}" type="checkbox" value="{{ option.value }}" />
+					<label for="{{ id + i }}">{{ option.label }}</label>
+				</div>
+			</div>
+		}
+	</div>
+	@if (disabled) {
+		<span class="feedback warning" role="alert"
+			><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Campo desabilitado</span
+		>
+	} @else {
+		@if (hint) {
+			<span class="feedback warning" role="alert"
+				><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>{{ hint }}</span
+			>
+		}
+
+		<ng-content></ng-content>
+	}
+</div>

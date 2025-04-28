@@ -1,0 +1,35 @@
+<div class="template-erro">
+	<div class="row">
+		<div class="col-sm-5 d-flex align-items-center justify-content-center">
+			<div class="mt-4 mt-sm-0">
+				<img ngSrc="/icons/not-found.png" alt="imagem de erro" height="380" width="455" />
+			</div>
+		</div>
+		<div class="col text-center text-sm-left">
+			<div class="text-support-03">
+				<p class="text-up-06 text-semi-bold my-3">Estamos constrangidos em te ver por aqui</p>
+			</div>
+			<div class="text-secondary-06">
+				<p class="text-up-03 text-medium my-3">
+					Mas, podemos ajudá-lo a encontrar o que está procurando de outra forma
+				</p>
+			</div>
+			<p class="my-3">
+				Talvez você tenha se equivocado ao digitar o endereço URL ou quem sabe nós tenhamos cometido uma falha por aqui.
+				Se possível, relate o erro para que possamos sempre estar melhorando.
+			</p>
+		</div>
+	</div>
+	<div class="row my-5 text-center justify-content-lg-center">
+		<div class="col-lg-auto">
+			<button (click)="back()" br-button>
+				<i class="fas fa-chevron-left" aria-hidden="true"></i>Ir para Página Anterior
+			</button>
+		</div>
+		<div class="col-lg-auto mt-1 mt-lg-0">
+			<button [routerLink]="['/home']" br-button>
+				<i class="fas fa-home" aria-hidden="true"></i>Ir para Página Principal
+			</button>
+		</div>
+	</div>
+</div>

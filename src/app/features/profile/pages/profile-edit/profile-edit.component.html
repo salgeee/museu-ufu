@@ -1,0 +1,51 @@
+<h1>Editar Informações</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-edit">
+	<div class="row">
+		<div class="col-12 col-lg-3">
+			<app-input id="name" label="Nome" formControlName="name"></app-input>
+		</div>
+		<div class="col-12 col-lg-3">
+			<app-input id="socialName" label="Nome Social" formControlName="socialName"></app-input>
+		</div>
+		<div class="col-12 col-lg-3">
+			<app-input id="cpf" label="CPF" formControlName="cpf"></app-input>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12 col-lg-3">
+			<app-input id="email" label="E-mail" type="email" formControlName="email"></app-input>
+		</div>
+		<div class="col-12 col-lg-3">
+			<app-input id="secondaryEmail" label="E-mail Secundário" type="email" formControlName="secondaryEmail">
+				@if (form.get('secondaryEmail').hasError('email')) {
+					<span br-feedback state="warning"> E-mail inválido </span>
+				}
+			</app-input>
+		</div>
+		<div class="col-12 col-lg-3">
+			<app-input id="phone" label="Telefone" mask="(00) 00000-0000" formControlName="phone"></app-input>
+		</div>
+		<div class="col-12 col-lg-3">
+			<app-input
+				id="secondaryPhone"
+				label="Telefone Secundário"
+				mask="(00) 00000-0000"
+				formControlName="secondaryPhone"
+			></app-input>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12 col-lg-3">
+			<app-input id="lattesLink" label="Link do Lattes" formControlName="lattesLink"></app-input>
+		</div>
+		<div class="col-12 col-lg-3">
+			<app-input id="orcidLink" label="Link do ORCID" formControlName="orcidLink"></app-input>
+		</div>
+		<div class="col-12 col-lg-3">
+			<app-input id="linkedinLink" label="Link do LinkedIn" formControlName="linkedinLink"></app-input>
+		</div>
+		<div class="col-12 col-lg-3 d-flex align-items-end justify-content-lg-end justify-content-center mt-4 mt-md-0">
+			<button br-button color="primary">Salvar</button>
+		</div>
+	</div>
+</form>

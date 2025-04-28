@@ -1,0 +1,90 @@
+<div class="br-table {{ size }}" [ngClass]="{ 'no-hover': !hovered }">
+	@if (showHeader) {
+		<div class="table-header">
+			<div class="top-bar">
+				<div class="table-title">{{ title }}</div>
+				<div class="actions-trigger text-nowrap">
+					<button
+						br-button
+						circle
+						icon="fa-ellipsis-v"
+						color="tertiary"
+						title="Ver mais opções"
+						aria-label="Opções da tabela"
+						aria-haspopup="true"
+						aria-live="polite"
+						[cdkMenuTriggerFor]="menu"
+						[cdkMenuPosition]="[{ originX: 'end', originY: 'bottom', overlayX: 'end', overlayY: 'top' }]"
+					></button>
+					<ng-template #menu>
+						<div cdkMenu class="br-list" role="menu" aria-labelledby="button-dropdown-table">
+							@for (action of actions; track action.label) {
+								<button
+									cdkMenuItem
+									(click)="action.action()"
+									class="br-item"
+									type="button"
+									data-density="small"
+									role="menuitem"
+								>
+									{{ action.label }}
+								</button>
+								@if (!$last) {
+									<span class="br-divider"></span>
+								}
+							}
+						</div>
+					</ng-template>
+				</div>
+			</div>
+		</div>
+	}
+	<table cdk-table [dataSource]="data" [trackBy]="trackByItem">
+		@for (column of columns; track column.header) {
+			<ng-container [cdkColumnDef]="column.columnDef">
+				<th cdk-header-cell *cdkHeaderCellDef>
+					{{ column.header }}
+				</th>
+				@switch (column.type) {
+					@case ('date') {
+						<td mat-cell *cdkCellDef="let row">
+							{{ column.cell(row) | date: 'dd/MM/yyyy' }}
+						</td>
+					}
+					@case ('link') {
+						<td mat-cell *cdkCellDef="let row">
+							@if (column.value && column.value(row)) {
+								<a [routerLink]="[column.value(row)]">{{ column.cell(row) || '-' }}</a>
+							} @else {
+								{{ column.cell(row) || '-' }}
+							}
+						</td>
+					}
+					@case ('function') {
+						<td mat-cell *cdkCellDef="let row">
+							<a *ngIf="column.value" (click)="column.value(row)">{{ column.cell(row) || '-' }}</a>
+						</td>
+					}
+					@case ('icon') {
+						<td mat-cell *cdkCellDef="let row">
+							<i class="fas {{ column.cell(row) || 'fa-eye' }}" (click)="column.value(row)"></i>
+						</td>
+					}
+					@default {
+						@if (column.mask) {
+							<td mat-cell *cdkCellDef="let row">
+								{{ column.cell(row) | mask: column.mask || '-' }}
+							</td>
+						} @else {
+							<td mat-cell *cdkCellDef="let row">
+								{{ column.cell(row) || '-' }}
+							</td>
+						}
+					}
+				}
+			</ng-container>
+		}
+		<tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+		<tr cdk-row *cdkRowDef="let row; columns: displayedColumns"></tr>
+	</table>
+</div>

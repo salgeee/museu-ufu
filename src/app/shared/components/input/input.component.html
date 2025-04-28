@@ -1,0 +1,50 @@
+<div class="br-input" [ngClass]="[size, hasButton ? 'input-button' : '', state, highlight ? 'input-highlight' : '']">
+	<label for="input-{{ id }}">
+		{{ label }}
+	</label>
+	@if (hasIcon) {
+		<div class="input-group">
+			<div class="input-icon"><i [class]="icon" aria-hidden="true"></i></div>
+			<ng-container *ngTemplateOutlet="input"></ng-container>
+		</div>
+	} @else {
+		<ng-container *ngTemplateOutlet="input"></ng-container>
+		@if (hasButton) {
+			<button [disabled]="disabled" (click)="onClickButton($event)" class="br-button" type="button" aria-label="Botão">
+				<i [class]="icon" aria-hidden="true"></i>
+			</button>
+		}
+	}
+	<ng-template #input>
+		<input
+			id="input-{{ id }}"
+			[name]="name"
+			[disabled]="disabled"
+			[type]="type"
+			[readonly]="readonly"
+			[attr.autocomplete]="autocomplete"
+			[attr.maxLength]="maxLength"
+			[attr.min]="min"
+			[attr.max]="max"
+			[attr.pattern]="pattern"
+			[attr.placeholder]="placeholder"
+			[attr.step]="step"
+			[attr.required]="required"
+			[(ngModel)]="value"
+			(change)="onChangeInput($event)"
+			(blur)="onBlur()"
+			[mask]="mask"
+		/>
+	</ng-template>
+	@if (disabled) {
+		<span class="feedback warning" role="alert">
+			<i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Campo Desabilitado</span
+		>
+	} @else {
+		@if (hint) {
+			<p>{{ hint }}</p>
+		}
+
+		<ng-content></ng-content>
+	}
+</div>

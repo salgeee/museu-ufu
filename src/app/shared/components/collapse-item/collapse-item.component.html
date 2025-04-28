@@ -1,0 +1,27 @@
+<cdk-accordion-item
+	#accordionItem="cdkAccordionItem"
+	[expanded]="expanded"
+	class="accordion-item"
+	role="button"
+	tabindex="0"
+	[attr.id]="'accordion-header-' + id"
+	[attr.aria-expanded]="accordionItem.expanded"
+	[attr.aria-controls]="'accordion-body-' + id"
+>
+	<div class="header" (click)="accordionItem.toggle()">
+		<span>
+			{{ label }}
+		</span>
+		<i class="fas fa-chevron-down" [class.fa-rotate-180]="accordionItem.expanded"> </i>
+	</div>
+	@if (accordionItem.expanded) {
+		<div
+			class="block"
+			role="region"
+			[attr.id]="'accordion-body-' + id"
+			[attr.aria-labelledby]="'accordion-header-' + id"
+		>
+			<ng-content></ng-content>
+		</div>
+	}
+</cdk-accordion-item>

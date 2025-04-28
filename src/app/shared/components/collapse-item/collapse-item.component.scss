@@ -1,0 +1,40 @@
+.accordion-item {
+	display: inline-flex;
+	align-items: flex-start;
+	gap: 8px;
+	flex-direction: column;
+	width: 100%;
+
+	.header {
+		color: var(--pure-100, #000);
+		font-size: 20.16px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: 23.18px;
+		cursor: pointer;
+		margin-bottom: 16px;
+
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		outline: none;
+		box-shadow: none;
+
+		&:focus {
+			outline: none;
+			box-shadow: none;
+		}
+
+		span {
+			pointer-events: none;
+		}
+
+		i {
+			transition-duration: 0.5s;
+			transition-property: transform;
+			color: var(--blue-warm-vivid-70, #1351b4);
+			font-size: 16px;
+			line-height: normal;
+		}
+	}
+}

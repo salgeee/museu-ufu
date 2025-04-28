@@ -1,0 +1,9 @@
+.br-breadcrumb .crumb-list {
+	@media (max-width: 768px) {
+		padding: 0;
+	}
+}
+
+.br-breadcrumb .br-item a.br-button {
+	display: none !important;
+}

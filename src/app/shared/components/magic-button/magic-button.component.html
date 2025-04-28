@@ -1,0 +1,7 @@
+<button class="br-button" [class.circle]="icon" type="button" [attr.aria-label]="label">
+	@if (icon) {
+		<i class="{{ fontSet }} {{ icon }}" aria-hidden="true"></i>
+	} @else {
+		{{ label }}
+	}
+</button>

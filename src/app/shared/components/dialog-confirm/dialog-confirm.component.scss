@@ -1,0 +1,47 @@
+.dialog-confirm {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 24px;
+	max-width: 400px;
+
+	.icon {
+		display: flex;
+		height: auto;
+		flex-direction: column;
+		justify-content: center;
+		flex-shrink: 0;
+
+		i {
+			font-size: 80px;
+			width: 80px;
+			color: #000;
+		}
+	}
+
+	.content {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		p {
+			color: var(--gray-80, #333);
+			text-align: center;
+			font-size: 20.16px;
+			font-style: normal;
+			font-weight: 600;
+			line-height: 23.18px;
+			margin-bottom: 0;
+		}
+	}
+
+	.actions {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		gap: 40px;
+	}
+}

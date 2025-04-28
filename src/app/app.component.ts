@@ -27,7 +27,7 @@ import {CheckUpdateService} from './core/update/check-update.service';
     NgClass,
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
   isMobile = signal<boolean>(false);

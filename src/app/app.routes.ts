@@ -50,6 +50,22 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'news',
+    loadComponent: () => import('./pages/news/news.component').then(m => m.NewsComponent),
+    title: 'Noticias',
+    data: {
+      breadCrumb: 'News',
+    },
+  },
+  {
+    path: 'about',
+    loadComponent: () => import('./pages/about/about.component').then(m => m.AboutComponent),
+    title: 'Sobre nós',
+    data: {
+      breadCrumb: 'About',
+    },
+  },
+  {
     path: '**',
     loadComponent: () => import('./features/not-found/not-found.component').then(m => m.NotFoundComponent),
     title: 'Página Não Encontrada',

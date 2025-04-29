@@ -23,6 +23,7 @@ export const routes: Routes = [
       },
       {
         path: 'quiz',
+        title: 'Quiz',
         loadComponent: () =>
           import('./pages/games/quiz/quiz.component').then(m => m.QuizComponent),
       },
@@ -46,6 +47,22 @@ export const routes: Routes = [
     title: 'Home',
     data: {
       breadCrumb: 'Home',
+    },
+  },
+  {
+    path: 'news',
+    loadComponent: () => import('./pages/news/news.component').then(m => m.NewsComponent),
+    title: 'Noticias',
+    data: {
+      breadCrumb: 'News',
+    },
+  },
+  {
+    path: 'about',
+    loadComponent: () => import('./pages/about/about.component').then(m => m.AboutComponent),
+    title: 'Sobre nós',
+    data: {
+      breadCrumb: 'About',
     },
   },
   {

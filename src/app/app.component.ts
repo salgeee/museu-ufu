@@ -57,7 +57,7 @@ export class AppComponent implements OnInit {
   }
 
   private validateUrl(url: string) {
-    if (url.startsWith('/login')) {
+    if (url.startsWith('/login') || url === '/' || url === '/home') {
       this.hideNavbar.set(true);
     } else {
       this.hideNavbar.set(false);

@@ -1,3 +1,4 @@
+<app-barra-brasil></app-barra-brasil>
 <header class="br-header mb-4" id="header" data-sticky="data-sticky">
 	<div class="container-lg">
 		<div class="header-top">
@@ -9,7 +10,6 @@
 		</div>
 		<div class="header-bottom">
 			<div class="header-menu">
-				@if (!hideNavbar()) {
 					<div class="header-menu-trigger" id="header-navigation">
 						<button
 							class="br-button small circle"
@@ -18,24 +18,17 @@
 							data-toggle="menu"
 							data-target="#main-navigation"
 							id="navigation"
+							(click)="toggleMenu()"
 						>
 							<i class="fas fa-bars" aria-hidden="true"></i>
 						</button>
 					</div>
-				}
-				<div class="header-info">
+					<div class="header-info">
 					<div class="header-title">
-						<a [routerLink]="['/']"> Museu Virtual Facom</a>
+						<a> Museu Virtual da FACOM</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </header>
-
-<ng-template #menu>
-	<div cdkMenu class="br-list" id="avatar-menu" role="menu">
-		<a cdkMenuItem class="br-item" [routerLink]="['/perfil']" role="menuitem">Perfil</a>
-		<a cdkMenuItem class="br-item" (click)="logout()" role="menuitem">Sair da conta</a>
-	</div>
-</ng-template>

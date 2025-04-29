@@ -9,6 +9,12 @@
   height: 100%;
 }
 
+/* Ajuste para páginas sem header */
+:host-context(.no-header) .main-content {
+  min-height: 100vh;
+  padding: 0;
+}
+
 #barra-brasil {
   background: var(--blue-warm-vivid-90);
   height: 20px;
@@ -32,4 +38,21 @@
       }
     }
   }
+}
+
+/* Ajustes para container quando não há header */
+.template-base {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+.container-lg {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }

@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, ElementRef, inject, signal } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, signal, Input, OnInit } from '@angular/core';
 import { LIST_MENU_BY_ROLE } from './const/list-menu';
-import { NgClass, NgTemplateOutlet } from '@angular/common';
+import { NgClass, NgTemplateOutlet, NgOptimizedImage } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Role } from '@app/features/login/models/credentials.model';
 import { AuthService } from '@app/core/auth/services/auth.service';
@@ -8,6 +8,9 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { IMenu } from './types/menu.type';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import BRMenu from '@govbr-ds/core/dist/components/menu/menu';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { MenuService } from '@app/core/services/menu.service';
 
 /**
  * Componente MenuComponent é responsável por exibir o menu da aplicação.
@@ -16,24 +19,33 @@ import BRMenu from '@govbr-ds/core/dist/components/menu/menu';
  * @public
  * {@link https://www.gov.br/ds/components/menu?tab=desenvolvedor|Documentação oficial}
  */
+interface MenuItemState extends IMenu {
+	expanded?: boolean;
+}
+
 @Component({
 	selector: 'app-menu',
 	standalone: true,
 	host: { class: 'br-menu push px-0' },
-	imports: [NgClass, NgTemplateOutlet, RouterLink, RouterLinkActive],
+	imports: [RouterLink, RouterLinkActive, CommonModule, RouterModule, NgOptimizedImage],
 	templateUrl: './menu.component.html',
 	styleUrl: './menu.component.scss',
 })
-export class MenuComponent implements AfterViewInit {
-	list: IMenu[] = [];
-	instance: unknown;
+export class MenuComponent implements AfterViewInit, OnInit {
+	@Input() list: MenuItemState[] = [];
+	instance: BRMenu | null = null;
 	isMobile = signal<boolean>(false);
+	isOpen = false;
 
 	private _brMenu = inject(ElementRef);
 	private _authService = inject(AuthService);
 	private _breakpointObserver = inject(BreakpointObserver);
+	private _menuService = inject(MenuService);
 
 	constructor() {
+		// Garante que o menu comece fechado
+		this.isOpen = false;
+
 		this._breakpointObserver
 			.observe([Breakpoints.Handset, Breakpoints.Web, Breakpoints.Tablet])
 			.pipe(takeUntilDestroyed())
@@ -48,21 +60,64 @@ export class MenuComponent implements AfterViewInit {
 				this.list = LIST_MENU_BY_ROLE.get(result.role || Role.PUBLIC);
 			}
 		});
+
+		this._menuService.isOpen$.subscribe(isOpen => {
+			this.isOpen = isOpen;
+			if (this.instance) {
+				if (isOpen) {
+					this.instance.open();
+				} else {
+					this.instance.close();
+				}
+			}
+		});
 	}
 
 	ngAfterViewInit(): void {
 		setTimeout(() => {
-			this.instance = new BRMenu('br-menu', document.querySelector('.br-menu'));
+			this.instance = new BRMenu('br-menu', this._brMenu.nativeElement);
+			this.instance.init();
+			// Garante que o menu comece fechado após a inicialização
+			this.instance.close();
 		});
 	}
 
+	ngOnInit() {
+		this.list = [
+			{
+				label: 'Início',
+				url: '/home',
+				icon: 'fas fa-home',
+				children: [] // Garante que não tenha submenu
+			},
+			{
+				label: 'Jogos',
+				url: '/games',
+				icon: 'fas fa-gamepad'
+			},
+			{
+				label: 'Sobre',
+				url: '/about',
+				icon: 'fas fa-info-circle'
+			}
+		];
+	}
+
 	closeMenu() {
-		if (this._brMenu) this._brMenu.nativeElement.querySelector('[data-dismiss="menu"]')?.click();
+		this._menuService.close();
 	}
 
 	closeMenuIfMobile() {
 		if (this.isMobile()) {
 			this.closeMenu();
 		}
+	}
+
+	toggleMenu() {
+		this._menuService.toggle();
+	}
+
+	toggleSubmenu(item: MenuItemState) {
+		item.expanded = !item.expanded;
 	}
 }

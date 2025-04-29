@@ -1,4 +1,23 @@
-<div class="welcome-container">
-  <h1>Bem-vindo!</h1>
-  <p>{{ content() }}</p>
+<div class="home-container template-base">
+  <div class="main-content">
+   `
+    <div class="container perfis mt-3">
+      <div class="row d-flex align-items-center justify-content-center">
+        <div class="col-md-3 col-6">
+          <a href="/estude-na-ufu" class="btn btn-sm btn-outline-primary rounded-pill p-2 h-100 w-100 mb-3" routerLink="/about">Sobre o museu</a>
+        </div>
+        <div class="col-md-3 col-6">
+          <a href="/ensino" class="btn btn-sm btn-outline-primary rounded-pill p-2 h-100 w-100 mb-3" routerLink="/news">Notícias</a>
+        </div>
+        <div class="col-md-3 col-6">
+          <a href="/pesquisa-e-inovacao" class="btn btn-sm btn-outline-primary rounded-pill p-2 h-100 w-100 mb-3" routerLink="/games">Jogos</a>
+        </div>
+      </div>
+    </div>
+    <div class="welcome-header">
+      <h1 class="text-h1">Bem-vindo ao Museu Virtual da FACOM</h1>
+      <p class="text-h2">{{ content() }}</p>
+    </div>
+  </div>
+
 </div>

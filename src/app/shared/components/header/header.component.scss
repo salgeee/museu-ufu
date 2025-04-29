@@ -1,9 +1,5 @@
 #header {
 	z-index: 2;
-
-	a {
-		cursor: pointer;
-	}
 }
 
 .header-logo {
@@ -28,14 +24,5 @@
 
 	.br-avatar {
 		--avatar-small: 36px;
-	}
-}
-
-#avatar-menu {
-	z-index: 3;
-	box-shadow: var(--surface-shadow-sm);
-
-	a {
-		cursor: pointer;
 	}
 }

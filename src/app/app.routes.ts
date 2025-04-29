@@ -13,9 +13,9 @@ export const routes: Routes = [
   {
     path: 'games',
     data: {
-      breadCrumb: 'Games',
+      breadCrumb: 'Jogos',
     },
-    title: 'Games',
+    title: 'Jogos',
     children: [
       {
         path: '',

@@ -5,7 +5,9 @@ p {
 	font-weight: 400;
 	line-height: 24px;
 }
-
+a {
+  text-decoration: none;
+}
 .home-container {
 	display: flex;
 	flex-direction: column;

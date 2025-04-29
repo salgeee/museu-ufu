@@ -1,8 +1,9 @@
 #footer {
 	padding-top: 24px;
-
+	font-family: "Noto Sans", Arial, Helvetica, sans-serif;
 	.logo {
 		padding-bottom: 24px;
+		filter: invert(1) brightness(2);
 
 		img {
 			max-height: 80px;
@@ -36,4 +37,120 @@
 		background-image: url('/logos/gov.png');
 		background-size: cover;
 	}
+}
+
+.br-footer {
+	background-color: #155bc9;
+
+	.footer-content {
+		.footer-main {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+			gap: 40px;
+			padding-bottom: 40px;
+
+			.footer-logo-section {
+				.logo {
+					img {
+						max-width: 100%;
+						height: auto;
+					}
+				}
+			}
+
+			.footer-title {
+				color: var(--pure-0);
+				font-size: 1.25rem;
+				margin-bottom: 1rem;
+				font-weight: 600;
+			}
+
+			.footer-list {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+
+				li {
+					margin-bottom: 0.75rem;
+
+					a {
+						color: var(--pure-0);
+						text-decoration: none;
+						transition: opacity 0.2s;
+
+						&:hover {
+							opacity: 0.8;
+						}
+					}
+
+					i {
+						margin-right: 8px;
+						width: 16px;
+					}
+				}
+			}
+
+			.footer-social {
+				.social-buttons {
+					display: flex;
+					gap: 12px;
+
+					.br-button.circle {
+						background-color: transparent;
+						border: 2px solid var(--pure-0);
+						width: 40px;
+						height: 40px;
+						padding: 0;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						transition: all 0.2s;
+
+						&:hover {
+							background-color: var(--pure-0);
+							color: var(--blue-warm-vivid-90);
+						}
+
+						i {
+							font-size: 1.2rem;
+						}
+					}
+				}
+			}
+		}
+
+		.footer-gov {
+			border-top: 1px solid rgba(255, 255, 255, 0.1);
+			padding-top: 20px;
+
+			.gov-logos {
+				display: flex;
+				justify-content: flex-end;
+				gap: 20px;
+			}
+		}
+	}
+
+	.footer-license {
+		background-color: rgba(0, 0, 0, 0.1);
+		margin-top: 40px;
+	}
+}
+
+.logo-acesso-footer {
+	background-image: url("/assets/images/acesso-footer.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	display: block;
+	width: 110px;
+	height: 40px;
+}
+
+.logo-governo-federal {
+	background-image: url("/assets/images/governo-federal-footer.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	display: block;
+	width: 110px;
+	height: 40px;
 }

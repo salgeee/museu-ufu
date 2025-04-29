@@ -23,6 +23,7 @@ export const routes: Routes = [
       },
       {
         path: 'quiz',
+        title: 'Quiz',
         loadComponent: () =>
           import('./pages/games/quiz/quiz.component').then(m => m.QuizComponent),
       },

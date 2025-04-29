@@ -1,4 +1,24 @@
-<div class="welcome-container">
-  <h1>Bem-vindo!</h1>
-  <p>{{ content() }}</p>
+<div class="home-container template-base">
+  <div class="main-content">
+    <div class="welcome-header">
+      <h1 class="text-h1">Bem-vindo ao Museu Virtual da FACOM</h1>
+      <p class="text-h2">{{ content() }}</p>
+    </div>
+
+    <div class="button-container">
+      <button class="br-button primary" type="button" routerLink="/about">
+        Sobre o museu
+      </button>
+      <button class="br-button primary" type="button" routerLink="/news">
+        Notícias
+      </button>
+      <button class="br-button primary" type="button" routerLink="/games">
+        Jogos
+      </button>
+      <a routerLink="/perfil" class="br-button primary">
+        <i class="fas fa-info-circle" aria-hidden="true"></i>
+        <span>Sobre</span>
+      </a>
+    </div>
+  </div>
 </div>

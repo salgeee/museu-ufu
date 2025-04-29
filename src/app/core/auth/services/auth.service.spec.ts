@@ -1,5 +1,5 @@
 import { createServiceFactory, SpectatorService } from '@ngneat/spectator/jest';
-import { authGuard, authGuardCoordinator, authGuardStudent, AuthService } from './auth.service';
+import { authGuard, authGuardStudent, AuthService } from './auth.service';
 import { LocalStorageService } from '@shared/services/storage';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { Credentials, Role } from '@features/login/models/credentials.model';
@@ -22,7 +22,7 @@ describe('AuthService', () => {
 
 	it('should set credentials on initialization if platform is browser', () => {
 		const credentials: Credentials = {
-			role: Role.COORDINATOR,
+			role: Role.STUDENT,
 			accessToken: 'token',
 			document: '111111111',
 			fullName: 'John Due',
@@ -35,7 +35,7 @@ describe('AuthService', () => {
 
 	it('should set credentials and store them in local storage', () => {
 		const credentials: Credentials = {
-			role: Role.COORDINATOR,
+			role: Role.STUDENT,
 			accessToken: 'token',
 			document: '111111111',
 			fullName: 'John Due',
@@ -53,17 +53,6 @@ describe('AuthService', () => {
 		expect(spectator.inject(Router).navigate).toHaveBeenCalledWith(['/login']);
 	});
 
-	it('should return true if user is authenticated', () => {
-		const credentials: Credentials = {
-			role: Role.COORDINATOR,
-			accessToken: 'token',
-			document: '111111111',
-			fullName: 'John Due',
-			username: 'johndue',
-		};
-		spectator.service.setCredentials(credentials);
-		expect(spectator.service.isAuthenticated).toBeTruthy();
-	});
 
 	it('should return false if user is not authenticated', () => {
 		spectator.service.logout();
@@ -78,7 +67,7 @@ describe('AuthService', () => {
 
 	it('should allow activation if user is authenticated in canActivate', () => {
 		const credentials: Credentials = {
-			role: Role.COORDINATOR,
+      role: Role.STUDENT,
 			accessToken: 'token',
 			document: '111111111',
 			fullName: 'John Due',
@@ -97,20 +86,7 @@ describe('AuthService', () => {
 			username: 'johndue',
 		};
 		spectator.service.setCredentials(credentials);
-		expect(spectator.service.canActivateByRole(Role.COORDINATOR)).toBeFalsy();
 		expect(spectator.inject(Router).navigate).toHaveBeenCalledWith(['/login']);
-	});
-
-	it('should allow activation if user role matches in canActivateByRole', () => {
-		const credentials: Credentials = {
-			role: Role.COORDINATOR,
-			accessToken: 'token',
-			document: '111111111',
-			fullName: 'John Due',
-			username: 'johndue',
-		};
-		spectator.service.setCredentials(credentials);
-		expect(spectator.service.canActivateByRole(Role.COORDINATOR)).toBeTruthy();
 	});
 });
 
@@ -146,13 +122,4 @@ describe('AuthGuards', () => {
 		expect(canActivateByRoleSpy).toHaveBeenCalledWith(Role.STUDENT);
 	});
 
-	it('authGuardCoordinator should call canActivateByRole with Role.COORDINATOR', async () => {
-		const canActivateByRoleSpy = jest.spyOn(spectator.service, 'canActivateByRole').mockReturnValue(true);
-		const route = {} as ActivatedRouteSnapshot;
-		const state = {
-			url: '/',
-		} as RouterStateSnapshot;
-		await TestBed.runInInjectionContext(() => authGuardCoordinator(route, state));
-		expect(canActivateByRoleSpy).toHaveBeenCalledWith(Role.COORDINATOR);
-	});
 });

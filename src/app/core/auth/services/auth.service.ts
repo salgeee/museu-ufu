@@ -14,8 +14,7 @@ export class AuthService {
 	private router = inject(Router);
 	credentials = signal<Credentials | null>(null);
 	credentials$ = toObservable(this.credentials);
-	isStudent = computed(() => this.credentials()?.role === Role.STUDENT);
-	isCoordinator = computed(() => this.credentials()?.role === Role.COORDINATOR);
+	isStudent = computed(() => this.credentials()?.role === Role.STUDENT)
 	isPublic = computed(() => !this.credentials() || this.credentials()?.role === Role.PUBLIC);
 
 	constructor() {
@@ -63,8 +62,4 @@ export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: R
 
 export const authGuardStudent: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
 	return inject(AuthService).canActivateByRole(Role.STUDENT);
-};
-
-export const authGuardCoordinator: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-	return inject(AuthService).canActivateByRole(Role.COORDINATOR);
 };

@@ -1,2 +1,29 @@
-<p>games works!</p>
+<div class="games-container">
+  <h1 class="games-title">Jogos Educativos</h1>
+  <div class="games-grid">
+    <div class="game-card" routerLink="./quiz">
+      <div class="game-icon">
+        <i class="fas fa-question-circle"></i>
+      </div>
+      <h2>Quiz</h2>
+      <p>Teste seus conhecimentos sobre o museu com perguntas divertidas!</p>
+    </div>
+
+    <div class="game-card" routerLink="./puzzles">
+      <div class="game-icon">
+        <i class="fas fa-puzzle-piece"></i>
+      </div>
+      <h2>Puzzles</h2>
+      <p>Monte quebra-cabeças com imagens das obras do museu!</p>
+    </div>
+
+    <div class="game-card" routerLink="./logic-challenge">
+      <div class="game-icon">
+        <i class="fas fa-brain"></i>
+      </div>
+      <h2>Desafio Lógico</h2>
+      <p>Resolva desafios e enigmas relacionados ao acervo do museu!</p>
+    </div>
+  </div>
+</div>
 <router-outlet></router-outlet>

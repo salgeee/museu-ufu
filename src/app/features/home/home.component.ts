@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { AuthService } from '@app/core/auth/services/auth.service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { CONTENT_BY_ROLE } from './const/content.const';
-import { Role } from '../login/models/credentials.model';
+import {Router} from '@angular/router';
+
 
 @Component({
 	selector: 'app-home',
@@ -13,12 +12,8 @@ import { Role } from '../login/models/credentials.model';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
-	private _authService = inject(AuthService);
-	content = signal('');
-
-	constructor() {
-		this._authService.credentials$.pipe(takeUntilDestroyed()).subscribe(result => {
-			this.content.set(CONTENT_BY_ROLE.get(result?.role || Role.PUBLIC));
-		});
-	}
+  content(): string {
+    return `Bem-vindo ao Museu FACOM-UFU! Aqui você vai descobrir o legado da computação na nossa universidade, explorar exposições interativas
+e se inspirar com projetos de pesquisa que moldam o futuro da tecnologia.`;
+  }
 }

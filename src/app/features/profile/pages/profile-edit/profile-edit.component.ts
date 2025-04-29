@@ -11,7 +11,7 @@ import { profileMock } from '../../mocks/profile.mock';
 @Component({
 	selector: 'app-profile-edit',
 	standalone: true,
-	imports: [ItemInfoComponent, InputComponent, ReactiveFormsModule, ButtonDirective, FeedbackDirective],
+	imports: [InputComponent, ReactiveFormsModule, ButtonDirective, FeedbackDirective],
 	templateUrl: './profile-edit.component.html',
 	styleUrl: './profile-edit.component.scss',
 })

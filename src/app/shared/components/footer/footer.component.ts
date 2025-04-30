@@ -17,7 +17,7 @@ import { NgOptimizedImage } from '@angular/common';
 })
 export class FooterComponent {
 	currentYear = new Date().getFullYear();
-	
+
 	museumInfo = {
 		name: 'Museu Universitário de Arte - MUnA',
 		description: 'O Museu Universitário de Arte da UFU é um espaço dedicado à preservação, pesquisa e difusão da arte contemporânea.',

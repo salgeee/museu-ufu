@@ -18,21 +18,25 @@ export const routes: Routes = [
     title: 'Jogos',
     children: [
       {
+        data: { breadCrumb: 'Jogos' },
         path: '',
         loadComponent: () => import('./pages/games/games.component').then(m => m.GamesComponent),
       },
       {
+        data: { breadCrumb: 'Quiz' },
         path: 'quiz',
         title: 'Quiz',
         loadComponent: () =>
           import('./pages/games/quiz/quiz.component').then(m => m.QuizComponent),
       },
       {
+        data: { breadCrumb: 'Puzzle' },
         path: 'puzzles',
         loadComponent: () =>
           import('./pages/games/puzzles/puzzles.component').then(m => m.PuzzlesComponent),
       },
       {
+        data: { breadCrumb: 'Desafio Lógico' },
         path: 'logic-challenge',
         loadComponent: () =>
           import('./pages/games/logic-challenge/logic-challenge.component').then(
@@ -54,7 +58,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/news/news.component').then(m => m.NewsComponent),
     title: 'Noticias',
     data: {
-      breadCrumb: 'News',
+      breadCrumb: 'Notícias',
     },
   },
   {
@@ -62,7 +66,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/about/about.component').then(m => m.AboutComponent),
     title: 'Sobre nós',
     data: {
-      breadCrumb: 'About',
+      breadCrumb: 'Sobre',
     },
   },
   {

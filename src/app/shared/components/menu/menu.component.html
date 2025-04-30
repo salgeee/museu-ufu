@@ -37,7 +37,7 @@
 						<span class="menu-item-label">{{ item.label }}</span>
 						<span class="menu-arrow"><i class="fas" [class.fa-angle-down]="!item.expanded" [class.fa-angle-up]="item.expanded"></i></span>
 					</div>
-					
+
 					<!-- Submenu -->
 					<div class="menu-subitems" [class.is-active]="item.expanded">
 						<ng-container *ngFor="let subItem of item.children">

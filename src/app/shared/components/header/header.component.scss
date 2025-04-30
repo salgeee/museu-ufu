@@ -26,3 +26,75 @@
 		--avatar-small: 36px;
 	}
 }
+
+.br-header {
+	background-color: #ffffff;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	padding: 1rem 0;
+
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1rem;
+	}
+
+	.navbar-toggler {
+		background: none;
+		border: none;
+		padding: 0.5rem;
+		color: #155bcb;
+		cursor: pointer;
+		font-size: 1.2rem;
+	}
+
+	.region-nav-branding {
+		.marca {
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+
+			.logo {
+				a {
+					display: block;
+					
+					img {
+						height: 40px;
+						width: auto;
+					}
+				}
+			}
+
+			.nome {
+				a {
+					color: #000000;
+					font-weight: 600;
+					text-decoration: none;
+					font-size: 0.875rem;
+				}
+			}
+
+			.subordinacao {
+				color: #000000;
+				font-size: 0.75rem;
+				opacity: 0.8;
+			}
+		}
+	}
+
+	.acessibilidade {
+		a {
+			color: #155bcb;
+			text-decoration: none;
+			margin-left: 1rem;
+			font-size: 0.875rem;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		i {
+			font-size: 1.2rem;
+		}
+	}
+}

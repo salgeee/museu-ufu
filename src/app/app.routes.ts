@@ -66,6 +66,14 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'donations',
+    loadComponent: () => import('./pages/donations/donations.component').then(m => m.DonationsComponent),
+    title: 'Doações',
+    data: {
+      breadCrumb: 'Donations',
+    },
+  },
+  {
     path: '**',
     loadComponent: () => import('./features/not-found/not-found.component').then(m => m.NotFoundComponent),
     title: 'Página Não Encontrada',

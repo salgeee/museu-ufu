@@ -25,6 +25,7 @@
 
 .games-container {
   padding: 2rem;
+  padding-top: 3rem;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -91,4 +92,8 @@
   color: #666;
   line-height: 1.5;
   margin: 0;
+}
+
+.crumb-list {
+  padding-top: 1rem;
 }

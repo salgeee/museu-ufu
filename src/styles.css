@@ -1,10 +1,20 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import '@govbr-ds/core/dist/core.min.css';
 
+/* Estilos globais */
+* {
+  font-family: "Noto Sans", Arial, Helvetica, sans-serif;
+}
+
+/* Fonte específica para o header */
+.br-header,
+.br-header * {
+  font-family: "Raleway", Arial, Helvetica, sans-serif;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: "Noto Sans", Arial, Helvetica, sans-serif;
 }
 
 .container {

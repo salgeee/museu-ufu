@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core
 import { NgOptimizedImage } from '@angular/common';
 import { AuthService } from '@app/core/auth/services/auth.service';
 import { CdkMenuModule } from '@angular/cdk/menu';
-import { MenuService } from '@app/core/services/menu.service';
+import { MenuService } from '@app/core/services/menu.service'
 import { BarraBrasilComponent } from '../barra-brasil/barra-brasil.component';
 
 /**

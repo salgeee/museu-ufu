@@ -23,6 +23,7 @@
     "@govbr-ds/core": "^3.6.1",
     "@ngneat/spectator": "^19.4.1",
     "bootstrap": "^5.3.5",
+    "dayjs": "^1.11.13",
     "govbr-ds-angular": "^0.0.2",
     "ng2-charts": "^8.0.0",
     "ngx-mask": "^19.0.6",

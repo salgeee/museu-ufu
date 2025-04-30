@@ -1,1 +1,0 @@
-import{Hb as l,Xa as n,pb as o,qb as i}from"./chunk-FY5ENRAQ.js";var r=(()=>{class e{static \u0275fac=function(t){return new(t||e)};static \u0275cmp=n({type:e,selectors:[["app-logic-challenge"]],decls:2,vars:0,template:function(t,a){t&1&&(o(0,"p"),l(1,"logic-challenge works!"),i())},encapsulation:2})}return e})();export{r as LogicChallengeComponent};

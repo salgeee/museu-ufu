@@ -1,0 +1,1 @@
+import{Ib as l,Ya as n,qb as o,rb as i}from"./chunk-2O3Z4FTK.js";var r=(()=>{class e{static \u0275fac=function(t){return new(t||e)};static \u0275cmp=n({type:e,selectors:[["app-logic-challenge"]],decls:2,vars:0,template:function(t,a){t&1&&(o(0,"p"),l(1,"logic-challenge works!"),i())},encapsulation:2})}return e})();export{r as LogicChallengeComponent};

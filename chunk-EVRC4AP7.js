@@ -1,1 +1,0 @@
-import{Hb as i,Xa as n,pb as o,qb as p}from"./chunk-FY5ENRAQ.js";var l=(()=>{class e{static \u0275fac=function(t){return new(t||e)};static \u0275cmp=n({type:e,selectors:[["app-puzzles"]],decls:2,vars:0,template:function(t,r){t&1&&(o(0,"p"),i(1,"puzzles works!"),p())},encapsulation:2})}return e})();export{l as PuzzlesComponent};

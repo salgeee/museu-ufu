@@ -78,6 +78,14 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'accessibility',
+    loadComponent: () => import('./pages/accessibility/accessibility.component').then(m => m.AccessibilityComponent),
+    title: 'accessibility',
+    data: {
+      breadCrumb: 'Acessibilidade',
+    },
+  },
+  {
     path: '**',
     loadComponent: () => import('./features/not-found/not-found.component').then(m => m.NotFoundComponent),
     title: 'Página Não Encontrada',

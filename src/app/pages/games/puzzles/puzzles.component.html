@@ -1,1 +1,39 @@
-<p>puzzles works!</p>
+<div class="puzzle-container">
+  <h1>Jogo da Memória - História da Computação</h1>
+
+  <div class="game-info">
+    <p>Encontre os pares de cartas!</p>
+    <div class="timer">Tempo: {{ timeElapsed }}</div>
+  </div>
+
+  <div class="memory-board">
+    <div class="cards-grid">
+      <div *ngFor="let card of cards"
+           class="card"
+           [class.flipped]="card.isFlipped"
+           [class.matched]="card.isMatched"
+           (click)="flipCard(card)">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="public/images/card-back.png" alt="Verso da carta">
+          </div>
+          <div class="card-back">
+            <img [src]="card.image" [alt]="'Imagem ' + card.id">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button (click)="startNewGame()">Novo Jogo</button>
+  </div>
+</div>
+
+<div class="game-over-modal" *ngIf="gameWon">
+  <div class="modal-content">
+    <h2>🎉 Parabéns!</h2>
+    <p>Você completou o jogo da memória em {{ timeElapsed }}!</p>
+    <button (click)="startNewGame()">Jogar novamente</button>
+  </div>
+</div>

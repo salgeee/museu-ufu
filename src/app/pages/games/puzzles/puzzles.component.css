@@ -1,0 +1,178 @@
+.puzzle-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.timer {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.memory-board {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  padding: 10px;
+}
+
+.card {
+  width: 100%;
+  aspect-ratio: 3 / 3;
+  max-width: 150px;
+  margin: 0 auto;
+  perspective: 1000px;
+  cursor: pointer;
+  border-radius: 18px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  border-radius: 18px;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  backface-visibility: hidden;
+  top: 0;
+  left: 0;
+}
+
+.card-front {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.card-back {
+  background-color: white;
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.card-front img,
+.card-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+.card.matched {
+  opacity: 1;
+  transform: scale(1.05);
+  animation: pulse 0.4s ease;
+  border: 3px solid #4CAF50;
+}
+
+.controls {
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  font-size: 1.1em;
+  background-color: #b7ffbb;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+
+
+.game-over-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  text-align: center;
+  max-width: 90%;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1.05); }
+}
+
+@media (max-width: 600px) {
+  .puzzle-container {
+    padding: 10px;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(3, 1fr); /* Agora 3 colunas em celular */
+    gap: 10px;
+  }
+
+  .card {
+    max-width: 100px;
+    aspect-ratio: 1 / 1;
+  }
+
+  .modal-content {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .timer {
+    font-size: 1em;
+  }
+
+  .controls button {
+    width: 100%;
+    margin: 10px 0;
+    font-size: 1em;
+  }
+
+  button {
+    padding: 10px;
+  }
+}

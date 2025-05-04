@@ -30,7 +30,7 @@ export const routes: Routes = [
           import('./pages/games/quiz/quiz.component').then(m => m.QuizComponent),
       },
       {
-        data: { breadCrumb: 'Puzzle' },
+        data: { breadCrumb: 'Jogo da Memória' },
         path: 'puzzles',
         loadComponent: () =>
           import('./pages/games/puzzles/puzzles.component').then(m => m.PuzzlesComponent),

@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
+import { Component, isDevMode } from '@angular/core';
 
 /**
  * Componente FooterComponent é responsável por exibir o rodapé da aplicação.
@@ -11,12 +10,14 @@ import { NgOptimizedImage } from '@angular/common';
 @Component({
 	selector: 'app-footer',
 	standalone: true,
-	imports: [NgOptimizedImage],
+	imports: [],
 	templateUrl: './footer.component.html',
 	styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
 	currentYear = new Date().getFullYear();
+
+	basePath = isDevMode() ? '' : '/museu-ufu';
 
 	museumInfo = {
 		name: 'Museu Universitário de Arte - MUnA',

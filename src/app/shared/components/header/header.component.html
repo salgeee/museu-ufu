@@ -1,58 +1,49 @@
 <app-barra-brasil></app-barra-brasil>
 <header class="br-header" id="header" data-sticky="data-sticky">
-  <div class="container">
-    <div class="row d-flex align-items-start justify-content-between">
-      <div class="col-md-auto col-9 d-flex align-items-start">
-        <button class="navbar-toggler me-3" type="button" (click)="toggleMenu()" aria-label="Toggle navigation">
+	<div class="container">
+		<div class="row d-flex align-items-start justify-content-between">
+			<div class="col-md-auto col-9 d-flex align-items-start">
+				<button class="navbar-toggler me-3" type="button" (click)="toggleMenu()" aria-label="Toggle navigation">
 					<span class="text-primary">
 						<i class="fas fa-bars"></i>
 					</span>
-        </button>
+				</button>
 
-        <div class="region region-nav-branding">
-          <div class="marca">
-            <div class="logo">
-              <a href="/" title="Início" rel="home">
-                <img src="/public/logos/ufu_blue.svg" alt="Início" width="120" height="40">
-              </a>
-            </div>
-            <div class="nome">
-              <a href="/" title="Início" rel="home">
-                Universidade Federal de Uberlândia
-              </a>
-            </div>
-            <div class="subordinacao">
-              Ministério da Educação
-            </div>
-          </div>
-        </div>
-      </div>
+				<div class="region region-nav-branding">
+					<div class="marca">
+						<div class="logo">
+              <a [href]="basePath + '/home'" title="Início" rel="home">
+								<img [src]="basePath + '/public/logos/ufu_blue.svg'" alt="Início" width="120" height="40">
+							</a>
+						</div>
+						<div class="nome">
+							<a [href]="basePath" title="Início" rel="home">
+								Universidade Federal de Uberlândia
+							</a>
+						</div>
+						<div class="subordinacao">
+							Ministério da Educação
+						</div>
+					</div>
+				</div>
+			</div>
 
-      <div class="col-md-auto col-3">
-        <div class="acessibilidade">
-          <div class="d-none d-md-block">
-            <p class="d-flex align-items-center justify-content-md-end my-3 my-md-1">
-              <a href="/accessibility" title="Acessibilidade">Acessibilidade</a>
-              <a id="menosZoom" href="#" title="Menos Zoom">A-</a>
-              <a id="resetarZoom" href="#" title="Reiniciar Zoom">A</a>
-              <a id="maisZoom" href="#" title="Mais Zoom">A+</a>
-              <a id="contraste-desktop" title="Inverter Cores" href="#">
-                <i class="fas fa-adjust"></i>
-              </a>
-            </p>
-          </div>
-          <div class="d-md-none d-block">
-            <p class="d-flex align-items-center justify-content-md-end mx-1">
-              <a id="contraste-mobile" href="#">
-                <i class="fas fa-adjust"></i>
-              </a>
-              <a href="/search/node" title="Buscar">
-                <i class="fas fa-magnifying-glass"></i>
-              </a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+			<div class="col-md-auto col-3">
+				<div class="acessibilidade">
+					<div class="d-none d-md-block">
+						<p class="d-flex align-items-center justify-content-md-end my-3 my-md-1">
+            <div class="header-accessibility">
+            <a [routerLink]="['/accessibility']" title="Acessibilidade">Acessibilidade</a>
+            </div>
+							<a id="menosZoom" href="#" title="Menos Zoom">A-</a>
+							<a id="resetarZoom" href="#" title="Reiniciar Zoom">A</a>
+							<a id="maisZoom" href="#" title="Mais Zoom">A+</a>
+							<a id="contraste-desktop" title="Inverter Cores" href="#">
+								<i class="fas fa-adjust"></i>
+							</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </header>

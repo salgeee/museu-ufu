@@ -5,10 +5,10 @@
   <div class="header-container">
     <div class="header-content">
       <div class="logo-container">
-        <img src="/public/logos/ufu_blue.svg" alt="Logo UFU">
+        <img [src]="basePath  + '/public/logos/ufu_blue.svg'" alt="Logo UFU">
       </div>
       <div class="header-text">
-        <div class="university-name"> <a href="/"> Universidade Federal de <br> Uberlândia</a></div>
+        <div class="university-name"> <a [routerLink]="[basePath]"> Universidade Federal de <br> Uberlândia</a></div>
         <div class="ministry-name">Ministério da Educação</div>
       </div>
     </div>

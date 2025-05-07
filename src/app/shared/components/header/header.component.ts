@@ -4,6 +4,7 @@ import { CdkMenuModule } from '@angular/cdk/menu';
 import { MenuService } from '@app/core/services/menu.service'
 import { BarraBrasilComponent } from '../barra-brasil/barra-brasil.component';
 import { RouterLink } from '@angular/router';
+import { AccessibilityService } from '../../../services/accessibility.service';
 
 @Component({
 	selector: 'app-header',
@@ -20,7 +21,7 @@ export class HeaderComponent {
 	private _menuService = inject(MenuService);
   basePath = isDevMode() ? '' : '/museu-ufu';
 
-	constructor() {}
+	constructor(private accessibilityService: AccessibilityService) {}
 
 	toggleMenu(): void {
 		this._menuService.toggle();
@@ -28,5 +29,21 @@ export class HeaderComponent {
 
 	logout() {
 		this.authService.logout();
+	}
+
+	toggleContrast() {
+		this.accessibilityService.toggleContrast();
+	}
+
+	increaseZoom() {
+		this.accessibilityService.increaseZoom();
+	}
+
+	decreaseZoom() {
+		this.accessibilityService.decreaseZoom();
+	}
+
+	resetZoom() {
+		this.accessibilityService.resetZoom();
 	}
 }

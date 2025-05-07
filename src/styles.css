@@ -15,6 +15,24 @@
 body {
   margin: 0;
   padding: 0;
+  padding-top: 30px;
+}
+
+/* Ajustes para o header fixo */
+#barra-brasil {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px; /* ajuste se necessário */
+  background: #071d41;
+  z-index: 20;
+}
+
+.container.perfis {
+  position: relative;
+  z-index: 1;
+  padding-top: 120px;
 }
 
 .container {
@@ -42,4 +60,375 @@ body {
 .component-description {
   margin-bottom: 15px;
   color: #555;
+}
+
+/* High Contrast Mode */
+.high-contrast {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+.high-contrast .br-header {
+  background-color: #000 !important;
+  border-bottom: 1px solid #fff !important;
+}
+
+.high-contrast .br-header a {
+  color: #fff !important;
+}
+
+.high-contrast .br-header .text-primary {
+  color: #fff !important;
+}
+
+.high-contrast .br-header .marca .nome a {
+  color: #fff !important;
+}
+
+.high-contrast .br-header .marca .subordinacao {
+  color: #fff !important;
+}
+
+/* Estilos do botão do menu */
+.navbar-toggler {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 8px !important;
+  transition: all 0.3s ease !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.navbar-toggler:hover {
+  background-color: #e0e0e0 !important;
+  border-radius: 50% !important;
+}
+
+/* Menu lateral no modo de alto contraste */
+.high-contrast .navbar-toggler {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 8px !important;
+  transition: all 0.3s ease !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.high-contrast .navbar-toggler:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.high-contrast .navbar-toggler:hover {
+  background-color: #333 !important;
+  border-radius: 50% !important;
+}
+
+.high-contrast .navbar-toggler .text-primary {
+  color: #ffc107 !important;
+}
+
+/* Logo e título social no modo de alto contraste */
+.high-contrast .logo-container img {
+  filter: brightness(0) invert(1) !important; /* Isso fará o logo ficar branco */
+}
+
+.high-contrast .social-title {
+  color: #fff !important;
+}
+
+/* Header content e menu bottom no modo de alto contraste */
+.high-contrast .header-container {
+  background-color: #000 !important;
+  border-bottom: 1px solid #ffc107 !important;
+}
+
+.high-contrast .header-container a {
+  color: #ffc107 !important;
+}
+
+.high-contrast .header-container a:hover {
+  color: #ffd54f !important;
+  text-decoration: underline !important;
+}
+
+.high-contrast .header-content {
+  background-color: #000 !important;
+  border-bottom: 1px solid #ffc107 !important;
+}
+
+.high-contrast .header-content a {
+  color: #ffc107 !important;
+}
+
+.high-contrast .header-content a:hover {
+  color: #ffd54f !important;
+  text-decoration: underline !important;
+}
+
+.high-contrast .menu-bottom-section {
+  background-color: #000 !important;
+  border-top: 1px solid #ffc107 !important;
+}
+
+.high-contrast .menu-bottom-section a {
+  color: #ffc107 !important;
+}
+
+.high-contrast .menu-bottom-section a:hover {
+  color: #ffd54f !important;
+  text-decoration: underline !important;
+}
+
+.high-contrast .menu-body {
+  background-color: #000 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.high-contrast .menu-body a {
+  color: #ffc107 !important;
+  border-bottom: 1px solid #ffc107 !important;
+}
+
+.high-contrast .menu-body a:hover {
+  background-color: #ffc107 !important;
+  color: #000 !important;
+}
+
+/* Botões de acessibilidade no modo de alto contraste */
+.high-contrast .acessibilidade a {
+  color: #ffc107 !important;
+}
+
+.high-contrast .acessibilidade a:hover {
+  color: #ffd54f !important;
+  text-decoration: underline !important;
+}
+
+/* Home page high contrast styles */
+.high-contrast .home-container {
+  background-color: #000 !important;
+}
+
+.high-contrast .welcome-header .text-h1,
+.high-contrast .welcome-header .text-h2 {
+  color: #fff !important;
+}
+
+/* Botões de navegação no modo de alto contraste */
+.high-contrast .perfis .btn-outline-primary {
+  background-color: #000 !important;
+  color: #ffc107 !important;
+  border: 1px solid #ffc107 !important;
+}
+
+.high-contrast .perfis .btn-outline-primary:hover {
+  background-color: #ffc107 !important;
+  color: #000 !important;
+  border: 1px solid #ffc107 !important;
+}
+
+.high-contrast a {
+  color: #ffc107 !important;
+}
+
+.high-contrast button {
+  background-color: #000 !important;
+  color: #fff !important;
+  border: 1px solid #fff !important;
+}
+
+.high-contrast input,
+.high-contrast textarea,
+.high-contrast select {
+  background-color: #000 !important;
+  color: #fff !important;
+  border: 1px solid #fff !important;
+}
+
+/* Skip Links for Keyboard Navigation */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #000;
+  color: white;
+  padding: 8px;
+  z-index: 100;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Botão de fechar menu no modo de alto contraste */
+.high-contrast .menu-close-button {
+  border-color: #1d2124 !important;
+  color: #ffc107 !important;
+}
+
+.high-contrast .menu-close-button:hover {
+  background-color: #1d2124 !important;
+  color: #ffc107 !important;
+}
+
+/* Estilos de alto contraste para as páginas */
+.high-contrast .sobre-museu,
+.high-contrast .news-container,
+.high-contrast .games-container,
+.high-contrast .donations-container {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+.high-contrast .sobre-museu h1,
+.high-contrast .sobre-museu h2,
+.high-contrast .sobre-museu h3,
+.high-contrast .news-container h1,
+.high-contrast .news-container h2,
+.high-contrast .news-container h3,
+.high-contrast .games-container h1,
+.high-contrast .games-container h2,
+.high-contrast .games-container h3,
+.high-contrast .donations-container h1,
+.high-contrast .donations-container h2,
+.high-contrast .donations-container h3 {
+  color: #fff !important;
+}
+
+.high-contrast .sobre-museu p,
+.high-contrast .news-container p,
+.high-contrast .games-container p,
+.high-contrast .donations-container p,
+.high-contrast .intro p,
+.high-contrast .secao-historia p,
+.high-contrast .secao-missao p,
+.high-contrast .secao-colecao p,
+.high-contrast .secao-equipe p {
+  color: #fff !important;
+}
+
+.high-contrast .about-container .btn,
+.high-contrast .news-container .btn,
+.high-contrast .games-container .btn {
+  background-color: #000 !important;
+  color: #ffc107 !important;
+  border: 1px solid #ffc107 !important;
+}
+
+.high-contrast .about-container .btn:hover,
+.high-contrast .news-container .btn:hover,
+.high-contrast .games-container .btn:hover {
+  background-color: #ffc107 !important;
+  color: #000 !important;
+  border: 1px solid #ffc107 !important;
+}
+
+.high-contrast .about-container a,
+.high-contrast .news-container a,
+.high-contrast .games-container a {
+  color: #ffc107 !important;
+}
+
+.high-contrast .about-container a:hover,
+.high-contrast .news-container a:hover,
+.high-contrast .games-container a:hover {
+  color: #ffd54f !important;
+  text-decoration: underline !important;
+}
+
+/* Estilos específicos para a página de jogos */
+.high-contrast .game-card {
+  background-color: #000 !important;
+  border: 1px solid #ffc107 !important;
+}
+
+.high-contrast .game-card:hover {
+  border-color: #ffd54f !important;
+}
+
+.high-contrast .game-card .card-title {
+  color: #ffc107 !important;
+}
+
+.high-contrast .game-card .card-text {
+  color: #fff !important;
+}
+
+/* Footer no modo de alto contraste */
+.high-contrast .br-footer {
+  background-color: #000 !important;
+  border-top: 1px solid #ffc107 !important;
+}
+
+.high-contrast .br-footer a {
+  color: #ffc107 !important;
+}
+
+.high-contrast .br-footer a:hover {
+  color: #ffd54f !important;
+  text-decoration: underline !important;
+}
+
+.high-contrast .br-footer p,
+.high-contrast .br-footer span,
+.high-contrast .br-footer div {
+  color: #fff !important;
+}
+
+.high-contrast .br-footer .text-yellow {
+  color: #ffc107 !important;
+}
+
+.high-contrast .br-footer .social-links a {
+  color: #ffc107 !important;
+}
+
+.high-contrast .br-footer .logo img {
+  filter: brightness(1) invert(0) !important;
+}
+
+.high-contrast .br-footer .social-links a:hover {
+  color: #ffd54f !important;
+}
+
+.high-contrast .br-footer .footer-bottom {
+  border-top: 1px solid #ffc107 !important;
+}
+
+/* Barra Brasil no modo de alto contraste */
+.high-contrast #barra-brasil {
+  background-color: #071d41 !important;
+  border-bottom: none !important;
+}
+
+.high-contrast #barra-brasil .link-barra,
+.high-contrast #barra-brasil .link-externo-barra,
+.high-contrast #barra-brasil .pic-gov {
+  color: #fff !important;
+}
+
+.high-contrast #barra-brasil .link-barra:hover,
+.high-contrast #barra-brasil .link-externo-barra:hover,
+.high-contrast #barra-brasil .pic-gov:hover {
+  color: #ffc107 !important;
+  text-decoration: underline !important;
+}
+
+.sobre-museu,
+.news-container,
+.games-container,
+.donations-container,
+.about-container,
+.thematic-container,
+.contact-container,
+.accessibility-container {
+  padding-top: 80px; /* ajuste para a altura do header fixo */
 }

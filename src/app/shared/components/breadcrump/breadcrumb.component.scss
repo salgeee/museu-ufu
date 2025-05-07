@@ -1,3 +1,11 @@
+.br-breadcrumb {
+  margin-top: 125px;
+  padding: 0.1rem 1rem !important;
+  border: 1px solid #dee2e6 !important;
+  background-color: #e9ecef !important;
+  margin-bottom: 1rem !important;
+  border-radius: 0.25rem !important;
+}
 .br-breadcrumb .crumb-list {
 	@media (max-width: 768px) {
 		padding: 0;
@@ -6,4 +14,9 @@
 
 .br-breadcrumb .br-item a.br-button {
 	display: none !important;
+}
+
+.high-contrast .br-breadcrumb {
+  background-color: #343a40 !important;
+  border-color: #343a40 !important;
 }

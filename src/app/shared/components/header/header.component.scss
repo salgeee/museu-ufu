@@ -11,8 +11,24 @@
 	}
 }
 
+.logo img {
+  max-height: 40px;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.logo.scrolled img {
+  max-height: 20px;
+}
+
 #header {
-	z-index: 2;
+	z-index: 1000;
+	position: fixed;
+	top: 40px;
+	left: 0;
+	right: 0;
+	width: 100%;
+	background-color: #ffffff;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .br-sign-in {
@@ -94,4 +110,16 @@
 			font-size: 1.2rem;
 		}
 	}
+}
+
+:host-context(.high-contrast) .logo img {
+  filter: brightness(0) invert(1) !important;
+}
+
+:host-context(.high-contrast) .nome a{
+	color: #ffc107 !important;
+}
+
+:host-context(.high-contrast) .subordinacao {
+	color: #6c757d !important;
 }

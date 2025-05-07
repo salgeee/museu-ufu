@@ -1,1 +1,0 @@
-import{Ib as a,Ya as n,qb as o,rb as i}from"./chunk-T33JGKU7.js";var m=(()=>{class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=n({type:t,selectors:[["app-donations"]],decls:2,vars:0,template:function(e,s){e&1&&(o(0,"p"),a(1,"donations works!"),i())},encapsulation:2})}return t})();export{m as DonationsComponent};

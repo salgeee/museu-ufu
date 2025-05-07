@@ -20,8 +20,8 @@
       </div>
     </div>
     
-    <div class="timeline-container" cdkDropList (cdkDropListDropped)="drop($event)">
-      <div class="timeline-event" *ngFor="let event of events" cdkDrag>
+    <div class="timeline-container">
+      <div class="timeline-event" *ngFor="let event of events; let i = index">
         <div class="event-card" [ngClass]="{
           'correct': event.isCorrect === true,
           'incorrect': event.isCorrect === false
@@ -33,6 +33,14 @@
             <h3>{{event.title}}</h3>
             <p>{{event.description}}</p>
             <span class="year" *ngIf="gameCompleted">{{event.year}}</span>
+          </div>
+          <div class="event-controls">
+            <button class="move-button" (click)="moveEvent(i, 'up')" [disabled]="i === 0">
+              <i class="fas fa-arrow-up"></i>
+            </button>
+            <button class="move-button" (click)="moveEvent(i, 'down')" [disabled]="i === events.length - 1">
+              <i class="fas fa-arrow-down"></i>
+            </button>
           </div>
         </div>
       </div>

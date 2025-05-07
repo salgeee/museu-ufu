@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 
 interface TimelineEvent {
   id: number;
@@ -14,7 +13,7 @@ interface TimelineEvent {
 @Component({
   selector: 'app-logic-challenge',
   standalone: true,
-  imports: [CommonModule, DragDropModule],
+  imports: [CommonModule],
   templateUrl: './logic-challenge.component.html',
   styleUrl: './logic-challenge.component.css'
 })
@@ -81,8 +80,13 @@ export class LogicChallengeComponent implements OnInit {
     this.events.forEach(event => event.isCorrect = undefined);
   }
 
-  drop(event: CdkDragDrop<TimelineEvent[]>): void {
-    moveItemInArray(this.events, event.previousIndex, event.currentIndex);
+  moveEvent(index: number, direction: 'up' | 'down'): void {
+    const newIndex = direction === 'up' ? index - 1 : index + 1;
+    if (newIndex >= 0 && newIndex < this.events.length) {
+      const event = this.events[index];
+      this.events.splice(index, 1);
+      this.events.splice(newIndex, 0, event);
+    }
   }
 
   checkOrder(): void {

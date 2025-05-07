@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 
 interface TimelineEvent {
   id: number;
@@ -13,7 +14,7 @@ interface TimelineEvent {
 @Component({
   selector: 'app-logic-challenge',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DragDropModule],
   templateUrl: './logic-challenge.component.html',
   styleUrl: './logic-challenge.component.css'
 })
@@ -60,12 +61,23 @@ export class LogicChallengeComponent implements OnInit {
   gameStarted: boolean = false;
   gameCompleted: boolean = false;
   attempts: number = 0;
+  isMobile: boolean = false;
 
   constructor() {
     this.shuffleEvents();
+    this.checkScreenSize();
   }
 
   ngOnInit(): void {}
+
+  @HostListener('window:resize')
+  onResize() {
+    this.checkScreenSize();
+  }
+
+  checkScreenSize() {
+    this.isMobile = window.innerWidth <= 768;
+  }
 
   shuffleEvents(): void {
     this.events = [...this.events].sort(() => Math.random() - 0.5);
@@ -87,6 +99,10 @@ export class LogicChallengeComponent implements OnInit {
       this.events.splice(index, 1);
       this.events.splice(newIndex, 0, event);
     }
+  }
+
+  drop(event: CdkDragDrop<TimelineEvent[]>): void {
+    moveItemInArray(this.events, event.previousIndex, event.currentIndex);
   }
 
   checkOrder(): void {

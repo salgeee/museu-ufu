@@ -20,7 +20,25 @@
       </div>
     </div>
     
-    <div class="timeline-container">
+    <div class="timeline-container" *ngIf="!isMobile" cdkDropList (cdkDropListDropped)="drop($event)">
+      <div class="timeline-event" *ngFor="let event of events; let i = index" cdkDrag>
+        <div class="event-card" [ngClass]="{
+          'correct': event.isCorrect === true,
+          'incorrect': event.isCorrect === false
+        }">
+          <div class="event-image">
+            <img [src]="event.imageUrl" [alt]="event.title">
+          </div>
+          <div class="event-info">
+            <h3>{{event.title}}</h3>
+            <p>{{event.description}}</p>
+            <span class="year" *ngIf="gameCompleted">{{event.year}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-container" *ngIf="isMobile">
       <div class="timeline-event" *ngFor="let event of events; let i = index">
         <div class="event-card" [ngClass]="{
           'correct': event.isCorrect === true,

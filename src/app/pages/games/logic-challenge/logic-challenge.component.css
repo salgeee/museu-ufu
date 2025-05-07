@@ -69,6 +69,8 @@
 
 .event-card {
   display: flex;
+  flex-direction: row;
+  align-items: stretch;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -90,8 +92,8 @@
 }
 
 .event-image {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   overflow: hidden;
   border-radius: 4px;
   flex-shrink: 0;
@@ -209,12 +211,15 @@
 
   .event-card {
     max-width: 95vw;
+    min-height: unset;
     padding: 0.8rem;
     flex-direction: column;
     align-items: center;
   }
 
   .event-image {
+    width: 80px;
+    height: 80px;
     margin: 0 auto;
   }
 
@@ -261,6 +266,11 @@
   }
 
   .event-image {
-    height: 100px;
+    width: 60px;
+    height: 60px;
+  }
+
+  .event-card {
+    padding: 0.5rem;
   }
 }

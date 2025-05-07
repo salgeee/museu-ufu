@@ -110,10 +110,12 @@ export class LogicChallengeComponent implements OnInit {
     let correctPositions = 0;
     const totalEvents = this.events.length;
 
-    // Verifica cada posição
+    // Cria uma cópia ordenada corretamente
+    const sortedEvents = [...this.events].sort((a, b) => a.year - b.year);
+
+    // Verifica se cada evento está na posição correta
     for (let i = 0; i < totalEvents; i++) {
-      const currentEvent = this.events[i];
-      const isCorrect = i === 0 || currentEvent.year >= this.events[i - 1].year;
+      const isCorrect = this.events[i].id === sortedEvents[i].id;
       this.events[i].isCorrect = isCorrect;
       if (isCorrect) {
         correctPositions++;

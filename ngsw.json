@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1746581909314,
+  "timestamp": 1746582184166,
   "index": "/museu-ufu/index.html",
   "assetGroups": [
     {
@@ -12,6 +12,7 @@
       },
       "urls": [
         "/museu-ufu/chunk-2HFXHN3U.js",
+        "/museu-ufu/chunk-37CIBYT2.js",
         "/museu-ufu/chunk-3LJ6YK4I.js",
         "/museu-ufu/chunk-4GCCDHXJ.js",
         "/museu-ufu/chunk-4STPBCOU.js",
@@ -23,14 +24,13 @@
         "/museu-ufu/chunk-H4J5YVDB.js",
         "/museu-ufu/chunk-I42754XB.js",
         "/museu-ufu/chunk-IDUWNEV4.js",
-        "/museu-ufu/chunk-ISUHPLOT.js",
         "/museu-ufu/chunk-SNDQO5FA.js",
         "/museu-ufu/chunk-T33JGKU7.js",
         "/museu-ufu/chunk-WMQAYEXN.js",
         "/museu-ufu/chunk-WOLDTVJV.js",
         "/museu-ufu/chunk-WW3ZQ6BC.js",
         "/museu-ufu/index.html",
-        "/museu-ufu/main-OUY6OPZO.js",
+        "/museu-ufu/main-PKV7C4IV.js",
         "/museu-ufu/manifest.webmanifest",
         "/museu-ufu/polyfills-FFHMD2TL.js",
         "/museu-ufu/styles-OVOYKMSL.css"
@@ -160,6 +160,7 @@
   "dataGroups": [],
   "hashTable": {
     "/museu-ufu/chunk-2HFXHN3U.js": "62932658025282cab1713c8feaf7e4cbe8c49835",
+    "/museu-ufu/chunk-37CIBYT2.js": "9d0a5228f089c2f957b2ad22b7dc4d9e5907a892",
     "/museu-ufu/chunk-3LJ6YK4I.js": "e03c85a444744006424d2c3fc91c68a82a175a81",
     "/museu-ufu/chunk-4GCCDHXJ.js": "69b0e263efca06d454f8967cfd80255a0ceed3b8",
     "/museu-ufu/chunk-4STPBCOU.js": "d4461f58fab046c0064f4fb4c59415c5db317677",
@@ -171,14 +172,13 @@
     "/museu-ufu/chunk-H4J5YVDB.js": "07333afcfcb14204ec8ac9226b474407debe38fa",
     "/museu-ufu/chunk-I42754XB.js": "5a250d9a53faa0cf9be2aff9fd9475169d261653",
     "/museu-ufu/chunk-IDUWNEV4.js": "f4e4eb3e02f2cb93218e36964a9ce322183398a6",
-    "/museu-ufu/chunk-ISUHPLOT.js": "9acae29612997e8c1c1890eb6a1724249092f2e8",
     "/museu-ufu/chunk-SNDQO5FA.js": "7f410b0f969d9e92b9c769de39c15a0e23067cc6",
     "/museu-ufu/chunk-T33JGKU7.js": "1978b30b2f05d8f2da85fdd19731870eb37d2a3e",
     "/museu-ufu/chunk-WMQAYEXN.js": "58c96b83b4f1a13179c0812caf4551f2c1eeb12d",
     "/museu-ufu/chunk-WOLDTVJV.js": "733309c39b863e3b46fbf628e47e6f0a5cd173c9",
     "/museu-ufu/chunk-WW3ZQ6BC.js": "e3c866d5a6a451026012279c7a5afb0563d3584d",
-    "/museu-ufu/index.html": "3d1eaa4bb8850f2246e89a60e0064c827045e1df",
-    "/museu-ufu/main-OUY6OPZO.js": "ecc96b2a3a109fd7ea7b67d48b02b9d21adf4415",
+    "/museu-ufu/index.html": "d0454a7193d20d3d62ab55231b3c2fbbc571a337",
+    "/museu-ufu/main-PKV7C4IV.js": "48d4a00da4dd8b326f1854355e66acfd37f17177",
     "/museu-ufu/manifest.webmanifest": "521da0ba401277986b706cb80ab0be2ab37771c2",
     "/museu-ufu/media/fa-brands-400-Q3XCMWHQ.woff2": "31c30351084e2670bbe5c47bd342e11540a68717",
     "/museu-ufu/media/fa-brands-400-R2XQZCET.ttf": "da6f537cd597b76d264970f1c95e4beebc82fde9",

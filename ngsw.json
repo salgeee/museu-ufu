@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1746582849835,
+  "timestamp": 1746583612568,
   "index": "/museu-ufu/index.html",
   "assetGroups": [
     {
@@ -18,7 +18,7 @@
         "/museu-ufu/chunk-CD2Y53BF.js",
         "/museu-ufu/chunk-CKP4KGYI.js",
         "/museu-ufu/chunk-CMD7REOP.js",
-        "/museu-ufu/chunk-GNES73XE.js",
+        "/museu-ufu/chunk-FTINSKBA.js",
         "/museu-ufu/chunk-JMK5NST3.js",
         "/museu-ufu/chunk-K232BHGA.js",
         "/museu-ufu/chunk-L7GYJOPO.js",
@@ -31,7 +31,7 @@
         "/museu-ufu/chunk-WJKX2ASV.js",
         "/museu-ufu/chunk-YMKARKSR.js",
         "/museu-ufu/index.html",
-        "/museu-ufu/main-WYCQ6QT6.js",
+        "/museu-ufu/main-JSLNCQ3U.js",
         "/museu-ufu/manifest.webmanifest",
         "/museu-ufu/polyfills-FFHMD2TL.js",
         "/museu-ufu/styles-OVOYKMSL.css"
@@ -167,7 +167,7 @@
     "/museu-ufu/chunk-CD2Y53BF.js": "27d7ee451a83a9718abd0f110543783e83b2c419",
     "/museu-ufu/chunk-CKP4KGYI.js": "39fc9e2c7d4787777d028086514771912656adb5",
     "/museu-ufu/chunk-CMD7REOP.js": "fcbaaf5a1b6ee3b8f1747f60474181fae58a62ba",
-    "/museu-ufu/chunk-GNES73XE.js": "08c67e63405975ba33f3520d9fbb10380415f15f",
+    "/museu-ufu/chunk-FTINSKBA.js": "cf977e3b6eb720dfbcc9bdb855a316adb14d7bfd",
     "/museu-ufu/chunk-JMK5NST3.js": "22fe514353f9b471ef539c781a9e480e0961f7c6",
     "/museu-ufu/chunk-K232BHGA.js": "461e3c0b364bb0e9ce0648b65617d7acd968ea73",
     "/museu-ufu/chunk-L7GYJOPO.js": "9a6fe2a021b6fa90d9eaa5d779d6031d6e1e7711",
@@ -179,8 +179,8 @@
     "/museu-ufu/chunk-U52DQLXT.js": "cd020eea6df65ba68ca205fe2a975ddf2f80fa24",
     "/museu-ufu/chunk-WJKX2ASV.js": "93ad564d755f195cf568dc1c15c0c201a0f626a5",
     "/museu-ufu/chunk-YMKARKSR.js": "38aecaaa641e25db7b8c44992f8c044a2fffa25a",
-    "/museu-ufu/index.html": "9a2513257fbbebd26f3489ff774115dfd61e10f6",
-    "/museu-ufu/main-WYCQ6QT6.js": "d3634126e00e7c015c7a17d7bcf47d2262735145",
+    "/museu-ufu/index.html": "8193a29fe70cabbbaeceefafcf8da79d222629b7",
+    "/museu-ufu/main-JSLNCQ3U.js": "9b00decc6848ad96c575a93cd8b166a48d4d88c3",
     "/museu-ufu/manifest.webmanifest": "521da0ba401277986b706cb80ab0be2ab37771c2",
     "/museu-ufu/media/fa-brands-400-Q3XCMWHQ.woff2": "31c30351084e2670bbe5c47bd342e11540a68717",
     "/museu-ufu/media/fa-brands-400-R2XQZCET.ttf": "da6f537cd597b76d264970f1c95e4beebc82fde9",

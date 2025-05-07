@@ -1,1 +1,57 @@
-<p>logic-challenge works!</p>
+<div class="challenge-container">
+  <div class="challenge-header">
+    <h1>Desafio da Linha do Tempo</h1>
+    <p>Organize os eventos da história da computação em ordem cronológica!</p>
+  </div>
+
+  <div *ngIf="!gameStarted" class="start-screen">
+    <button class="start-button" (click)="startGame()">
+      Começar Desafio
+    </button>
+  </div>
+
+  <div *ngIf="gameStarted && !gameCompleted" class="game-screen">
+    <div class="game-info">
+      <div class="score-display">
+        Pontuação: {{score}}
+      </div>
+      <div class="attempts-display">
+        Tentativas: {{attempts}}
+      </div>
+    </div>
+    
+    <div class="timeline-container" cdkDropList (cdkDropListDropped)="drop($event)">
+      <div class="timeline-event" *ngFor="let event of events" cdkDrag>
+        <div class="event-card" [ngClass]="{
+          'correct': event.isCorrect === true,
+          'incorrect': event.isCorrect === false
+        }">
+          <div class="event-image">
+            <img [src]="event.imageUrl" [alt]="event.title">
+          </div>
+          <div class="event-info">
+            <h3>{{event.title}}</h3>
+            <p>{{event.description}}</p>
+            <span class="year" *ngIf="gameCompleted">{{event.year}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="complete-button-container">
+      <button class="complete-button" (click)="checkOrder()">
+        Verificar Ordem
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="gameCompleted" class="completion-screen">
+    <h2>Parabéns!</h2>
+    <p>Você completou o desafio com sucesso!</p>
+    <p>Sua pontuação: {{score}}</p>
+    <p>Número de tentativas: {{attempts}}</p>
+    <button class="restart-button" (click)="startGame()">
+      Jogar Novamente
+    </button>
+  </div>
+</div>

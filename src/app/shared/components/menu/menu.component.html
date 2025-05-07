@@ -1,69 +1,85 @@
 <!-- Menu Lateral -->
 <div class="menu-overlay" [class.visible]="isOpen" (click)="closeMenu()"></div>
 
-<nav class="sidebar-menu br-menu" [class.open]="isOpen" data-toggle="menu" id="main-navigation" [style.transform]="isOpen ? 'translateX(0)' : 'translateX(-100%)'">
-	<!-- Menu Header -->
-	<div class="header-container">
-		<div class="header-content">
-			<div class="header-logo">
-				<img ngSrc="/logos/ufu_blue.svg" alt="Logo UFU" class="img-fluid" height="200" width="100" priority />
-			</div>
-			<div class="header-text">
-				<div class="university-name">Universidade Federal de Uberlândia</div>
-				<div class="ministry-name">Ministério da Educação</div>
-			</div>
-		</div>
-		<button class="menu-close-button" (click)="closeMenu()" aria-label="Fechar menu">
-			<i class="fas fa-times" aria-hidden="true"></i>
-		</button>
-	</div>
+<nav class="sidebar-menu" [class.open]="isOpen">
+  <div class="header-container">
+    <div class="header-content">
+      <div class="logo-container">
+        <img [src]="basePath  + '/public/logos/ufu_blue.svg'" alt="Logo UFU">
+      </div>
+      <div class="header-text">
+        <div class="university-name"> <a [routerLink]="[basePath]"> Universidade Federal de <br> Uberlândia</a></div>
+        <div class="ministry-name">Ministério da Educação</div>
+      </div>
+    </div>
+    <button class="menu-close-button" (click)="closeMenu()">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
 
-	<!-- Menu Body -->
-	<div class="menu-body">
-		<nav class="menu-nav">
-			<div class="menu-folder">
-				<ng-container *ngFor="let item of list">
-					<!-- Menu Item sem submenu -->
-					<a *ngIf="!item.children?.length" [routerLink]="item.url" [routerLinkActive]="'active'" class="menu-item" [target]="item.external ? '_blank' : '_self'" (click)="closeMenu()">
-						<i [class]="item.icon" aria-hidden="true"></i>
-						<span class="menu-item-label">{{ item.label }}</span>
-					</a>
+  <div class="menu-body">
+    <nav class="menu-nav">
+      <ng-container *ngFor="let item of list">
+        <a *ngIf="!item.children?.length"
+           [routerLink]="item.url"
+           [routerLinkActive]="'active'"
+           class="menu-item"
+           [target]="item.external ? '_blank' : '_self'"
+           (click)="closeMenu()">
+          <span class="menu-icon"><i [class]="item.icon"></i></span>
+          <span class="menu-item-label">{{ item.label }}</span>
+        </a>
 
-					<!-- Menu Item com submenu -->
-					<div *ngIf="item.children?.length" class="menu-folder">
-						<div class="menu-item" [class.active]="item.expanded" (click)="toggleSubmenu(item)">
-							<i [class]="item.icon"></i>
-							<span class="menu-item-label">{{ item.label }}</span>
-							<i class="fas fa-chevron-right" *ngIf="item.children && item.children.length > 0"></i>
-						</div>
+        <!-- Menu Item com submenu -->
+        <div *ngIf="item.children?.length" class="menu-folder">
+          <div class="menu-item" (click)="toggleSubmenu(item)">
+            <span class="menu-icon"><i [class]="item.icon"></i></span>
+            <span class="menu-item-label">{{ item.label }}</span>
+            <span class="menu-arrow"><i class="fas" [class.fa-angle-down]="!item.expanded" [class.fa-angle-up]="item.expanded"></i></span>
+          </div>
 
-						<!-- Submenu -->
-						<div class="menu-subitems" [class.is-active]="item.expanded">
-							<ng-container *ngFor="let subItem of item.children">
-								<a [routerLink]="subItem.url" [routerLinkActive]="'active'" class="menu-item" [target]="subItem.external ? '_blank' : '_self'" (click)="closeMenu()">
-									<i [class]="subItem.icon" aria-hidden="true"></i>
-									<span class="menu-item-label">{{ subItem.label }}</span>
-								</a>
-							</ng-container>
-						</div>
-					</div>
-				</ng-container>
-			</div>
-		</nav>
-	</div>
+          <!-- Submenu -->
+          <div class="menu-subitems" [class.is-active]="item.expanded">
+            <ng-container *ngFor="let subItem of item.children">
+              <a [routerLink]="subItem.url"
+                 [routerLinkActive]="'active'"
+                 class="menu-item"
+                 [target]="subItem.external ? '_blank' : '_self'"
+                 (click)="closeMenu()">
+                <i [class]="subItem.icon"></i>
+                <span class="menu-item-label">{{ subItem.label }}</span>
+              </a>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+    </nav>
+  </div>
 
-	<!-- Menu Footer -->
-	<div class="menu-footer">
-		<div class="social-network">
-			<a href="https://www.facebook.com/ComunicacaoUfu" target="_blank" class="social-network-link" aria-label="Facebook">
-				<i class="fab fa-facebook-f" aria-hidden="true"></i>
-			</a>
-			<a href="https://x.com/UFU_Oficial" target="_blank" class="social-network-link" aria-label="Twitter">
-				<i class="fab fa-x-twitter" aria-hidden="true"></i>
-			</a>
-			<a href="https://www.instagram.com/ufu_oficial/" target="_blank" class="social-network-link" aria-label="Instagram">
-				<i class="fab fa-instagram" aria-hidden="true"></i>
-			</a>
-		</div>
-	</div>
+  <div class="menu-bottom-section">
+    <p class="social-title">Redes Sociais</p>
+    <div class="social-links">
+      <a target="_blank" href="https://www.youtube.com/@CanaldaUFU" aria-label="Youtube" title="Youtube">
+        <i class="fab fa-youtube"></i>
+      </a>
+      <a target="_blank" href="https://www.facebook.com/ComunicacaoUfu" aria-label="Facebook" title="Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a target="_blank" href="https://www.instagram.com/ufu_oficial/" aria-label="Instagram" title="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a target="_blank" href="https://x.com/UFU_Oficial" aria-label="Twitter" title="Twitter">
+        <i class="fab fa-x-twitter"></i>
+      </a>
+      <a target="_blank" href="https://www.linkedin.com/school/ufuoficial/posts/?feedView=all" aria-label="Linkedin" title="Linkedin">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <a target="_blank" href="https://www.tiktok.com/@ufuoficial" aria-label="TikTok" title="TikTok">
+        <i class="fab fa-tiktok"></i>
+      </a>
+      <a target="_blank" href="https://t.me/comunicacienciaufu" aria-label="Telegram" title="Telegram">
+        <i class="fab fa-telegram"></i>
+      </a>
+    </div>
+  </div>
 </nav>

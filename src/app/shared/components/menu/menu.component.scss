@@ -3,6 +3,21 @@
 	height: 100%;
 }
 
+:host ::ng-deep {
+	a:not(:disabled):hover {
+		background-image: none !important;
+	}
+
+	a.menu-item:not(:disabled).active {
+		background-color: transparent !important;
+		--active: transparent !important;
+		color: #155bcb !important;
+		--interactive: #155bcb !important;
+		font-weight: 500 !important;
+	}
+
+}
+
 .menu-item {
 	display: flex;
 	align-items: center;
@@ -22,7 +37,7 @@
 	}
 
 	&.active {
-		background-color: #0c326f;
+		background-color: #ffffff;
 		font-weight: 500;
 	}
 }
@@ -30,8 +45,8 @@
 .sidebar-menu {
 	display: flex;
 	flex-direction: column;
-	height: 100%;
-	background-color: #1351b4;
+	height: 100vh;
+	background-color: #ffffff;
 	color: #ffffff;
 	width: 400px;
 	transition: transform 0.3s ease;
@@ -40,9 +55,54 @@
 	left: 0;
 	z-index: 1000;
 	transform: translateX(-100%);
+	overflow-y: auto;
 
 	&.open {
 		transform: translateX(0);
+	}
+
+	.menu-body {
+		flex: 1 1 auto;
+		overflow-y: auto;
+	}
+
+	.menu-bottom-section {
+		flex: 0 0 auto;
+		padding: 1rem 1.25rem;
+		border-top: 1px solid #e9ecef;
+		background-color: #ffffff;
+		width: 100%;
+
+		.social-title {
+			color: #343a40;
+			font-size: 1rem;
+			font-weight: 500;
+			margin-bottom: 1rem;
+			text-align: left;
+		}
+
+		.social-links {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 1.5rem;
+			flex-wrap: wrap;
+			margin-left: -0.5rem;
+			a {
+				color: #155bcb;
+				font-size: 1.2rem;
+				transition: color 0.2s ease;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 32px;
+				height: 32px;
+
+				&:hover {
+					color: #1a6eeb;
+				}
+			}
+		}
 	}
 }
 
@@ -50,40 +110,62 @@
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-between;
-	padding: 1.5rem 1rem;
+	padding: 1rem 1.25rem;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 	position: relative;
+	width: 100%;
 	
 	.header-content {
 		display: flex;
 		align-items: flex-start;
 		flex-direction: column;
-		gap: 1rem;
 		flex: 1;
-	}
-
-	.header-logo {
-		margin-left: 0;
+		max-width: 95%;
+		margin: 0 auto;
 		
+		a {
+			text-decoration: none;
+			color: #343a40;
+			&:hover {
+				color: #000000;
+				text-decoration: none;
+			}
+			&.active {
+				color: #ffffff;
+				background: #155bcb;
+				border: 0.5px solid #155bcb;
+				font-weight: 500;
+			}
+		}
+	}
+	.logo-container {
 		img {
-			height: 40px;
+			height: 30px;
 			width: auto;
+			margin-bottom: 0.5rem;
 		}
 	}
 
 	.header-text {
-		color: #ffffff;
+		color: #000000;
 		font-size: 0.875rem;
 		line-height: 1.2;
 
 		.university-name {
-			font-weight: 600;
-			margin-bottom: 0.25rem;
+			font-size: 1rem;
+			font-weight: 500;
+			text-decoration: none;
+			color: #343a40;
+			overflow-wrap: break-word;
+			word-break: break-word;
+			white-space: normal;
 		}
 
 		.ministry-name {
-			font-size: 0.75rem;
-			opacity: 0.8;
+			padding-top: 0.25rem;
+			font-size: 0.8rem;
+			font-weight: 400;
+			color: #6c7576;
 		}
 	}
 }
@@ -96,7 +178,7 @@
 	border: none;
 	cursor: pointer;
 	padding: 0.5rem;
-	color: #ffffff;
+	color: #155bcb;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -113,30 +195,68 @@
 .menu-body {
 	flex: 1;
 	overflow-y: auto;
-	padding: 1rem 0;
+	padding: 1rem 1.25rem;
 
 	.menu-nav {
+		.menu-item, .menu-folder {
+			border-bottom: 1px solid #e9ecef;
+		}
+
 		.menu-folder {
+			position: relative;
+
+			&:after {
+				content: '';
+				position: absolute;
+				bottom: 0;
+				left: 1rem;
+				right: 1rem;
+				height: 1px;
+				background-color: #e9ecef;
+			}
+
 			.menu-item {
 				display: flex;
 				align-items: center;
 				padding: 0.75rem 1rem;
-				color: #ffffff;
+				color: #000000;
 				text-decoration: none;
 				cursor: pointer;
+				transition: background-color 0.2s ease;
 
-				i {
+				&:hover {
+					background-color: #e8f0fe;
+					color: #155bcb;
+				}
+
+				.menu-icon {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					width: 24px;
 					margin-right: 0.75rem;
-					width: 20px;
-					text-align: center;
+
+					i {
+						font-size: 1rem;
+					}
 				}
 
 				.menu-item-label {
 					flex: 1;
 				}
 
+				.menu-arrow {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					width: 24px;
+					
+					i {
+						font-size: 1rem;
+					}
+				}
+
 				&.active {
-					background-color: #0c326f;
 					font-weight: 500;
 				}
 			}
@@ -145,7 +265,7 @@
 				max-height: 0;
 				overflow: hidden;
 				transition: max-height 0.3s ease;
-				background-color: #0c326f;
+				background-color: #ffffff;
 
 				&.is-active {
 					max-height: 500px;
@@ -156,23 +276,6 @@
 					font-size: 0.95rem;
 				}
 			}
-		}
-	}
-}
-
-.menu-footer {
-	padding: 1rem;
-	border-top: 1px solid rgba(255, 255, 255, 0.1);
-
-	.social-network {
-		display: flex;
-		justify-content: center;
-		gap: 1rem;
-
-		.social-network-link {
-			color: #ffffff;
-			font-size: 1.2rem;
-			opacity: 0.8;
 		}
 	}
 }

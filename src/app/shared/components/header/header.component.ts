@@ -1,21 +1,14 @@
-import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject, input, isDevMode } from '@angular/core';
 import { AuthService } from '@app/core/auth/services/auth.service';
 import { CdkMenuModule } from '@angular/cdk/menu';
 import { MenuService } from '@app/core/services/menu.service'
 import { BarraBrasilComponent } from '../barra-brasil/barra-brasil.component';
+import { RouterLink } from '@angular/router';
 
-/**
- * Componente HeaderComponent é responsável por exibir o cabeçalho da aplicação.
- * @example
- * <app-header></app-header>
- * @public
- * {@link https://www.gov.br/ds/components/header?tab=desenvolvedor|Documentação oficial}
- */
 @Component({
 	selector: 'app-header',
 	standalone: true,
-	imports: [NgOptimizedImage, CdkMenuModule, BarraBrasilComponent],
+  imports: [CdkMenuModule, BarraBrasilComponent, RouterLink],
 	templateUrl: './header.component.html',
 	styleUrl: './header.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,10 +18,11 @@ export class HeaderComponent {
 	authService = inject(AuthService);
 	user = this.authService.credentials;
 	private _menuService = inject(MenuService);
+  basePath = isDevMode() ? '' : '/museu-ufu';
 
 	constructor() {}
 
-	toggleMenu() {
+	toggleMenu(): void {
 		this._menuService.toggle();
 	}
 

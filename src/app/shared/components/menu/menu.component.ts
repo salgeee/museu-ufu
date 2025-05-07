@@ -1,6 +1,5 @@
-import { AfterViewInit, Component, ElementRef, inject, signal, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, signal, Input, OnInit, isDevMode } from '@angular/core';
 import { LIST_MENU_BY_ROLE } from './const/list-menu';
-import { NgClass, NgTemplateOutlet, NgOptimizedImage } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Role } from '@app/features/login/models/credentials.model';
 import { AuthService } from '@app/core/auth/services/auth.service';
@@ -27,7 +26,7 @@ interface MenuItemState extends IMenu {
 	selector: 'app-menu',
 	standalone: true,
 	host: { class: 'br-menu push px-0' },
-	imports: [RouterLink, RouterLinkActive, CommonModule, RouterModule, NgOptimizedImage],
+	imports: [RouterLink, RouterLinkActive, CommonModule, RouterModule],
 	templateUrl: './menu.component.html',
 	styleUrl: './menu.component.scss',
 })
@@ -36,6 +35,7 @@ export class MenuComponent implements AfterViewInit, OnInit {
 	instance: BRMenu | null = null;
 	isMobile = signal<boolean>(false);
 	isOpen = false;
+	basePath = isDevMode() ? '' : '/museu-ufu';
 
 	private _brMenu = inject(ElementRef);
 	private _authService = inject(AuthService);
@@ -45,7 +45,6 @@ export class MenuComponent implements AfterViewInit, OnInit {
 	constructor() {
 		// Garante que o menu comece fechado
 		this.isOpen = false;
-
 		this._breakpointObserver
 			.observe([Breakpoints.Handset, Breakpoints.Web, Breakpoints.Tablet])
 			.pipe(takeUntilDestroyed())
@@ -55,9 +54,9 @@ export class MenuComponent implements AfterViewInit, OnInit {
 
 		this._authService.credentials$.pipe(takeUntilDestroyed()).subscribe(result => {
 			if (!result) {
-				this.list = LIST_MENU_BY_ROLE.get(Role.PUBLIC);
+				this.list = LIST_MENU_BY_ROLE.get(Role.PUBLIC) || [];
 			} else {
-				this.list = LIST_MENU_BY_ROLE.get(result.role || Role.PUBLIC);
+				this.list = LIST_MENU_BY_ROLE.get(result.role || Role.PUBLIC) || [];
 			}
 		});
 
@@ -77,7 +76,6 @@ export class MenuComponent implements AfterViewInit, OnInit {
 		setTimeout(() => {
 			this.instance = new BRMenu('br-menu', this._brMenu.nativeElement);
 			this.instance.init();
-			// Garante que o menu comece fechado após a inicialização
 			this.instance.close();
 		});
 	}
@@ -88,7 +86,7 @@ export class MenuComponent implements AfterViewInit, OnInit {
 				label: 'Início',
 				url: '/home',
 				icon: 'fas fa-home',
-				children: [] // Garante que não tenha submenu
+				children: []
 			},
 			{
 				label: 'Jogos',

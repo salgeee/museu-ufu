@@ -1,31 +1,46 @@
 <app-barra-brasil></app-barra-brasil>
-<header class="br-header mb-4" id="header" data-sticky="data-sticky">
-	<div class="container-lg">
-		<div class="header-top">
-			<div class="header-logo">
-				<img class="img-fluid" ngSrc="/logos/ufu_blue.svg" alt="Logo UFU" height="335" width="647" priority />
-				<span class="br-divider vertical"></span>
-				<div class="header-sign">UFU - Universidade Federal de Uberlândia</div>
-			</div>
-		</div>
-		<div class="header-bottom">
-			<div class="header-menu">
-					<div class="header-menu-trigger" id="header-navigation">
-						<button
-							class="br-button small circle"
-							type="button"
-							aria-label="Menu"
-							data-toggle="menu"
-							data-target="#main-navigation"
-							id="navigation"
-							(click)="toggleMenu()"
-						>
-							<i class="fas fa-bars" aria-hidden="true"></i>
-						</button>
+<header class="br-header" id="header" data-sticky="data-sticky">
+	<div class="container">
+		<div class="row d-flex align-items-start justify-content-between">
+			<div class="col-md-auto col-9 d-flex align-items-start">
+				<button class="navbar-toggler me-3" type="button" (click)="toggleMenu()" aria-label="Toggle navigation">
+					<span class="text-primary">
+						<i class="fas fa-bars"></i>
+					</span>
+				</button>
+
+				<div class="region region-nav-branding">
+					<div class="marca">
+						<div class="logo">
+              <a [href]="basePath + '/home'" title="Início" rel="home">
+								<img [src]="basePath + '/public/logos/ufu_blue.svg'" alt="Início" width="120" height="40">
+							</a>
+						</div>
+						<div class="nome">
+							<a [href]="basePath" title="Início" rel="home">
+								Universidade Federal de Uberlândia
+							</a>
+						</div>
+						<div class="subordinacao">
+							Ministério da Educação
+						</div>
 					</div>
-					<div class="header-info">
-					<div class="header-title">
-						<a> Museu Virtual da FACOM</a>
+				</div>
+			</div>
+
+			<div class="col-md-auto col-3">
+				<div class="acessibilidade">
+					<div class="d-none d-md-block">
+						<p class="d-flex align-items-center justify-content-md-end my-3 my-md-1">
+            <div class="header-accessibility">
+            <a [routerLink]="['/accessibility']" title="Acessibilidade">Acessibilidade</a>
+            </div>
+							<a id="menosZoom" href="#" title="Menos Zoom">A-</a>
+							<a id="resetarZoom" href="#" title="Reiniciar Zoom">A</a>
+							<a id="maisZoom" href="#" title="Mais Zoom">A+</a>
+							<a id="contraste-desktop" title="Inverter Cores" href="#">
+								<i class="fas fa-adjust"></i>
+							</a>
 					</div>
 				</div>
 			</div>

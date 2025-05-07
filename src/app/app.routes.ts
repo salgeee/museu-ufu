@@ -30,7 +30,7 @@ export const routes: Routes = [
           import('./pages/games/quiz/quiz.component').then(m => m.QuizComponent),
       },
       {
-        data: { breadCrumb: 'Puzzle' },
+        data: { breadCrumb: 'Jogo da Memória' },
         path: 'puzzles',
         loadComponent: () =>
           import('./pages/games/puzzles/puzzles.component').then(m => m.PuzzlesComponent),
@@ -67,6 +67,22 @@ export const routes: Routes = [
     title: 'Sobre nós',
     data: {
       breadCrumb: 'Sobre',
+    },
+  },
+  {
+    path: 'donations',
+    loadComponent: () => import('./pages/donations/donations.component').then(m => m.DonationsComponent),
+    title: 'Doações',
+    data: {
+      breadCrumb: 'Donations',
+    },
+  },
+  {
+    path: 'accessibility',
+    loadComponent: () => import('./pages/accessibility/accessibility.component').then(m => m.AccessibilityComponent),
+    title: 'accessibility',
+    data: {
+      breadCrumb: 'Acessibilidade',
     },
   },
   {

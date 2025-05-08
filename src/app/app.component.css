@@ -9,7 +9,6 @@
   height: 100%;
 }
 
-/* Ajuste para páginas sem header */
 :host-context(.no-header) .main-content {
   min-height: 100vh;
   padding: 0;

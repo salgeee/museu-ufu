@@ -12,6 +12,11 @@ export class AccessibilityService {
   currentZoom$ = this.currentZoom.asObservable();
 
   constructor() {
+    // Restaurar modo alto contraste salvo
+    if (localStorage.getItem('high-contrast') === 'true') {
+      this.contrastMode.next(true);
+      document.body.classList.add('high-contrast');
+    }
     // Initialize keyboard shortcuts
     this.initializeKeyboardShortcuts();
   }
@@ -46,8 +51,10 @@ export class AccessibilityService {
   }
 
   toggleContrast() {
-    this.contrastMode.next(!this.contrastMode.value);
+    const newValue = !this.contrastMode.value;
+    this.contrastMode.next(newValue);
     document.body.classList.toggle('high-contrast');
+    localStorage.setItem('high-contrast', newValue ? 'true' : 'false');
   }
 
   increaseZoom() {

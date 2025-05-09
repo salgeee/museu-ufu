@@ -432,3 +432,74 @@ body {
 .accessibility-container {
   padding-top: 80px; /* ajuste para a altura do header fixo */
 }
+
+.high-contrast .quiz-container {
+  background-color: #343a40 !important;
+  color: #fff !important;
+  border-color: #ffc107 !important;
+}
+
+.high-contrast .quiz-container .quiz-header h1,
+.high-contrast .quiz-container .quiz-completed h2 {
+  color: #ffc107 !important;
+}
+
+.high-contrast .quiz-container .options button {
+  background-color: #343a40 !important;
+  color: #ffc107 !important;
+  border-color: #ffc107 !important;
+}
+
+.high-contrast .quiz-container .options button.selected {
+  background-color: #ffc107 !important;
+  color: #222 !important;
+}
+
+.high-contrast .quiz-container .options button.correct {
+  background-color: #4caf50 !important;
+  color: #fff !important;
+  border-color: #4caf50 !important;
+}
+
+.high-contrast .quiz-container .options button.incorrect {
+  background-color: #f44336 !important;
+  color: #fff !important;
+  border-color: #f44336 !important;
+}
+
+.high-contrast .quiz-container h2 {
+  color: #fff !important;
+}
+
+.high-contrast .quiz-container .score {
+  color: #ffc107 !important;
+}
+
+.high-contrast .challenge-container .event-card {
+  background-color: #343a40 !important;
+  color: #fff !important;
+}
+
+.high-contrast .challenge-container h3 {
+  color: #fff !important;
+}
+.high-contrast .challenge-container h1 {
+  color: #fff !important;
+}
+
+.high-contrast .challenge-container p {
+  color: #fff !important;
+}
+
+/* Preview principal */
+.high-contrast .cdk-drag-preview {
+  background-color: #343a40 !important;
+  color: #ffc107   !important;
+  border: 2px solid #ffc107 !important;
+  border-radius: 0.5rem;
+}
+
+/* Se sua lib também usar um placeholder vazio sob a lista */
+.high-contrast .cdk-drag-placeholder {
+  visibility: hidden !important;
+}

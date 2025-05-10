@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, inject, input, isDevMode } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, isDevMode, HostListener } from '@angular/core';
 import { AuthService } from '@app/core/auth/services/auth.service';
 import { CdkMenuModule } from '@angular/cdk/menu';
 import { MenuService } from '@app/core/services/menu.service'
 import { BarraBrasilComponent } from '../barra-brasil/barra-brasil.component';
 import { RouterLink } from '@angular/router';
+import { AccessibilityService } from '../../../services/accessibility.service';
 
 @Component({
 	selector: 'app-header',
@@ -13,6 +14,7 @@ import { RouterLink } from '@angular/router';
 	styleUrl: './header.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
+
 export class HeaderComponent {
 	hideNavbar = input<boolean>(false);
 	authService = inject(AuthService);
@@ -20,7 +22,15 @@ export class HeaderComponent {
 	private _menuService = inject(MenuService);
   basePath = isDevMode() ? '' : '/museu-ufu';
 
-	constructor() {}
+	isScrolled = false;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    this.isScrolled = scrollTop > 40;
+  }
+
+	constructor(private accessibilityService: AccessibilityService) {}
 
 	toggleMenu(): void {
 		this._menuService.toggle();
@@ -28,5 +38,21 @@ export class HeaderComponent {
 
 	logout() {
 		this.authService.logout();
+	}
+
+	toggleContrast() {
+		this.accessibilityService.toggleContrast();
+	}
+
+	increaseZoom() {
+		this.accessibilityService.increaseZoom();
+	}
+
+	decreaseZoom() {
+		this.accessibilityService.decreaseZoom();
+	}
+
+	resetZoom() {
+		this.accessibilityService.resetZoom();
 	}
 }

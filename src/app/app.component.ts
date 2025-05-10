@@ -12,6 +12,7 @@ import {NgClass} from '@angular/common';
 import {AuthService } from './core/auth/services/auth.service';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {CheckUpdateService} from './core/update/check-update.service';
+import { PerfisNavComponent } from "./perfis-nav/perfis-nav.component";
 
 @Component({
   selector: 'app-root',
@@ -25,7 +26,8 @@ import {CheckUpdateService} from './core/update/check-update.service';
     AlertComponent,
     LoadingComponent,
     NgClass,
-  ],
+    PerfisNavComponent
+],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })

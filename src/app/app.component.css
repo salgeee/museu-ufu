@@ -9,7 +9,6 @@
   height: 100%;
 }
 
-/* Ajuste para páginas sem header */
 :host-context(.no-header) .main-content {
   min-height: 100vh;
   padding: 0;
@@ -17,7 +16,7 @@
 
 #barra-brasil {
   background: var(--blue-warm-vivid-90);
-  height: 20px;
+  height: 40px;
   padding: 0 0 0 10px;
   display: block;
 

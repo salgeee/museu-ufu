@@ -1,0 +1,1 @@
+import{Kb as s,_a as n,sb as o,tb as i}from"./chunk-CMD7REOP.js";var c=(()=>{class e{static \u0275fac=function(t){return new(t||e)};static \u0275cmp=n({type:e,selectors:[["app-news"]],decls:3,vars:0,consts:[[1,"intro"]],template:function(t,r){t&1&&(o(0,"div",0)(1,"p"),s(2,"news works!"),i()())},encapsulation:2})}return e})();export{c as NewsComponent};

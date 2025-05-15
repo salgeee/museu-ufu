@@ -503,3 +503,812 @@ body {
 .high-contrast .cdk-drag-placeholder {
   visibility: hidden !important;
 }
+
+/* Botão Criar Notícia - Modo normal (sobrescrevendo Angular Material) */
+.btn-create-news.mat-raised-button {
+  background-color: #fff !important;
+  color: #1351b4 !important;
+  border: 2px solid #1351b4 !important;
+  border-radius: 20px !important;
+  padding: 8px 24px !important;
+  font-weight: 600 !important;
+  box-shadow: none !important;
+  transition: all 0.2s !important;
+}
+
+.btn-create-news.mat-raised-button:hover {
+  background-color: #1351b4 !important;
+  color: #fff !important;
+  border-color: #1351b4 !important;
+}
+
+/* Botão Criar Notícia - Alto contraste (sobrescrevendo Angular Material) */
+.high-contrast .btn-create-news.mat-raised-button,
+.high-contrast .btn-create-news.mat-mdc-raised-button,
+.high-contrast .btn-create-news.mdc-button--raised {
+  --mdc-protected-button-container-color: #000 !important;
+  --mdc-protected-button-label-text-color: #ffc107 !important;
+  background-color: #000 !important;
+  color: #ffc107 !important;
+  border: 2px solid #ffc107 !important;
+  border-radius: 20px !important;
+  box-shadow: none !important;
+  transition: all 0.2s !important;
+}
+
+.high-contrast .btn-create-news.mat-raised-button:hover,
+.high-contrast .btn-create-news.mat-mdc-raised-button:hover,
+.high-contrast .btn-create-news.mdc-button--raised:hover {
+  --mdc-protected-button-container-color: #ffc107 !important;
+  --mdc-protected-button-label-text-color: #000 !important;
+  background-color: #ffc107 !important;
+  color: #000 !important;
+  border: 2px solid #ffc107 !important;
+  border-radius: 20px !important;
+  box-shadow: none !important;
+}
+
+.high-contrast .btn-create-news .mat-icon,
+.high-contrast .btn-create-news .mdc-button__label,
+.high-contrast .btn-create-news .mat-mdc-button-touch-target,
+.high-contrast .btn-create-news .mat-focus-indicator {
+  color: #ffc107 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+.high-contrast .btn-create-news:hover .mat-icon,
+.high-contrast .btn-create-news:hover .mdc-button__label,
+.high-contrast .btn-create-news:hover .mat-mdc-button-touch-target,
+.high-contrast .btn-create-news:hover .mat-focus-indicator {
+  color: #000 !important;
+}
+
+/* Estilo para categoria principal acima do título */
+.news-category-main {
+  color: #1565c0;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: left;
+  margin-bottom: 0.3em;
+  letter-spacing: 1px;
+}
+
+.news-title-main {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 0.7em;
+  margin-top: 0;
+  text-align: left;
+}
+
+.news-main-image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5em;
+}
+
+.news-main-image {
+  max-width: 80vw;
+  width: 600px;
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.news-separator {
+  border: none;
+  border-top: 4px solid #1565c0;
+  margin: 2.5em 0 2em 0;
+}
+
+.high-contrast .news-separator {
+  border-top: 4px solid #ffc107 !important;
+}
+
+.news-description {
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 2em;
+  text-align: center;
+}
+
+.news-content-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 1.5em 0 0.5em 0;
+  text-align: left;
+}
+
+.news-content-text {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 1.2em;
+  text-align: left;
+}
+
+.news-content-image-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 1.5em 0;
+}
+
+.news-content-image {
+  max-width: 70vw;
+  width: 500px;
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.high-contrast .news-description {
+  color: #fff !important;
+}
+
+.high-contrast .news-category-main {
+  color: #ffc107 !important;
+}
+
+.news-title,
+.news-title:link,
+.news-title:visited,
+.news-title:active {
+  text-decoration: none !important;
+  color: inherit;
+  background: transparent !important;
+}
+
+.news-title:hover,
+.news-title:focus {
+  text-decoration: underline !important;
+  background: transparent !important;
+  outline: none !important;
+}
+
+.image-modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image-modal-content {
+  position: relative;
+  background: transparent;
+  border-radius: 12px;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.image-modal-content img {
+  max-width: 80vw;
+  max-height: 80vh;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+}
+.image-modal-close {
+  position: absolute;
+  top: -32px;
+  right: -32px;
+  background: #222;
+  color: #fff;
+  border: none;
+  font-size: 2.5rem;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.image-modal-close:hover {
+  background: #c62828;
+}
+
+body:not(.high-contrast) .image-modal-close {
+  color: #fff !important;
+}
+
+.high-contrast .news-form-container,
+.high-contrast .news-form,
+.high-contrast .form-section,
+.high-contrast .mat-form-field,
+.high-contrast .mat-form-field-infix,
+.high-contrast .mat-input-element,
+.high-contrast .mat-select-value,
+.high-contrast .mat-select-arrow,
+.high-contrast .mat-option,
+.high-contrast .mat-select-panel,
+.high-contrast .mat-form-field-label,
+.high-contrast .form-label-row label,
+.high-contrast .section-description {
+  background-color: #000 !important;
+  color: #ffc107 !important;
+  border-color: #ffc107 !important;
+}
+
+.high-contrast .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #ffc107 !important;
+  border-color: #ffc107 !important;
+}
+
+.high-contrast .mat-mdc-input-element,
+.high-contrast input.mat-mdc-input-element,
+.high-contrast .mdc-text-field__input,
+.high-contrast .mat-input-element,
+.high-contrast input,
+.high-contrast textarea,
+.high-contrast select {
+  background-color: #000 !important;
+  color: #fff !important;
+  border-color: #ffc107 !important;
+  caret-color: #fff !important;
+}
+
+.high-contrast .mat-select-arrow {
+  color: #ffc107 !important;
+}
+
+.high-contrast .mat-option {
+  background-color: #000 !important;
+  color: #ffc107 !important;
+}
+
+.high-contrast .mat-option.mat-selected {
+  background-color: #ffc107 !important;
+  color: #000 !important;
+}
+
+.high-contrast .content-type-button,
+.high-contrast .form-actions button,
+.high-contrast .mat-stroked-button {
+  background-color: #000 !important;
+  color: #ffc107 !important;
+  border: 1.5px solid #ffc107 !important;
+}
+
+.high-contrast .content-type-button:hover,
+.high-contrast .form-actions button:hover,
+.high-contrast .mat-stroked-button:hover {
+  background-color: #ffc107 !important;
+  color: #000 !important;
+  border: 1.5px solid #ffc107 !important;
+}
+
+.high-contrast .form-error {
+  color: #ffc107 !important;
+}
+
+.high-contrast .news-form-container h1,
+.high-contrast .news-form-container h2,
+.high-contrast .news-form-container h3,
+.high-contrast .form-label-row label {
+  color: #ffc107 !important;
+}
+
+.high-contrast .section-description {
+  color: #fff !important;
+}
+
+.high-contrast .mat-stroked-button,
+.high-contrast .mat-stroked-button.mat-primary {
+  background-color: #000 !important;
+  color: #ffc107 !important;
+  border: 1.5px solid #ffc107 !important;
+}
+
+.high-contrast .mat-stroked-button:hover,
+.high-contrast .mat-stroked-button.mat-primary:hover {
+  background-color: #ffc107 !important;
+  color: #000 !important;
+  border: 1.5px solid #ffc107 !important;
+}
+
+.high-contrast .mat-select-panel {
+  background-color: #000 !important;
+  color: #ffc107 !important;
+  border: 1.5px solid #ffc107 !important;
+}
+
+.high-contrast .mat-option {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+.high-contrast .mat-option.mat-selected,
+.high-contrast .mat-option:hover {
+  background-color: #ffc107 !important;
+  color: #000 !important;
+}
+
+.high-contrast textarea,
+.high-contrast .mat-input-element[type="textarea"] {
+  background-color: #000 !important;
+  color: #ffc107 !important;
+  border: 1.5px solid #ffc107 !important;
+  border-radius: 4px !important;
+}
+
+.high-contrast .mat-form-field-flex,
+.high-contrast .mat-form-field-infix,
+.high-contrast .mat-input-element,
+.high-contrast .mat-select-trigger,
+.high-contrast .mat-select-value,
+.high-contrast .mat-select,
+.high-contrast input,
+.high-contrast textarea,
+.high-contrast select {
+  background-color: #000 !important;
+  color: #ffc107 !important;
+  border-color: #ffc107 !important;
+}
+
+.high-contrast .mat-form-field-outline,
+.high-contrast .mat-form-field-outline-thick {
+  color: #ffc107 !important;
+  border-color: #ffc107 !important;
+}
+
+.high-contrast .mat-form-field-appearance-outline .mat-form-field-outline {
+  border-color: #ffc107 !important;
+}
+
+.high-contrast ::ng-deep .mat-form-field-flex,
+.high-contrast ::ng-deep .mat-form-field-infix,
+.high-contrast ::ng-deep .mat-input-element,
+.high-contrast ::ng-deep .mat-select-trigger,
+.high-contrast ::ng-deep .mat-select-value,
+.high-contrast ::ng-deep .mat-select,
+.high-contrast ::ng-deep input,
+.high-contrast ::ng-deep textarea,
+.high-contrast ::ng-deep select {
+  background-color: #000 !important;
+  color: #ffc107 !important;
+  border-color: #ffc107 !important;
+}
+
+.high-contrast ::ng-deep .mat-form-field-outline,
+.high-contrast ::ng-deep .mat-form-field-outline-thick {
+  color: #ffc107 !important;
+  border-color: #ffc107 !important;
+}
+
+.high-contrast ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  border-color: #ffc107 !important;
+}
+
+.high-contrast .mat-mdc-input-element,
+.high-contrast input.mat-mdc-input-element,
+.high-contrast .mdc-text-field__input {
+  color: #fff !important;
+  background-color: #000 !important;
+  border-color: #ffc107 !important;
+  caret-color: #fff !important;
+}
+
+.high-contrast .mat-mdc-form-field-flex,
+.high-contrast .mat-mdc-form-field-infix {
+  background-color: #000 !important;
+}
+
+.high-contrast .mat-mdc-input-element::placeholder,
+.high-contrast input.mat-mdc-input-element::placeholder,
+.high-contrast .mdc-text-field__input::placeholder {
+  color: #fff !important;
+  opacity: 1 !important;
+}
+
+.high-contrast textarea.mat-mdc-input-element,
+.high-contrast .mat-mdc-input-element.mat-mdc-form-field-textarea-control,
+.high-contrast .mdc-text-field__input[type="textarea"],
+.high-contrast textarea {
+  background-color: #000 !important;
+  color: #fff !important;
+  border-color: #ffc107 !important;
+  caret-color: #fff !important;
+}
+
+.high-contrast textarea.mat-mdc-input-element::placeholder,
+.high-contrast .mat-mdc-input-element.mat-mdc-form-field-textarea-control::placeholder,
+.high-contrast .mdc-text-field__input[type="textarea"]::placeholder,
+.high-contrast textarea::placeholder {
+  color: #fff !important;
+  opacity: 1 !important;
+}
+
+.high-contrast .mat-mdc-select,
+.high-contrast .mat-mdc-select-trigger,
+.high-contrast .mat-mdc-select-value,
+.high-contrast .mat-mdc-select-placeholder,
+.high-contrast .mat-mdc-select-arrow,
+.high-contrast .mat-mdc-select-arrow-wrapper,
+.high-contrast .mat-mdc-select-panel,
+.high-contrast .mat-mdc-select-content,
+.high-contrast .mat-mdc-select-min-line {
+  background-color: #000 !important;
+  color: #fff !important;
+  border-color: #ffc107 !important;
+}
+
+.high-contrast .mat-mdc-select-arrow svg path {
+  fill: #ffc107 !important;
+}
+
+.high-contrast .mat-mdc-select-panel,
+.high-contrast .mdc-menu-surface,
+.high-contrast .mat-mdc-option,
+.high-contrast .mdc-list-item__primary-text {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+.high-contrast .mat-mdc-option.mat-mdc-option-active,
+.high-contrast .mat-mdc-option:hover {
+  background-color: #ffc107 !important;
+  color: #000 !important;
+}
+
+.high-contrast .mat-mdc-option.mat-mdc-option-active .mdc-list-item__primary-text,
+.high-contrast .mat-mdc-option:hover .mdc-list-item__primary-text,
+.high-contrast .mat-mdc-option[aria-selected="true"] .mdc-list-item__primary-text {
+  color: #000 !important;
+  background-color: #ffc107 !important;
+}
+
+.high-contrast .mat-mdc-option[aria-selected="true"],
+.high-contrast .mat-mdc-option.mat-mdc-option-active {
+  background-color: #ffc107 !important;
+  color: #000 !important;
+}
+
+.high-contrast .mat-mdc-option,
+.high-contrast .mdc-list-item__primary-text {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+.high-contrast .mat-mdc-option[aria-selected="true"],
+.high-contrast .mat-mdc-option.mdc-list-item--selected,
+.high-contrast .mat-mdc-option.mat-mdc-option-active,
+.high-contrast .mat-mdc-option:hover {
+  background-color: #ffc107 !important;
+  color: #000 !important;
+}
+
+.high-contrast .mat-mdc-option[aria-selected="true"] .mdc-list-item__primary-text,
+.high-contrast .mat-mdc-option.mdc-list-item--selected .mdc-list-item__primary-text,
+.high-contrast .mat-mdc-option.mat-mdc-option-active .mdc-list-item__primary-text,
+.high-contrast .mat-mdc-option:hover .mdc-list-item__primary-text {
+  color: #000 !important;
+}
+
+.high-contrast .mat-mdc-option:hover,
+.high-contrast .mat-mdc-option.mat-mdc-option-active {
+  background-color: #ffc107 !important;
+  color: #000 !important;
+}
+
+.high-contrast .mat-mdc-option:hover .mdc-list-item__primary-text {
+  color: #000 !important;
+}
+
+.high-contrast .mat-mdc-select-panel .mat-mdc-option:hover,
+.high-contrast .mat-mdc-select-panel .mat-mdc-option.mat-mdc-option-active,
+.high-contrast .mat-mdc-select-panel .mat-mdc-option[aria-selected="true"] {
+  background-color: #ffc107 !important;
+  color: #000 !important;
+}
+
+.high-contrast .mat-mdc-select-panel .mat-mdc-option:hover .mdc-list-item__primary-text,
+.high-contrast .mat-mdc-select-panel .mat-mdc-option.mat-mdc-option-active .mdc-list-item__primary-text,
+.high-contrast .mat-mdc-select-panel .mat-mdc-option[aria-selected="true"] .mdc-list-item__primary-text {
+  color: #000 !important;
+}
+
+.high-contrast .mat-mdc-select-panel .mat-mdc-option,
+.high-contrast .mat-mdc-select-panel .mdc-list-item__primary-text {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+.high-contrast .mat-stroked-button,
+.high-contrast .mat-mdc-button-touch-target,
+.high-contrast button.mat-mdc-button,
+.high-contrast button.mat-mdc-stroked-button {
+  background-color: #000 !important;
+  color: #ffc107 !important;
+  border: 2px solid #ffc107 !important;
+}
+
+.high-contrast .mat-stroked-button:hover,
+.high-contrast button.mat-mdc-button:hover,
+.high-contrast button.mat-mdc-stroked-button:hover {
+  background-color: #ffc107 !important;
+  color: #000 !important;
+  border: 2px solid #ffc107 !important;
+}
+
+.high-contrast label {
+  color: #ffc107 !important;
+}
+
+.high-contrast .content-list,
+.high-contrast .cdk-drop-list {
+  background-color: #222 !important;
+}
+
+.high-contrast .content-item {
+  background-color: #000 !important;
+  border: 1.5px solid #ffc107 !important;
+  border-radius: 8px !important;
+}
+
+.high-contrast .content-item-title,
+.high-contrast .form-label-row label {
+  color: #ffc107 !important;
+}
+
+.high-contrast .content-item input,
+.high-contrast .content-item textarea,
+.high-contrast .content-item .mat-mdc-input-element,
+.high-contrast .content-item .mdc-text-field__input {
+  background-color: #000 !important;
+  color: #fff !important;
+  border-color: #ffc107 !important;
+  caret-color: #fff !important;
+}
+
+/* Estado normal: fundo preto, texto amarelo, borda amarela */
+.high-contrast .mdc-button.mat-mdc-button,
+.high-contrast .mat-mdc-button-base,
+.high-contrast button.mat-mdc-button {
+  border-width: 2px !important;
+  border-style: solid !important;
+  border-color: #ffc107 !important;
+  box-shadow: none !important;
+}
+
+.high-contrast .mdc-button__ripple,
+.high-contrast .mat-mdc-button-persistent-ripple {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.high-contrast .mdc-button__focus-ring {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.high-contrast .mdc-button__label,
+.high-contrast .mat-mdc-button .mdc-button__label {
+  color: #ffc107 !important;
+}
+
+/* Hover/focus: fundo amarelo, texto amarelo */
+.high-contrast .mdc-button.mat-mdc-button:hover,
+.high-contrast .mat-mdc-button-base:hover,
+.high-contrast button.mat-mdc-button:hover,
+.high-contrast .mdc-button.mat-mdc-button:focus,
+.high-contrast .mat-mdc-button-base:focus,
+.high-contrast button.mat-mdc-button:focus {
+  background-color: #ffc107 !important;
+  color: #ffc107 !important;
+  border-color: #ffc107 !important;
+}
+
+.high-contrast .mdc-button.mat-mdc-button:hover .mdc-button__label,
+.high-contrast .mat-mdc-button-base:hover .mdc-button__label,
+.high-contrast button.mat-mdc-button:hover .mdc-button__label,
+.high-contrast .mdc-button.mat-mdc-button:focus .mdc-button__label,
+.high-contrast .mat-mdc-button-base:focus .mdc-button__label,
+.high-contrast button.mat-mdc-button:focus .mdc-button__label,
+.high-contrast .mdc-button.mat-mdc-button:hover .mat-icon,
+.high-contrast .mat-mdc-button-base:hover .mat-icon,
+.high-contrast button.mat-mdc-button:hover .mat-icon,
+.high-contrast .mdc-button.mat-mdc-button:focus .mat-icon,
+.high-contrast .mat-mdc-button-base:focus .mat-icon,
+.high-contrast button.mat-mdc-button:focus .mat-icon {
+  color: #000 !important;
+  fill: #000 !important;
+}
+
+/* Ripple transparente para não sobrepor o fundo */
+.high-contrast ::ng-deep .mdc-button__ripple,
+.high-contrast ::ng-deep .mat-mdc-button-persistent-ripple {
+  background-color: transparent !important;
+}
+
+.high-contrast .mat-mdc-button-touch-target {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  outline: none !important;
+}
+
+.high-contrast .mat-icon,
+.high-contrast .mat-icon:not([style="border:none"]),
+.high-contrast .mat-icon:focus,
+.high-contrast .mat-icon:active,
+.high-contrast .mat-icon:hover,
+.high-contrast button .mat-icon {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.high-contrast mat-card,
+.high-contrast .mat-mdc-card,
+.high-contrast .news-card {
+  background-color: #000 !important;
+  color: #fff !important;
+  border-color: #ffc107 !important;
+}
+
+.high-contrast .news-category,
+.high-contrast .news-title,
+.high-contrast .news-description {
+  color: #fff !important;
+}
+
+.high-contrast .mat-card:hover,
+.high-contrast .mat-mdc-card:hover,
+.high-contrast .news-card:hover,
+.high-contrast .mat-card:focus,
+.high-contrast .mat-mdc-card:focus,
+.high-contrast .news-card:focus {
+  background-color: #000 !important;
+  box-shadow: none !important;
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+.high-contrast .mat-card,
+.high-contrast .mat-mdc-card,
+.high-contrast .news-card {
+  box-shadow: none !important;
+}
+
+.high-contrast .mat-ripple,
+.high-contrast .mat-mdc-card .mat-ripple,
+.high-contrast .mat-mdc-card .mat-mdc-card-ripple {
+  background: transparent !important;
+  opacity: 0 !important;
+}
+
+/* Estilos do modal de confirmação */
+.mat-mdc-dialog-container {
+  --mdc-dialog-container-color: #fff;
+}
+
+.mat-mdc-dialog-container .mat-mdc-dialog-surface {
+  background-color: #fff;
+  color: #333;
+}
+
+.mat-mdc-dialog-container .mat-mdc-dialog-title {
+  color: #333;
+}
+
+.mat-mdc-dialog-container .mat-mdc-dialog-content {
+  color: #666;
+}
+
+.mat-mdc-dialog-container .mat-mdc-dialog-actions button {
+  color: #1351b4;
+  border: 1px solid #1351b4;
+}
+
+.mat-mdc-dialog-container .mat-mdc-dialog-actions button:hover {
+  background-color: #1351b4;
+  color: #fff;
+}
+
+.mat-mdc-dialog-container .mat-mdc-dialog-actions button[color="warn"] {
+  color: #ffc107;
+  border-color: #ffc107;
+}
+
+.mat-mdc-dialog-container .mat-mdc-dialog-actions button[color="warn"]:hover {
+  background-color: #ffc107;
+  color: #000;
+}
+
+/* Modal no modo de alto contraste */
+.high-contrast .mat-mdc-dialog-container {
+  --mdc-dialog-container-color: #000;
+}
+
+.high-contrast .mat-mdc-dialog-container .mat-mdc-dialog-surface {
+  background-color: #000 !important;
+  color: #fff !important;
+  border: 2px solid #ffc107 !important;
+}
+
+.high-contrast .mat-mdc-dialog-container .mat-mdc-dialog-title {
+  color: #fff !important;
+}
+
+.high-contrast .mat-mdc-dialog-container .mat-mdc-dialog-content {
+  color: #fff !important;
+}
+
+.high-contrast .mat-mdc-dialog-container .mat-mdc-dialog-actions button {
+  color: #ffc107 !important;
+  border: 1px solid #ffc107 !important;
+  background-color: #000 !important;
+}
+
+.high-contrast .mat-mdc-dialog-container .mat-mdc-dialog-actions button:hover {
+  background-color: #ffc107 !important;
+  color: #000 !important;
+}
+
+.high-contrast .mat-mdc-dialog-container .mat-mdc-dialog-actions button[color="warn"] {
+  color: #ffc107 !important;
+  border-color: #ffc107 !important;
+  background-color: #000 !important;
+}
+
+.high-contrast .mat-mdc-dialog-container .mat-mdc-dialog-actions button[color="warn"]:hover {
+  background-color: #ffc107 !important;
+  color: #000 !important;
+}
+
+/* Modal de confirmação: ambos botões azuis no modo normal */
+.mat-mdc-dialog-container .mat-mdc-dialog-actions button,
+.mat-mdc-dialog-container .mat-mdc-dialog-actions button[color="warn"] {
+  color: #1351b4;
+  border: 1.5px solid #1351b4;
+  background: #fff;
+  transition: background 0.2s, color 0.2s;
+}
+.mat-mdc-dialog-container .mat-mdc-dialog-actions button:hover,
+.mat-mdc-dialog-container .mat-mdc-dialog-actions button[color="warn"]:hover {
+  background: #1351b4;
+  color: #fff;
+}
+
+/* Modal de confirmação: ambos botões amarelos no modo contraste */
+.high-contrast .mat-mdc-dialog-container .mat-mdc-dialog-actions button,
+.high-contrast .mat-mdc-dialog-container .mat-mdc-dialog-actions button[color="warn"] {
+  background: #000 !important;
+  color: #ffc107 !important;
+  border: 1.5px solid #ffc107 !important;
+  transition: none !important;
+}
+.high-contrast .mat-mdc-dialog-container .mat-mdc-dialog-actions button:hover,
+.high-contrast .mat-mdc-dialog-container .mat-mdc-dialog-actions button[color="warn"]:hover {
+  background: #ffc107 !important;
+  color: #000 !important;
+}
+
+.news-detail-container,
+.news-detail-container * {
+  color: #222 !important;
+}
+
+.high-contrast .news-detail-container,
+.high-contrast .news-detail-container * {
+  color: #fff !important;
+}
+
+.high-contrast .mat-mdc-dialog-container .mat-mdc-dialog-content,
+.high-contrast .mat-mdc-dialog-container .mat-mdc-dialog-title {
+  color: #fff !important;
+}
+
+.high-contrast .mat-mdc-dialog-container,
+.high-contrast .mat-mdc-dialog-container * {
+  color: #fff !important;
+}

@@ -1,3 +1,28 @@
-<div class="intro">
-  <p>news works!</p>
+<div class="news-container">
+  <div class="news-header">
+    <h1>Notícias</h1>
+    <button mat-raised-button color="primary" class="criar-noticia-btn btn-create-news" (click)="createNews()">
+      <mat-icon>add</mat-icon>
+      Criar Notícia
+    </button>
+  </div>
+
+  <div class="news-list">
+    <mat-card *ngFor="let news of newsList" class="news-card">
+      <ng-container *ngIf="news.summary.mainImage; else noImage">
+        <img mat-card-image [src]="news.summary.mainImage" [alt]="news.summary.title">
+      </ng-container>
+      <ng-template #noImage>
+        <div class="news-placeholder-image">Sem imagem</div>
+      </ng-template>
+      <mat-card-content>
+        <div class="news-category">{{news.summary.category}}</div>
+        <a class="news-title" [routerLink]="['/news/detail', news.id]">{{news.summary.title}}</a>
+        <div class="news-description">{{news.summary.description}}</div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="warn" (click)="deleteNews(news)">Excluir</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>

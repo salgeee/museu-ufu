@@ -55,11 +55,37 @@ export const routes: Routes = [
   },
   {
     path: 'news',
-    loadComponent: () => import('./pages/news/news.component').then(m => m.NewsComponent),
     title: 'Noticias',
     data: {
       breadCrumb: 'Notícias',
     },
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./pages/news/news.component').then(m => m.NewsComponent),
+      },
+      {
+        path: 'create',
+        loadComponent: () => import('./pages/news/news-form/news-form.component').then(m => m.NewsFormComponent),
+        data: {
+          breadCrumb: 'Criar Notícia',
+        },
+      },
+      {
+        path: 'edit/:id',
+        loadComponent: () => import('./pages/news/news-form/news-form.component').then(m => m.NewsFormComponent),
+        data: {
+          breadCrumb: 'Editar Notícia',
+        },
+      },
+      {
+        path: 'detail/:id',
+        loadComponent: () => import('./pages/news/news-detail.component').then(m => m.NewsDetailComponent),
+        data: {
+          breadCrumb: 'Detalhe da Notícia',
+        },
+      },
+    ]
   },
   {
     path: 'about',
@@ -93,4 +119,4 @@ export const routes: Routes = [
       breadCrumb: 'Página Não Encontrada',
     }
   },
-  ]
+]

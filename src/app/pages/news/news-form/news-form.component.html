@@ -1,0 +1,158 @@
+<div class="news-form-container">
+  <h1>{{isEditMode ? 'Editar' : 'Criar'}} Notícia</h1>
+
+  <form [formGroup]="newsForm" (ngSubmit)="onSubmit()" class="news-form">
+    <!-- Seção de Resumo (Box) -->
+    <div class="form-section">
+      <h2>Resumo da Notícia</h2>
+      <p class="section-description">
+        Estas informações serão exibidas na lista de notícias e no card de destaque.
+      </p>
+
+      <!-- Título do Resumo -->
+      <div class="form-label-row">
+        <label for="summaryTitle">Título do Resumo*</label>
+        <span class="form-error" *ngIf="newsForm.get('summaryTitle')?.invalid && (newsForm.get('summaryTitle')?.dirty || newsForm.get('summaryTitle')?.touched)">
+          <ng-container *ngIf="newsForm.get('summaryTitle')?.hasError('required')">Obrigatório</ng-container>
+          <ng-container *ngIf="newsForm.get('summaryTitle')?.hasError('minlength')">Mín. 3 caracteres</ng-container>
+        </span>
+      </div>
+      <mat-form-field appearance="outline" class="full-width rounded-input">
+        <input matInput id="summaryTitle" formControlName="summaryTitle" required autocomplete="off">
+      </mat-form-field>
+
+      <!-- Descrição do Resumo -->
+      <div class="form-label-row">
+        <label for="summaryDescription">Descrição do Resumo*</label>
+        <span class="form-error" *ngIf="newsForm.get('summaryDescription')?.invalid && (newsForm.get('summaryDescription')?.dirty || newsForm.get('summaryDescription')?.touched)">
+          <ng-container *ngIf="newsForm.get('summaryDescription')?.hasError('required')">Obrigatório</ng-container>
+          <ng-container *ngIf="newsForm.get('summaryDescription')?.hasError('minlength')">Mín. 10 caracteres</ng-container>
+        </span>
+      </div>
+      <mat-form-field appearance="outline" class="full-width rounded-input">
+        <textarea matInput id="summaryDescription" formControlName="summaryDescription" rows="3" required autocomplete="off"></textarea>
+      </mat-form-field>
+
+      <!-- Categoria -->
+      <div class="form-label-row">
+        <label for="category">Categoria*</label>
+        <span class="form-error" *ngIf="newsForm.get('category')?.invalid && (newsForm.get('category')?.dirty || newsForm.get('category')?.touched)">
+          <ng-container *ngIf="newsForm.get('category')?.hasError('required')">Obrigatório</ng-container>
+        </span>
+      </div>
+      <mat-form-field appearance="outline" class="full-width rounded-input">
+        <mat-select id="category" formControlName="category" required>
+          <mat-option *ngFor="let category of categories" [value]="category">
+            {{category}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Imagem Principal -->
+      <div class="image-upload-section">
+        <label>Imagem Principal</label>
+        <div class="image-upload">
+          <input type="file" accept="image/*" (change)="onMainImageChange($event)" #mainImageInput style="display: none">
+          <button type="button" mat-stroked-button (click)="mainImageInput.click()">
+            <mat-icon>upload</mat-icon>
+            Escolher Imagem
+          </button>
+          <span *ngIf="mainImageFileName" class="file-name">{{mainImageFileName}}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção de Conteúdo Completo -->
+    <div class="form-section">
+      <h2>Conteúdo Completo da Notícia</h2>
+      <p class="section-description">
+        Adicione o conteúdo completo da notícia que será exibido na página detalhada.
+        Você pode organizar os elementos na ordem desejada usando arrastar e soltar.
+      </p>
+      
+      <div class="additional-content-controls">
+        <button type="button" class="content-type-button" (click)="addContent('title')">
+          <mat-icon>title</mat-icon>
+          Adicionar Título
+        </button>
+        <button type="button" class="content-type-button" (click)="addContent('text')">
+          <mat-icon>text_fields</mat-icon>
+          Adicionar Texto
+        </button>
+        <button type="button" class="content-type-button" (click)="addContent('image')">
+          <mat-icon>image</mat-icon>
+          Adicionar Imagem
+        </button>
+      </div>
+
+      <div class="content-list" cdkDropList (cdkDropListDropped)="onContentDrop($event)">
+        <div *ngFor="let item of fullContent; let i = index" 
+             class="content-item" 
+             cdkDrag
+             [cdkDragData]="item">
+          
+          <div class="content-item-header">
+            <span class="content-item-title">
+              <mat-icon *ngIf="item.type === 'title'">title</mat-icon>
+              <mat-icon *ngIf="item.type === 'text'">text_fields</mat-icon>
+              <mat-icon *ngIf="item.type === 'image'">image</mat-icon>
+              {{item.type === 'title' ? 'Título' : item.type === 'text' ? 'Texto' : 'Imagem'}}
+            </span>
+            <div class="content-item-actions">
+              <button type="button" mat-icon-button color="warn" (click)="removeContent(i)">
+                <mat-icon>delete</mat-icon>
+              </button>
+              <button type="button" mat-icon-button cdkDragHandle>
+                <mat-icon>drag_indicator</mat-icon>
+              </button>
+            </div>
+          </div>
+
+          <div class="content-item-body">
+            <ng-container [ngSwitch]="item.type">
+              <!-- Título -->
+              <div *ngSwitchCase="'title'">
+                <div class="form-label-row">
+                  <label>Título</label>
+                </div>
+                <mat-form-field appearance="outline" class="full-width rounded-input">
+                  <input matInput [value]="item.content" (input)="onContentChange(item, $event)">
+                </mat-form-field>
+              </div>
+
+              <!-- Texto -->
+              <div *ngSwitchCase="'text'">
+                <div class="form-label-row">
+                  <label>Texto</label>
+                </div>
+                <mat-form-field appearance="outline" class="full-width rounded-input">
+                  <textarea matInput [value]="item.content" (input)="onContentChange(item, $event)" rows="4"></textarea>
+                </mat-form-field>
+              </div>
+
+              <!-- Imagem -->
+              <div *ngSwitchCase="'image'" class="image-upload">
+                <label>Imagem</label>
+                <input type="file" accept="image/*" (change)="onImageUpload(item, $event)" #imageInput style="display: none">
+                <button type="button" mat-stroked-button (click)="imageInput.click()">
+                  <mat-icon>upload</mat-icon>
+                  Escolher Imagem
+                </button>
+                <span *ngIf="item.content" class="file-name">
+                  {{item.content}}
+                </span>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" mat-button (click)="cancel()">Cancelar</button>
+      <button type="submit" mat-raised-button color="primary" [disabled]="!newsForm.valid">
+        {{isEditMode ? 'Salvar' : 'Criar'}} Notícia
+      </button>
+    </div>
+  </form>
+</div> 

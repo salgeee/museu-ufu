@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import {Component, OnInit, Inject, inject} from '@angular/core';
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -6,6 +6,8 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FirestoreNewsService, NewsPost } from '../../../core/services/firestore-news.service';
+import { Observable } from 'rxjs';
 
 interface NewsLocal {
   id: string;
@@ -33,19 +35,19 @@ interface NewsLocal {
   ]
 })
 export class NewsComponent implements OnInit {
-  newsList: NewsLocal[] = [];
+  newsList$: Observable<NewsPost[]>;
+  private firestoreNewsService = inject(FirestoreNewsService);
+  private router = inject(Router);
+  private dialog = inject(MatDialog);
 
-  constructor(
-    private router: Router,
-    private dialog: MatDialog
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.loadNews();
   }
 
   loadNews(): void {
-    this.newsList = JSON.parse(localStorage.getItem('newsList') || '[]');
+    this.newsList$ = this.firestoreNewsService.getAllNews();
   }
 
   createNews(): void {
@@ -57,19 +59,18 @@ export class NewsComponent implements OnInit {
     alert('Edição não implementada no modo local!');
   }
 
-  deleteNews(news: NewsLocal): void {
-    const dialogRef = this.dialog.open(DeleteConfirmDialog, {
-      width: '400px',
-      data: { title: news.summary.title }
-    });
+  deleteNews(newsItem: NewsPost): void {
+    if (!newsItem.id) {
+      console.error('News item ID is undefined, cannot delete');
+      return;
+    }
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === true) {
-        const filtered = this.newsList.filter(n => n.id !== news.id);
-        localStorage.setItem('newsList', JSON.stringify(filtered));
-        this.loadNews();
-      }
-    });
+    this.firestoreNewsService.deleteNews(newsItem.id)
+      .then(() => {
+        console.log('Notícia deletada com sucesso!');
+
+      })
+      .catch(error => console.error('Erro ao deletar notícia:', error));
   }
 }
 

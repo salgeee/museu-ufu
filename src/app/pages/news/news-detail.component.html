@@ -1,35 +1,16 @@
-<div *ngIf="news; else notFound" class="news-detail-container">
-  <div class="news-category-main">{{ news.summary.category }}</div>
-  <h1 class="news-title-main">{{ news.summary.title }}</h1>
+<div *ngIf="news$ | async as newsItem; else notFound" class="news-detail-container">
+  <div class="news-category-main">{{ newsItem.summary.category }}</div>
+  <h1 class="news-title-main">{{ newsItem.summary.title }}</h1>
   <div class="news-main-image-wrapper">
-    <img [src]="news.summary.mainImage" [alt]="news.summary.title" class="news-main-image" (click)="openImage(news.summary.mainImage)" style="cursor: zoom-in;" />
+    <img [src]="newsItem.summary.mainImage" [alt]="newsItem.summary.title" class="news-main-image" (click)="openImage(newsItem.summary.mainImage)" style="cursor: zoom-in;" />
   </div>
-  <div class="news-description">{{ news.summary.description }}</div>
+  <div class="news-description">{{ newsItem.summary.description }}</div>
   <hr class="news-separator" />
-  <div class="news-full-content" *ngIf="news.fullContent && news.fullContent.length">
-    <div *ngFor="let item of news.fullContent">
-      <div *ngIf="item.type === 'title'">
-        <h2 class="news-content-title">{{ item.content }}</h2>
-      </div>
-      <div *ngIf="item.type === 'text'">
-        <p class="news-content-text">{{ item.content }}</p>
-      </div>
-      <div *ngIf="item.type === 'image'">
-        <div class="news-content-image-wrapper">
-          <img [src]="item.content" class="news-content-image" (click)="openImage(item.content)" style="cursor: zoom-in;" />
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal de Imagem Ampliada -->
-  <div class="image-modal-backdrop" *ngIf="modalImage" (click)="closeImage()">
-    <div class="image-modal-content" (click)="$event.stopPropagation()">
-      <button class="image-modal-close" (click)="closeImage()" aria-label="Fechar imagem ampliada">&times;</button>
-      <img [src]="modalImage" alt="Imagem ampliada" />
+  <div class="news-full-content" *ngIf="newsItem.fullContent && newsItem.fullContent.length">
+    <div *ngFor="let item of newsItem.fullContent">
     </div>
   </div>
 </div>
 <ng-template #notFound>
-  <p>Notícia não encontrada.</p>
+  <p>Notícia não encontrada ou carregando...</p>
 </ng-template>

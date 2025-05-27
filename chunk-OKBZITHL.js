@@ -1,1 +1,0 @@
-import{Kb as a,_a as e,sb as o,tb as i}from"./chunk-CMD7REOP.js";var c=(()=>{class t{static \u0275fac=function(n){return new(n||t)};static \u0275cmp=e({type:t,selectors:[["app-donations"]],decls:3,vars:0,consts:[[1,"intro"]],template:function(n,p){n&1&&(o(0,"div",0)(1,"p"),a(2,"donations works!"),i()())},encapsulation:2})}return t})();export{c as DonationsComponent};

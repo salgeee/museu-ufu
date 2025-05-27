@@ -1,17 +1,45 @@
-<div class="news-container">
-  <div class="news-header">
-    <h1>Notícias</h1>
-    <button mat-raised-button color="primary" class="criar-noticia-btn btn-create-news" (click)="createNews()">
-      <mat-icon>add</mat-icon>
-      Criar Notícia
-    </button>
-  </div>
 
-  <div class="news-list" *ngIf="newsList$ | async as newsItems">
-    <mat-card *ngFor="let news of newsItems" class="news-card">
-      <a class="news-title" [routerLink]="['/news/detail', news.id]">{{ news.summary.title }}</a>
-      <mat-card-actions>
-        <button mat-button color="warn" (click)="deleteNews(news)">Excluir</button>
-      </mat-card-actions>
-    </mat-card>
+<div class="create-news-button-container">
+  <button mat-raised-button color="primary" class="custom-create-news-btn" (click)="createNews()">
+    <mat-icon>add</mat-icon> Criar Nova Notícia
+  </button>
+</div>
+
+<div class="news-list" *ngIf="newsList$ | async as newsItems; else loadingOrEmpty">
+  <mat-card *ngFor="let news of newsItems" class="news-card">
+    <a [routerLink]="['/news/detail', news.id]" class="news-card-image-link">
+      <div class="news-card-image-container">
+        <img mat-card-image class="news-main-image-card"
+             [src]="news.summary.mainImage"
+             [alt]="news.summary.title">
+      </div>
+    </a>
+
+    <div class="news-card-content-area">
+      <mat-card-header class="news-card-header-no-avatar">
+        <div> <mat-card-title class="news-card-title-custom">
+          <a class="news-title" [routerLink]="['/news/detail', news.id]">{{ news.summary.title }}</a>
+        </mat-card-title>
+          <mat-card-subtitle class="news-category">{{ news.summary.category }}</mat-card-subtitle>
+        </div>
+      </mat-card-header>
+
+      <mat-card-content class="news-description">
+        <p>{{ news.summary.description }}</p>
+      </mat-card-content>
+    </div>
+
+    <mat-card-actions class="news-actions-custom">
+      <button mat-button color="warn" (click)="deleteNews(news)">
+        <mat-icon>delete</mat-icon> Excluir
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<ng-template #loadingOrEmpty>
+  <div class="loading-or-empty-container">
+    <div *ngIf="!(newsList$ | async); else noNews">Carregando notícias...</div>
+    <ng-template #noNews>Nenhuma notícia encontrada.</ng-template>
   </div>
+</ng-template>

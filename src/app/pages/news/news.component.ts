@@ -64,13 +64,20 @@ export class NewsComponent implements OnInit {
       console.error('News item ID is undefined, cannot delete');
       return;
     }
+    const dialogRef = this.dialog.open(DeleteConfirmDialog, {
+      width: '350px', // Largura do modal
+      data: { title: newsItem.summary.title } // Passa o título da notícia para o modal
+    });
 
-    this.firestoreNewsService.deleteNews(newsItem.id)
-      .then(() => {
-        console.log('Notícia deletada com sucesso!');
-
-      })
-      .catch(error => console.error('Erro ao deletar notícia:', error));
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.firestoreNewsService.deleteNews(newsItem.id!)
+          .then(() => {
+            console.log('Notícia deletada com sucesso!');
+          })
+          .catch(error => console.error('Erro ao deletar notícia:', error));
+      }
+    });
   }
 }
 

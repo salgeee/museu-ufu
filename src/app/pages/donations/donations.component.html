@@ -9,39 +9,39 @@
   <form [formGroup]="donationForm" (ngSubmit)="onSubmit()" *ngIf="submittedSuccessfully === null || submittedSuccessfully === false">
     <mat-form-field appearance="outline">
       <mat-label>Nome Completo do Doador</mat-label>
-      <input matInput formControlName="entry.200677914" required>
-      <mat-error *ngIf="donationForm.get('entry.200677914')?.hasError('required')">
+      <input matInput formControlName="nomeDoador" required>
+      <mat-error *ngIf="donationForm.get('nomeDoador')?.hasError('required')">
         Nome é obrigatório.
       </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Seu E-mail</mat-label>
-      <input matInput type="email" formControlName="emailAddress" required>
-      <mat-error *ngIf="donationForm.get('emailAddress')?.hasError('required')">
+      <input matInput type="email" formControlName="email" required>
+      <mat-error *ngIf="donationForm.get('email')?.hasError('required')">
         E-mail é obrigatório.
       </mat-error>
-      <mat-error *ngIf="donationForm.get('emailAddress')?.hasError('email')">
+      <mat-error *ngIf="donationForm.get('email')?.hasError('email')">
         Formato de e-mail inválido.
       </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Telefone para contato</mat-label>
-      <input matInput type="tel" formControlName="entry.2124359309" required>
+      <input matInput type="tel" formControlName="telefone" required>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Breve Descrição do Objeto/Coleção</mat-label>
-      <textarea matInput formControlName="entry.513552808" required rows="4"
-                placeholder="Inclua informações como material, dimensões aproximadas, estado de conservação, história conhecida, etc."></textarea>
-      <mat-error *ngIf="donationForm.get('entry.513552808')?.hasError('required')">
+      <textarea matInput formControlName="descricaoDoacao" required rows="4"
+      placeholder="Inclua informações como material, dimensões aproximadas, estado de conservação, história conhecida, etc."></textarea>
+      <mat-error *ngIf="donationForm.get('descricaoDoacao')?.hasError('required')">
         Descrição é obrigatória.
       </mat-error>
     </mat-form-field>
 
     <div class="form-actions">
-      <button mat-raised-button color="primary" type="submit" [disabled]="isSubmitting || !donationForm.valid">
+      <button mat-raised-button color="primary" type="submit" [disabled]="isSubmitting">
         <span *ngIf="!isSubmitting">Enviar Proposta de Doação</span>
         <mat-spinner *ngIf="isSubmitting" diameter="24" color="accent" style="margin: 0 auto;"></mat-spinner>
       </button>
@@ -50,8 +50,8 @@
 
   <div *ngIf="submittedSuccessfully === true" class="submission-success-message">
     <h2>Obrigado!</h2>
-    <p>Sua proposta de doação foi enviada com sucesso. Nossa equipe entrará em contato em breve.</p>
-    <button mat-stroked-button color="primary" (click)="submittedSuccessfully = null;">Enviar Nova Proposta</button>
+    <p>Sua proposta de doação foi enviada com sucesso. Entraremos em contato em breve.</p>
+    <button mat-stroked-button color="primary" (click)="submittedSuccessfully = null; donationForm.reset()">Enviar Nova Proposta</button>
   </div>
 
   <div *ngIf="submittedSuccessfully === false && !isSubmitting" class="submission-error-message">
@@ -59,4 +59,5 @@
     <p>Não foi possível enviar sua proposta no momento. Por favor, tente novamente mais tarde ou entre em contato conosco diretamente.</p>
     <button mat-stroked-button color="warn" (click)="onSubmit()">Tentar Novamente</button>
   </div>
+
 </div>

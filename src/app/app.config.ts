@@ -23,6 +23,7 @@ import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
+
 registerLocaleData(localePt);
 
 export function scrollFactory(overlay: Overlay): () => NoopScrollStrategy {

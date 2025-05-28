@@ -1,3 +1,62 @@
-<div class="intro">
-  <p>donations works!</p>
+<div class="donation-form-container">
+  <h1>Formulário de Proposta de Doação</h1>
+  <p class="form-description">
+    Agradecemos seu interesse em contribuir com o acervo do Museu da UFU.
+    Por favor, preencha o formulário abaixo com as informações sobre o item ou coleção que deseja doar.
+    Nossa equipe técnica analisará a proposta e entrará em contato.
+  </p>
+
+  <form [formGroup]="donationForm" (ngSubmit)="onSubmit()" *ngIf="submittedSuccessfully === null || submittedSuccessfully === false">
+    <mat-form-field appearance="outline">
+      <mat-label>Nome Completo do Doador</mat-label>
+      <input matInput formControlName="entry.200677914" required>
+      <mat-error *ngIf="donationForm.get('entry.200677914')?.hasError('required')">
+        Nome é obrigatório.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Seu E-mail</mat-label>
+      <input matInput type="email" formControlName="emailAddress" required>
+      <mat-error *ngIf="donationForm.get('emailAddress')?.hasError('required')">
+        E-mail é obrigatório.
+      </mat-error>
+      <mat-error *ngIf="donationForm.get('emailAddress')?.hasError('email')">
+        Formato de e-mail inválido.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Telefone para contato</mat-label>
+      <input matInput type="tel" formControlName="entry.2124359309" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Breve Descrição do Objeto/Coleção</mat-label>
+      <textarea matInput formControlName="entry.513552808" required rows="4"
+                placeholder="Inclua informações como material, dimensões aproximadas, estado de conservação, história conhecida, etc."></textarea>
+      <mat-error *ngIf="donationForm.get('entry.513552808')?.hasError('required')">
+        Descrição é obrigatória.
+      </mat-error>
+    </mat-form-field>
+
+    <div class="form-actions">
+      <button mat-raised-button color="primary" type="submit" [disabled]="isSubmitting || !donationForm.valid">
+        <span *ngIf="!isSubmitting">Enviar Proposta de Doação</span>
+        <mat-spinner *ngIf="isSubmitting" diameter="24" color="accent" style="margin: 0 auto;"></mat-spinner>
+      </button>
+    </div>
+  </form>
+
+  <div *ngIf="submittedSuccessfully === true" class="submission-success-message">
+    <h2>Obrigado!</h2>
+    <p>Sua proposta de doação foi enviada com sucesso. Nossa equipe entrará em contato em breve.</p>
+    <button mat-stroked-button color="primary" (click)="submittedSuccessfully = null;">Enviar Nova Proposta</button>
+  </div>
+
+  <div *ngIf="submittedSuccessfully === false && !isSubmitting" class="submission-error-message">
+    <h2>Ops! Algo deu errado.</h2>
+    <p>Não foi possível enviar sua proposta no momento. Por favor, tente novamente mais tarde ou entre em contato conosco diretamente.</p>
+    <button mat-stroked-button color="warn" (click)="onSubmit()">Tentar Novamente</button>
+  </div>
 </div>

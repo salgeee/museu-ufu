@@ -85,7 +85,7 @@
               ],
               "outputHashing": "all",
               "serviceWorker": "ngsw-config.json",
-              "baseHref": "/museu-ufu/"
+              "baseHref": "/"
             },
             "development": {
               "optimization": false,

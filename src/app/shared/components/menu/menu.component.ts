@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, inject, signal, Input, OnInit, isDevMode } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, signal, Input, OnInit } from '@angular/core';
 import { LIST_MENU_BY_ROLE } from './const/list-menu';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Role } from '@app/features/login/models/credentials.model';
@@ -6,7 +6,7 @@ import { AuthService } from '@app/core/auth/services/auth.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { IMenu } from './types/menu.type';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import BRMenu from '@govbr-ds/core/dist/components/menu/menu';
+import BRMenu from "@govbr-ds/core/dist/components/menu/menu";
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MenuService } from '@app/core/services/menu.service';
@@ -35,7 +35,6 @@ export class MenuComponent implements AfterViewInit, OnInit {
 	instance: BRMenu | null = null;
 	isMobile = signal<boolean>(false);
 	isOpen = false;
-	basePath = isDevMode() ? '' : '/museu-ufu';
 
 	private _brMenu = inject(ElementRef);
 	private _authService = inject(AuthService);

@@ -1,4 +1,4 @@
-import {Component, isDevMode} from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-perfis-nav',
@@ -7,5 +7,4 @@ import {Component, isDevMode} from '@angular/core';
   styleUrl: './perfis-nav.component.scss'
 })
 export class PerfisNavComponent {
-  basePath = isDevMode() ? '' : '/museu-ufu';
 }

@@ -1,0 +1,44 @@
+<div class="word-search-container">
+  <div class="game-info">
+    <div class="timer">Tempo decorrido: {{ formatTime(elapsedTime) }}</div>
+    <div class="words-found">Palavras encontradas: {{ foundWordsCount }}/{{ words.length }}</div>
+  </div>
+
+  <div class="grid-container">
+    <div class="grid" 
+         (mouseleave)="onMouseUp()"
+         (mouseup)="onMouseUp()">
+      <div class="row" *ngFor="let row of grid; let i = index">
+        <div class="cell" 
+             *ngFor="let cell of row; let j = index"
+             [class.selected]="isCellSelected(i, j)"
+             (mousedown)="onMouseDown(i, j)"
+             (mouseover)="onMouseOver(i, j)">
+          {{ cell }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="word-list">
+    <h3>Palavras para encontrar:</h3>
+    <ul>
+      <li *ngFor="let word of words" [class.found]="word.found">
+        {{ word.word }}
+      </li>
+    </ul>
+  </div>
+
+  <button class="reset-button" (click)="resetGame()">Reiniciar Jogo</button>
+</div>
+
+<!-- Modal de Parabéns -->
+<div class="modal-overlay" *ngIf="showCongratulations">
+  <div class="modal-content">
+    <h2 class="modal-title">🎉 Parabéns! 🎉</h2>
+    <p class="modal-message">
+      Você encontrou todas as palavras em {{ formatTime(elapsedTime) }}!
+    </p>
+    <button class="modal-button" (click)="closeModal()">Fechar</button>
+  </div>
+</div> 

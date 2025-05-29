@@ -43,6 +43,14 @@ export const routes: Routes = [
             m => m.LogicChallengeComponent
           ),
       },
+      {
+        data: { breadCrumb: 'Caça Palavras' },
+        path: 'word-search',
+        loadComponent: () =>
+          import('./pages/games/word-search/word-search.component').then(
+            m => m.WordSearchComponent
+          ),
+      }
     ]
   },
   {

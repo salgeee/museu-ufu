@@ -1049,7 +1049,7 @@ body:not(.high-contrast) .image-modal-close {
   border-radius: 8px !important;
 }
 
-.high-contrast,
+.high-contrast .content-item-title,
 .high-contrast .form-label-row label {
   color: #ffc107 !important;
 }

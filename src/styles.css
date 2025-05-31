@@ -506,7 +506,7 @@ body {
 
 /* Botão Criar Notícia - Modo normal (sobrescrevendo Angular Material) */
 .btn-create-news.mat-raised-button {
-  background-color: #fff !important;
+  background-color: transparent !important;
   color: #1351b4 !important;
   border: 2px solid #1351b4 !important;
   border-radius: 20px !important;
@@ -528,7 +528,7 @@ body {
 .high-contrast .btn-create-news.mdc-button--raised {
   --mdc-protected-button-container-color: #000 !important;
   --mdc-protected-button-label-text-color: #ffc107 !important;
-  background-color: #000 !important;
+  background-color: transparent !important;
   color: #ffc107 !important;
   border: 2px solid #ffc107 !important;
   border-radius: 20px !important;
@@ -604,9 +604,6 @@ body {
   margin: 2.5em 0 2em 0;
 }
 
-.high-contrast .news-separator {
-  border-top: 4px solid #ffc107 !important;
-}
 
 .news-description {
   font-size: 1.1rem;
@@ -1049,11 +1046,10 @@ body:not(.high-contrast) .image-modal-close {
 
 .high-contrast .content-item {
   background-color: #000 !important;
-  border: 1.5px solid #ffc107 !important;
   border-radius: 8px !important;
 }
 
-.high-contrast .content-item-title,
+.high-contrast,
 .high-contrast .form-label-row label {
   color: #ffc107 !important;
 }

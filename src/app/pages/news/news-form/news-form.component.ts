@@ -193,6 +193,7 @@ export class NewsFormComponent implements OnInit {
       const reader = new FileReader();
       reader.onload = () => {
         item.content = reader.result as string;
+        (item as any).fileName = file.name; // Salva o nome do arquivo
       };
       reader.readAsDataURL(file);
     }

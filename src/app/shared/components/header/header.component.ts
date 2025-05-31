@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, inject, input, isDevMode, HostListener } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, HostListener } from '@angular/core';
 import { AuthService } from '@app/core/auth/services/auth.service';
 import { CdkMenuModule } from '@angular/cdk/menu';
 import { MenuService } from '@app/core/services/menu.service'
 import { BarraBrasilComponent } from '../barra-brasil/barra-brasil.component';
 import { RouterLink } from '@angular/router';
-import { AccessibilityService } from '../../../services/accessibility.service';
+import { AccessibilityService } from '@app/services/accessibility.service';
 
 @Component({
 	selector: 'app-header',
@@ -20,7 +20,6 @@ export class HeaderComponent {
 	authService = inject(AuthService);
 	user = this.authService.credentials;
 	private _menuService = inject(MenuService);
-  basePath = isDevMode() ? '' : '/museu-ufu';
 
 	isScrolled = false;
 

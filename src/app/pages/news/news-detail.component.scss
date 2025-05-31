@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 .news-detail-page-container {
   padding: 20px;
   max-width: 900px;
@@ -94,6 +92,7 @@
 
 .news-separator {
   border: 0;
+
   height: 2px;
   background-color: #202020;
   margin: 25px 0;
@@ -220,6 +219,7 @@
   height: 28px;
 }
 
+
 :host-context(.high-contrast) .content-item-text {
   color: #fff !important;
 }
@@ -241,4 +241,4 @@
 :host-context(.high-contrast) .content-item-title {
   color: #fff !important;
 }
->>>>>>> Stashed changes
+

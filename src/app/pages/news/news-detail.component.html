@@ -1,35 +1,48 @@
-<div *ngIf="news; else notFound" class="news-detail-container">
-  <div class="news-category-main">{{ news.summary.category }}</div>
-  <h1 class="news-title-main">{{ news.summary.title }}</h1>
-  <div class="news-main-image-wrapper">
-    <img [src]="news.summary.mainImage" [alt]="news.summary.title" class="news-main-image" (click)="openImage(news.summary.mainImage)" style="cursor: zoom-in;" />
-  </div>
-  <div class="news-description">{{ news.summary.description }}</div>
-  <hr class="news-separator" />
-  <div class="news-full-content" *ngIf="news.fullContent && news.fullContent.length">
-    <div *ngFor="let item of news.fullContent">
-      <div *ngIf="item.type === 'title'">
-        <h2 class="news-content-title">{{ item.content }}</h2>
+<div class="news-detail-page-container" *ngIf="news$ | async as newsItem; else loadingOrNotFound">
+  <mat-card class="news-detail-card">
+    <mat-card-header>
+      <mat-card-title class="news-detail-title">{{ newsItem.summary.title }}</mat-card-title>
+      <mat-card-subtitle class="news-detail-category">{{ newsItem.summary.category }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <div class="news-main-image-wrapper" (click)="openImageModal(newsItem.summary.mainImage)" *ngIf="newsItem.summary.mainImage">
+      <img [src]="newsItem.summary.mainImage" [alt]="newsItem.summary.title" class="news-main-image">
+      <div class="image-zoom-indicator">
+        <mat-icon>zoom_in</mat-icon> Ampliar
       </div>
-      <div *ngIf="item.type === 'text'">
-        <p class="news-content-text">{{ item.content }}</p>
-      </div>
-      <div *ngIf="item.type === 'image'">
-        <div class="news-content-image-wrapper">
-          <img [src]="item.content" class="news-content-image" (click)="openImage(item.content)" style="cursor: zoom-in;" />
+    </div>
+    <div *ngIf="!newsItem.summary.mainImage" class="no-image-placeholder">
+      Sem imagem principal
+    </div>
+
+    <mat-card-content class="news-detail-content">
+      <p class="news-detail-description">{{ newsItem.summary.description }}</p>
+      <hr class="news-separator">
+      <div class="news-full-content" *ngIf="newsItem.fullContent && newsItem.fullContent.length">
+        <div *ngFor="let item of newsItem.fullContent" [ngSwitch]="item.type" class="content-item">
+          <h3 *ngSwitchCase="'title'" class="content-item-title">{{ item.content }}</h3>
+          <p *ngSwitchCase="'text'" class="content-item-text">{{ item.content }}</p>
+          <div *ngSwitchCase="'image'" class="content-item-image-wrapper" (click)="openImageModal(item.content)">
+            <img [src]="item.content" [alt]="newsItem.summary.title + ' - detalhe'" class="content-item-image">
+            <div class="image-zoom-indicator-small">
+              <mat-icon>zoom_in</mat-icon>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    </mat-card-content>
+  </mat-card>
+</div>
 
-  <!-- Modal de Imagem Ampliada -->
-  <div class="image-modal-backdrop" *ngIf="modalImage" (click)="closeImage()">
-    <div class="image-modal-content" (click)="$event.stopPropagation()">
-      <button class="image-modal-close" (click)="closeImage()" aria-label="Fechar imagem ampliada">&times;</button>
-      <img [src]="modalImage" alt="Imagem ampliada" />
-    </div>
+<ng-template #loadingOrNotFound>
+  <p class="message-placeholder">Carregando notícia ou notícia não encontrada...</p>
+</ng-template>
+
+<div class="image-modal-overlay" *ngIf="showImageModal" (click)="onModalBackgroundClick($event)">
+  <div class="image-modal-content">
+    <button mat-icon-button class="image-modal-close-button" (click)="closeImageModal()" aria-label="Fechar imagem ampliada">
+      <mat-icon>close</mat-icon>
+    </button>
+    <img [src]="modalImageUrl" alt="Imagem ampliada" class="image-modal-image">
   </div>
 </div>
-<ng-template #notFound>
-  <p>Notícia não encontrada.</p>
-</ng-template>

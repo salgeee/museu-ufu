@@ -1,32 +1,54 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {Component, inject} from '@angular/core';
+import {ActivatedRoute, RouterModule} from '@angular/router';
 import { CommonModule } from '@angular/common';
+import {FirestoreNewsService, NewsPost} from '../../../core/services/firestore-news.service';
+import { Observable } from 'rxjs';
+import {MatIconModule} from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
+import {MatIconButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-news-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatCardModule,
+    MatIconModule,
+    MatIconButton
+  ],
   templateUrl: './news-detail.component.html',
   styleUrl: './news-detail.component.scss'
 })
 export class NewsDetailComponent {
-  news: any;
-  modalImage: string | null = null;
+  news$: Observable<NewsPost | undefined>; // Alterado para Observable
+  private firestoreNewsService = inject(FirestoreNewsService);
+  showImageModal = false;
+  modalImageUrl: string | null = null;
 
   constructor(private route: ActivatedRoute) {
     const id = this.route.snapshot.paramMap.get('id');
-    const newsList = JSON.parse(localStorage.getItem('newsList') || '[]');
-    this.news = newsList.find((n: any) => n.id === id);
-    console.log('ID da rota:', id);
-    console.log('Lista de notícias:', newsList);
-    console.log('Notícia encontrada:', this.news);
+    if (id) {
+      this.news$ = this.firestoreNewsService.getNewsById(id);
+    } else {
+      // Tratar caso de ID não encontrado, talvez redirecionar
+      console.error('ID da notícia não encontrado na rota');
+    }
   }
 
-  openImage(img: string) {
-    this.modalImage = img;
+  openImageModal(imageUrl: string): void {
+    this.modalImageUrl = imageUrl;
+    this.showImageModal = true;
   }
 
-  closeImage() {
-    this.modalImage = null;
+  closeImageModal(): void {
+    this.showImageModal = false;
+    this.modalImageUrl = null;
+  }
+
+  onModalBackgroundClick(event: MouseEvent): void {
+    if ((event.target as HTMLElement).classList.contains('image-modal-overlay')) {
+      this.closeImageModal();
+    }
   }
 }

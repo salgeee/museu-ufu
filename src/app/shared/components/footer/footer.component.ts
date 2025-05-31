@@ -1,4 +1,4 @@
-import { Component, isDevMode } from '@angular/core';
+import { Component } from '@angular/core';
 
 /**
  * Componente FooterComponent é responsável por exibir o rodapé da aplicação.
@@ -16,7 +16,6 @@ import { Component, isDevMode } from '@angular/core';
 })
 export class FooterComponent {
 
-	basePath = isDevMode() ? '' : '/museu-ufu';
 
 	license = {
 		text: 'Todo o conteúdo deste site está publicado sob a licença Creative Commons Atribuição-SemDerivações 3.0',

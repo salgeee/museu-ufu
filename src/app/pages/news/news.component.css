@@ -269,7 +269,7 @@ mat-card-content {
       height: 180px; /* Pode querer ajustar a altura da imagem também */
     }
   }
- . news-card-header-no-avatar { /* Estilo para o header quando não tem avatar */
+ .news-card-header-no-avatar { /* Estilo para o header quando não tem avatar */
   padding: 0 0 8px 0; /* Menos padding se não houver avatar */
 }
 }

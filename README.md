@@ -1,59 +1,76 @@
-# MuseuUfu
+# Museu Virtual da FACOM/UFU
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.8.
+## 1. Título do Projeto
+**Museu Virtual da Faculdade de Computação (FACOM) - Universidade Federal de Uberlândia (UFU)**
 
-## Development server
+---
 
-To start a local development server, run:
+## 2. Descrição
+Este projeto é uma plataforma web dedicada a preservar e apresentar a história da Faculdade de Computação (FACOM) da Universidade Federal de Uberlândia (UFU). A aplicação oferece uma experiência interativa, permitindo que visitantes explorem o acervo digital, conheçam a trajetória da faculdade e acessem exposições virtuais temáticas.
 
-```bash
-ng serve
-```
+---
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 3. Motivação e Contexto
+O Museu Virtual foi criado com o objetivo de resgatar, organizar e compartilhar a memória da computação na UFU e região. A iniciativa busca valorizar o legado de professores, alunos e técnicos que contribuíram para a evolução da tecnologia, além de servir como uma ferramenta educacional para a comunidade acadêmica e o público geral. Este projeto beneficia:
+- **Alunos e ex-alunos:** ao conectar gerações e preservar a história da instituição.
+- **Pesquisadores e historiadores:** como fonte de consulta sobre a evolução da computação.
+- **Comunidade externa:** oferecendo acesso à cultura, ciência e tecnologia de forma interativa.
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 4. Funcionalidades Principais
+- **Exposição Digital de Itens:** Visualização do acervo com descrições detalhadas.
+- **Visitas Virtuais Temáticas:** Navegação por exposições organizadas por temas.
+- **Busca no Acervo:** Ferramenta para pesquisar itens específicos da coleção.
+- **Linha do Tempo Interativa:** Apresentação cronológica dos marcos da FACOM.
+- **Jogos Educativos:** Quizzes e jogos da memória para engajamento do público.
+- **Notícias e Eventos:** Seção para divulgação de novidades relacionadas ao museu.
+- **Formulário de Doação:** Canal para a comunidade contribuir com o acervo.
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 5. Como Começar
+Siga os passos abaixo para instalar e executar o projeto localmente.
 
-```bash
-ng generate --help
-```
+### Pré-requisitos
+- **Node.js:** (versão 18 ou superior)
+- **Angular CLI:** (versão 19.2.8 ou compatível)
+- **Git**
 
-## Building
+### Instalação e Execução
+1. **Clone o repositório:**
+   ```bash
+   git clone [https://github.com/seu-usuario/museu-ufu.git](https://github.com/seu-usuario/museu-ufu.git)
+   cd museu-ufu
+1. **Instale as dependências:**
+   ```bash
+   npm install
 
-To build the project run:
+1. **Inicie o servidor de desenvolvimento:**
+   ```bash
+   ng serve
+   
 
-```bash
-ng build
-```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Uso Básico
+1. **Gerar um novo componente:**
+   ```bash
+   ng generate component nome-do-componente
+1. **Build de produção:**
+   ```bash
+   ng build
 
-## Running unit tests
+1. **Executar testes unitários:**
+   ```bash
+   ng test
+## 6. Funcionalidades Principais
+- **src/app/core/:** Contém serviços e interceptadores globais (autenticação, tratamento de erros HTTP).
+- **src/app/features/:** Módulos de funcionalidades principais, como home, login e not-found.
+- **src/app/pages/:** Módulos de páginas específicas, como about, games, news e donations.
+- **src/app/shared/:** Componentes, diretivas, pipes e serviços reutilizáveis.
+- **src/public/:** Ativos estáticos, como imagens, ícones e logos.
+- **Tecnologias utilizadas:** Frontend: Angular, TypeScript, SCSS || UI/UX: Angular Material, Font Awesome || Backend (Notícias): Firebase (Firestore)
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 6. Referências Externas
+**Página do Museu da FACOM/UFU:** https://museu.facom.ufu.br/home

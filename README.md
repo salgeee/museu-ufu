@@ -11,7 +11,7 @@ Este projeto é uma plataforma web dedicada a preservar e apresentar a história
 
 ## 2. Motivação e Contexto
 O Museu Virtual foi criado com o objetivo de resgatar, organizar e compartilhar a memória da computação na UFU e região. A iniciativa busca valorizar o legado de professores, alunos e técnicos que contribuíram para a evolução da tecnologia, além de servir como uma ferramenta educacional para a comunidade acadêmica e o público geral. Este projeto beneficia:
-- **Alunos e ex-alunos:** ao conectar gerações e preservar a história da instituição.
+- **Alunos:** ao conectar gerações e preservar a história da instituição.
 - **Pesquisadores e historiadores:** como fonte de consulta sobre a evolução da computação.
 - **Comunidade externa:** oferecendo acesso à cultura, ciência e tecnologia de forma interativa.
 

@@ -1,7 +1,6 @@
 # Museu Virtual da FACOM/UFU
 
-## 1. Título do Projeto
-**Museu Virtual da Faculdade de Computação (FACOM) - Universidade Federal de Uberlândia (UFU)**
+## 1. **Museu Virtual da Faculdade de Computação (FACOM) - Universidade Federal de Uberlândia (UFU)**
 
 ---
 

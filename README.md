@@ -73,5 +73,7 @@ Siga os passos abaixo para instalar e executar o projeto localmente.
 
 ## 5. Referências Externas
 **Página do Museu da FACOM/UFU:** https://museu.facom.ufu.br/home
+
 **Documento Projeto:** https://docs.google.com/document/d/1vX-5Be_FuXJ3O5pexzls_60_ckg--HiQ9KqpVe77rVI/
+
 **Artigo do Projeto:** https://drive.google.com/file/d/1k3hgdpcdYazdfjlk_soKI6Q-uNNZ7_jM/view?usp=sharing

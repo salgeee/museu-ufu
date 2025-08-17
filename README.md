@@ -1,15 +1,15 @@
 # Museu Virtual da FACOM/UFU
 
-## 1. **Museu Virtual da Faculdade de Computação (FACOM) - Universidade Federal de Uberlândia (UFU)**
+## **Museu Virtual da Faculdade de Computação (FACOM) - Universidade Federal de Uberlândia (UFU)**
 
 ---
 
-## 2. Descrição
+## 1. Descrição
 Este projeto é uma plataforma web dedicada a preservar e apresentar a história da Faculdade de Computação (FACOM) da Universidade Federal de Uberlândia (UFU). A aplicação oferece uma experiência interativa, permitindo que visitantes explorem o acervo digital, conheçam a trajetória da faculdade e acessem exposições virtuais temáticas.
 
 ---
 
-## 3. Motivação e Contexto
+## 2. Motivação e Contexto
 O Museu Virtual foi criado com o objetivo de resgatar, organizar e compartilhar a memória da computação na UFU e região. A iniciativa busca valorizar o legado de professores, alunos e técnicos que contribuíram para a evolução da tecnologia, além de servir como uma ferramenta educacional para a comunidade acadêmica e o público geral. Este projeto beneficia:
 - **Alunos e ex-alunos:** ao conectar gerações e preservar a história da instituição.
 - **Pesquisadores e historiadores:** como fonte de consulta sobre a evolução da computação.
@@ -17,7 +17,7 @@ O Museu Virtual foi criado com o objetivo de resgatar, organizar e compartilhar 
 
 ---
 
-## 4. Funcionalidades Principais
+## 3. Funcionalidades Principais
 - **Exposição Digital de Itens:** Visualização do acervo com descrições detalhadas.
 - **Visitas Virtuais Temáticas:** Navegação por exposições organizadas por temas.
 - **Busca no Acervo:** Ferramenta para pesquisar itens específicos da coleção.
@@ -28,7 +28,7 @@ O Museu Virtual foi criado com o objetivo de resgatar, organizar e compartilhar 
 
 ---
 
-## 5. Como Começar
+## 4. Como Começar
 Siga os passos abaixo para instalar e executar o projeto localmente.
 
 ### Pré-requisitos
@@ -71,7 +71,7 @@ Siga os passos abaixo para instalar e executar o projeto localmente.
 - **Tecnologias utilizadas:** Frontend: Angular, TypeScript, SCSS || UI/UX: Angular Material, Font Awesome || Backend (Notícias): Firebase (Firestore)
 
 
-## 6. Referências Externas
+## 5. Referências Externas
 **Página do Museu da FACOM/UFU:** https://museu.facom.ufu.br/home
 **Documento Projeto:** https://docs.google.com/document/d/1vX-5Be_FuXJ3O5pexzls_60_ckg--HiQ9KqpVe77rVI/
 **Artigo do Projeto:** https://drive.google.com/file/d/1k3hgdpcdYazdfjlk_soKI6Q-uNNZ7_jM/view?usp=sharing

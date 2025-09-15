@@ -6,7 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FirestoreNewsService, NewsPost } from '../../../core/services/firestore-news.service';
+import { NewsService, News } from 'app/core/services/news.service'
 import { Observable } from 'rxjs';
 
 interface NewsLocal {
@@ -35,8 +35,8 @@ interface NewsLocal {
   ]
 })
 export class NewsComponent implements OnInit {
-  newsList$: Observable<NewsPost[]>;
-  private firestoreNewsService = inject(FirestoreNewsService);
+  newsList$: Observable<News[]>; // Use a nova interface
+  private newsService = inject(NewsService); // Injete o novo serviço
   private router = inject(Router);
   private dialog = inject(MatDialog);
 
@@ -47,35 +47,33 @@ export class NewsComponent implements OnInit {
   }
 
   loadNews(): void {
-    this.newsList$ = this.firestoreNewsService.getAllNews();
+    this.newsList$ = this.newsService.getAllNews();
   }
 
   createNews(): void {
     this.router.navigate(['/news/create']);
   }
 
-  editNews(news: NewsLocal): void {
-    // Edição não implementada para localStorage
-    alert('Edição não implementada no modo local!');
-  }
-
-  deleteNews(newsItem: NewsPost): void {
+  deleteNews(newsItem: News): void {
     if (!newsItem.id) {
-      console.error('News item ID is undefined, cannot delete');
+      console.error('ID da notícia é indefinido, não é possível deletar');
       return;
     }
     const dialogRef = this.dialog.open(DeleteConfirmDialog, {
-      width: '350px', // Largura do modal
-      data: { title: newsItem.summary.title } // Passa o título da notícia para o modal
+      width: '350px',
+      data: { title: newsItem.title }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
-        this.firestoreNewsService.deleteNews(newsItem.id!)
-          .then(() => {
+        // A lógica de deleção agora chama o novo serviço
+        this.newsService.deleteNews(newsItem.id.toString()).subscribe({
+          next: () => {
             console.log('Notícia deletada com sucesso!');
-          })
-          .catch(error => console.error('Erro ao deletar notícia:', error));
+            this.loadNews(); // Recarrega a lista de notícias
+          },
+          error: err => console.error('Erro ao deletar notícia:', err)
+        });
       }
     });
   }

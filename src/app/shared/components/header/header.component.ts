@@ -5,11 +5,12 @@ import { MenuService } from '@app/core/services/menu.service'
 import { BarraBrasilComponent } from '../barra-brasil/barra-brasil.component';
 import { RouterLink } from '@angular/router';
 import { AccessibilityService } from '@app/services/accessibility.service';
+import {NgOptimizedImage} from '@angular/common';
 
 @Component({
 	selector: 'app-header',
 	standalone: true,
-  imports: [CdkMenuModule, BarraBrasilComponent, RouterLink],
+  imports: [CdkMenuModule, BarraBrasilComponent, RouterLink, NgOptimizedImage],
 	templateUrl: './header.component.html',
 	styleUrl: './header.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,

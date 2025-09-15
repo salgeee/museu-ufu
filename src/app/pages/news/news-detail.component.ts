@@ -1,11 +1,12 @@
-import {Component, inject} from '@angular/core';
-import {ActivatedRoute, RouterModule} from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core'; // 1. OnInit precisa ser importado
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import {FirestoreNewsService, NewsPost} from '../../../core/services/firestore-news.service';
 import { Observable } from 'rxjs';
-import {MatIconModule} from '@angular/material/icon';
-import {MatCardModule} from '@angular/material/card';
-import {MatIconButton} from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconButton } from '@angular/material/button';
+
+import { NewsService, News } from 'app/core/services/news.service'
 
 @Component({
   selector: 'app-news-detail',
@@ -20,22 +21,28 @@ import {MatIconButton} from '@angular/material/button';
   templateUrl: './news-detail.component.html',
   styleUrl: './news-detail.component.scss'
 })
-export class NewsDetailComponent {
-  news$: Observable<NewsPost | undefined>; // Alterado para Observable
-  private firestoreNewsService = inject(FirestoreNewsService);
+export class NewsDetailComponent implements OnInit { // A promessa de implementar OnInit
+  news$: Observable<News | undefined>;
+
+  private newsService = inject(NewsService);
+  private route = inject(ActivatedRoute); // Injetar a rota é mais comum aqui
+
   showImageModal = false;
   modalImageUrl: string | null = null;
 
-  constructor(private route: ActivatedRoute) {
+  constructor() { } // O construtor agora pode ficar vazio
+
+  // 2. AQUI ESTÁ A FUNÇÃO QUE FALTAVA
+  ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.news$ = this.firestoreNewsService.getNewsById(id);
+      this.news$ = this.newsService.getNewsById(id);
     } else {
-      // Tratar caso de ID não encontrado, talvez redirecionar
       console.error('ID da notícia não encontrado na rota');
     }
   }
 
+  // Métodos do modal permanecem os mesmos
   openImageModal(imageUrl: string): void {
     this.modalImageUrl = imageUrl;
     this.showImageModal = true;
@@ -51,4 +58,6 @@ export class NewsDetailComponent {
       this.closeImageModal();
     }
   }
+
+
 }

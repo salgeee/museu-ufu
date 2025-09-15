@@ -4,15 +4,16 @@ import {
   AlertComponent,
   LoadingComponent,
 } from 'govbr-ds-angular';
-import {HeaderComponent} from './shared/components/header/header.component';
-import {MenuComponent} from './shared/components/menu/menu.component';
-import {FooterComponent} from './shared/components/footer/footer.component';
-import {BreadcrumbComponent} from './shared/components/breadcrump/breadcrumb.component';
+import {HeaderComponent} from '@shared/components/header/header.component';
+import {MenuComponent} from '@shared/components/menu/menu.component';
+import {FooterComponent} from '@shared/components/footer/footer.component';
+import {BreadcrumbComponent} from '@shared/components/breadcrump/breadcrumb.component';
 import {NgClass} from '@angular/common';
-import {AuthService } from './core/auth/services/auth.service';
+import {AuthService } from '@core/auth/services/auth.service';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {CheckUpdateService} from './core/update/check-update.service';
+import {CheckUpdateService} from '@core/update/check-update.service';
 import { PerfisNavComponent } from "./perfis-nav/perfis-nav.component";
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -35,34 +36,26 @@ export class AppComponent implements OnInit {
   isMobile = signal<boolean>(false);
   hideNavbar = signal<boolean>(true);
 
+
+  isAuthenticated$: Observable<boolean>;
+
   authService = inject(AuthService);
   breakpointObserver = inject(BreakpointObserver);
   router = inject(Router);
   checkUpdateService = inject(CheckUpdateService);
 
-  isPublic = this.authService.isPublic;
 
   constructor() {
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
+
     this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Web, Breakpoints.Tablet]).subscribe(() => {
       this.isMobile.set(this.breakpointObserver.isMatched(Breakpoints.Handset));
     });
 
-    this.router.events.subscribe(data => {
-      if (data instanceof NavigationEnd) {
-        this.validateUrl(data.url);
-      }
-    });
   }
 
   ngOnInit(): void {
     this.checkUpdateService.init();
   }
 
-  private validateUrl(url: string) {
-    if (url.startsWith('/login') || url === '/' || url === '/home') {
-      this.hideNavbar.set(true);
-    } else {
-      this.hideNavbar.set(false);
-    }
-  }
 }

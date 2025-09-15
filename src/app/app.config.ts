@@ -19,6 +19,7 @@ import { DEFAULT_DIALOG_CONFIG, DIALOG_SCROLL_STRATEGY } from '@angular/cdk/dial
 import { registerLocaleData } from '@angular/common';
 import { CustomPageTitleStrategy } from '@core/strategy/title.strategy';
 import localePt from '@angular/common/locales/pt';
+import {authInterceptor} from '@core/auth/interceptors/auth.interceptor';
 
 
 registerLocaleData(localePt);
@@ -31,7 +32,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([globalInterceptor, loadingInterceptor]), withFetch()),
+    provideHttpClient(withInterceptors([globalInterceptor, authInterceptor, loadingInterceptor]), withFetch()),
     provideAnimationsAsync(),
     provideEnvironmentNgxMask(),
     provideServiceWorker('ngsw-worker.js', {

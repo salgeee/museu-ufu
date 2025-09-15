@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NewsService, News } from 'app/core/services/news.service'
 import { Observable } from 'rxjs';
+import { AuthService } from '@core/auth/services/auth.service';
 
 interface NewsLocal {
   id: string;
@@ -36,11 +37,15 @@ interface NewsLocal {
 })
 export class NewsComponent implements OnInit {
   newsList$: Observable<News[]>; // Use a nova interface
+  isAuthenticated$: Observable<boolean>; // <-- 2. ADICIONE A PROPRIEDADE AQUI
   private newsService = inject(NewsService); // Injete o novo serviço
   private router = inject(Router);
   private dialog = inject(MatDialog);
+  authService = inject(AuthService);
 
-  constructor() {}
+  constructor() {
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
+  }
 
   ngOnInit(): void {
     this.loadNews();

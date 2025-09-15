@@ -23,98 +23,87 @@ interface MenuItemState extends IMenu {
 }
 
 @Component({
-	selector: 'app-menu',
-	standalone: true,
-	host: { class: 'br-menu push px-0' },
-	imports: [RouterLink, RouterLinkActive, CommonModule, RouterModule],
-	templateUrl: './menu.component.html',
-	styleUrl: './menu.component.scss',
+  selector: 'app-menu',
+  standalone: true,
+  host: { class: 'br-menu push px-0' },
+  imports: [RouterLink, RouterLinkActive, CommonModule, RouterModule],
+  templateUrl: './menu.component.html',
+  styleUrl: './menu.component.scss',
 })
 export class MenuComponent implements AfterViewInit, OnInit {
-	@Input() list: MenuItemState[] = [];
-	instance: BRMenu | null = null;
-	isMobile = signal<boolean>(false);
-	isOpen = false;
+  @Input() list: MenuItemState[] = [];
+  instance: BRMenu | null = null;
+  isMobile = signal<boolean>(false);
+  isOpen = false;
 
-	private _brMenu = inject(ElementRef);
-	private _authService = inject(AuthService);
-	private _breakpointObserver = inject(BreakpointObserver);
-	private _menuService = inject(MenuService);
+  private _brMenu = inject(ElementRef);
+  private _authService = inject(AuthService);
+  private _breakpointObserver = inject(BreakpointObserver);
+  private _menuService = inject(MenuService);
 
-	constructor() {
-		// Garante que o menu comece fechado
-		this.isOpen = false;
-		this._breakpointObserver
-			.observe([Breakpoints.Handset, Breakpoints.Web, Breakpoints.Tablet])
-			.pipe(takeUntilDestroyed())
-			.subscribe(() => {
-				this.isMobile.set(this._breakpointObserver.isMatched(Breakpoints.Handset));
-			});
+  constructor() {
+    this.isOpen = false;
+    this._breakpointObserver
+      .observe([Breakpoints.Handset, Breakpoints.Web, Breakpoints.Tablet])
+      .pipe(takeUntilDestroyed())
+      .subscribe(() => {
+        this.isMobile.set(this._breakpointObserver.isMatched(Breakpoints.Handset));
+      });
 
-		this._authService.credentials$.pipe(takeUntilDestroyed()).subscribe(result => {
-			if (!result) {
-				this.list = LIST_MENU_BY_ROLE.get(Role.PUBLIC) || [];
-			} else {
-				this.list = LIST_MENU_BY_ROLE.get(result.role || Role.PUBLIC) || [];
-			}
-		});
+    // --- CORREÇÃO AQUI ---
+    // 1. Usar 'currentUser$' em vez de 'credentials$'
+    this._authService.currentUser$.pipe(takeUntilDestroyed()).subscribe(user => {
+      // 2. Lógica ajustada para usar o objeto 'user' e a propriedade 'is_admin'
+      if (!user) {
+        // Se não há usuário, mostra o menu público
+        this.list = LIST_MENU_BY_ROLE.get(Role.PUBLIC) || [];
+      } else {
+        // Se há usuário, verifica se é admin para mostrar o menu de admin
+        // (Assumindo que você tenha um Role.ADMIN no seu 'list-menu.ts')
+        const userRole = user.is_admin ? ('ADMIN' as Role) : Role.PUBLIC;
+        this.list = LIST_MENU_BY_ROLE.get(userRole) || [];
+      }
+    });
+    // --- FIM DA CORREÇÃO ---
 
-		this._menuService.isOpen$.subscribe(isOpen => {
-			this.isOpen = isOpen;
-			if (this.instance) {
-				if (isOpen) {
-					this.instance.open();
-				} else {
-					this.instance.close();
-				}
-			}
-		});
-	}
+    this._menuService.isOpen$.subscribe(isOpen => {
+      this.isOpen = isOpen;
+      if (this.instance) {
+        if (isOpen) {
+          this.instance.open();
+        } else {
+          this.instance.close();
+        }
+      }
+    });
+  }
 
-	ngAfterViewInit(): void {
-		setTimeout(() => {
-			this.instance = new BRMenu('br-menu', this._brMenu.nativeElement);
-			this.instance.init();
-			this.instance.close();
-		});
-	}
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.instance = new BRMenu('br-menu', this._brMenu.nativeElement);
+      this.instance.init();
+      this.instance.close();
+    });
+  }
 
-	ngOnInit() {
-		this.list = [
-			{
-				label: 'Início',
-				url: '/home',
-				icon: 'fas fa-home',
-				children: []
-			},
-			{
-				label: 'Jogos',
-				url: '/games',
-				icon: 'fas fa-gamepad'
-			},
-			{
-				label: 'Sobre',
-				url: '/about',
-				icon: 'fas fa-info-circle'
-			}
-		];
-	}
+  // A lógica do ngOnInit foi removida pois o construtor já define a lista de menu dinamicamente.
+  ngOnInit() { }
 
-	closeMenu() {
-		this._menuService.close();
-	}
+  closeMenu() {
+    this._menuService.close();
+  }
 
-	closeMenuIfMobile() {
-		if (this.isMobile()) {
-			this.closeMenu();
-		}
-	}
+  closeMenuIfMobile() {
+    if (this.isMobile()) {
+      this.closeMenu();
+    }
+  }
 
-	toggleMenu() {
-		this._menuService.toggle();
-	}
+  toggleMenu() {
+    this._menuService.toggle();
+  }
 
-	toggleSubmenu(item: MenuItemState) {
-		item.expanded = !item.expanded;
-	}
+  toggleSubmenu(item: MenuItemState) {
+    item.expanded = !item.expanded;
+  }
 }

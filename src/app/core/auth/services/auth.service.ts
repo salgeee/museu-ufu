@@ -1,65 +1,83 @@
-import { computed, inject, Injectable, signal } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
-import { LocalStorageService } from '@shared/services/storage';
-import { Credentials, Role } from '@features/login/models/credentials.model';
-import { toObservable } from '@angular/core/rxjs-interop';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import {Observable, BehaviorSubject, tap, of} from 'rxjs';
+import { Router } from '@angular/router';
 
-const KEY_STORAGE = 'credentials';
-
-@Injectable({
-	providedIn: 'root',
-})
-export class AuthService {
-	private localStorage = inject(LocalStorageService);
-	private router = inject(Router);
-	credentials = signal<Credentials | null>(null);
-	credentials$ = toObservable(this.credentials);
-	isStudent = computed(() => this.credentials()?.role === Role.STUDENT)
-	isPublic = computed(() => !this.credentials() || this.credentials()?.role === Role.PUBLIC);
-
-	constructor() {
-		this.credentials.set(this.localStorage.getParseItem<Credentials>(KEY_STORAGE));
-	}
-
-	setCredentials(credentials: Credentials): void {
-		this.credentials.set(credentials);
-
-		this.localStorage.setItem(KEY_STORAGE, credentials);
-	}
-
-	logout(redirect = true): void {
-		this.credentials.set(null);
-
-		this.localStorage.removeItem(KEY_STORAGE);
-
-		if (redirect) this.router.navigate(['/login']);
-	}
-
-	get isAuthenticated(): boolean {
-		return !!this.credentials()?.accessToken;
-	}
-
-	canActivate(): boolean {
-		if (!this.isAuthenticated) {
-			this.router.navigate(['/login']);
-		}
-		return this.isAuthenticated;
-	}
-
-	canActivateByRole(role: Role): boolean {
-		if (!this.isAuthenticated || this.credentials()?.role !== role) {
-			this.router.navigate(['/login']);
-			return false;
-		}
-
-		return true;
-	}
+export interface User {
+  id: number;
+  email: string;
+  username: string;
+  full_name: string;
+  is_active: boolean;
+  is_admin: boolean;
 }
 
-export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-	return inject(AuthService).canActivate();
-};
+// Interface para a resposta do token da sua API
+interface TokenResponse {
+  access_token: string;
+  token_type: string;
+}
 
-export const authGuardStudent: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-	return inject(AuthService).canActivateByRole(Role.STUDENT);
-};
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  private http = inject(HttpClient);
+  private router = inject(Router);
+
+  private apiUrl = 'http://localhost:8000/api/v1/auth'; // URL base de autenticação
+  private tokenKey = 'auth_token'; // Chave para salvar no localStorage
+
+  // BehaviorSubject para rastrear o estado de autenticação em tempo real
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.hasToken());
+  public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
+
+  private currentUserSubject = new BehaviorSubject<User | null>(null);
+  public currentUser$ = this.currentUserSubject.asObservable();
+
+
+  constructor() {
+    if (this.hasToken()) {
+      this.getMe().subscribe();
+    }
+  }
+
+  getMe(): Observable<User | null> {
+    if (!this.hasToken()) {
+      return of(null);
+    }
+    return this.http.get<User>(`${this.apiUrl}/me`).pipe(
+      tap(user => {
+        this.currentUserSubject.next(user);
+      })
+    );
+  }
+
+  login(credentials: FormData): Observable<TokenResponse> {
+    return this.http.post<TokenResponse>(`${this.apiUrl}/login`, credentials).pipe(
+      tap(response => {
+        this.saveToken(response.access_token);
+        this.isAuthenticatedSubject.next(true); // Emite que o usuário está autenticado
+      })
+    );
+  }
+
+  saveToken(token: string): void {
+    localStorage.setItem(this.tokenKey, token);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem(this.tokenKey);
+  }
+
+  hasToken(): boolean {
+    return !!this.getToken();
+  }
+
+  logout(): void {
+    localStorage.removeItem(this.tokenKey);
+    this.isAuthenticatedSubject.next(false);
+    this.currentUserSubject.next(null); // Limpa os dados do usuário ao sair
+    this.router.navigate(['/login']);
+  }
+}

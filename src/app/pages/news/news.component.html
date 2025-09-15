@@ -1,4 +1,4 @@
-<div class="create-news-button-container">
+<div *ngIf="isAuthenticated$ | async" class="create-news-button-container">
   <button mat-raised-button color="primary" class="custom-create-news-btn" (click)="createNews()">
     <mat-icon>add</mat-icon> Criar Nova Notícia
   </button>

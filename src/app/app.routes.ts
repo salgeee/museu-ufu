@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import {authGuard} from '@core/auth/guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -75,6 +76,7 @@ export const routes: Routes = [
       {
         path: 'create',
         loadComponent: () => import('./pages/news/news-form/news-form.component').then(m => m.NewsFormComponent),
+        canActivate: [authGuard],
         data: {
           breadCrumb: 'Criar Notícia',
         },
@@ -82,6 +84,7 @@ export const routes: Routes = [
       {
         path: 'edit/:id',
         loadComponent: () => import('./pages/news/news-form/news-form.component').then(m => m.NewsFormComponent),
+        canActivate: [authGuard],
         data: {
           breadCrumb: 'Editar Notícia',
         },
@@ -89,6 +92,7 @@ export const routes: Routes = [
       {
         path: 'detail/:id',
         loadComponent: () => import('./pages/news/news-detail.component').then(m => m.NewsDetailComponent),
+        canActivate: [authGuard],
         data: {
           breadCrumb: 'Detalhe da Notícia',
         },

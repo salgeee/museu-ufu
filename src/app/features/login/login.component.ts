@@ -1,50 +1,62 @@
 import { Component, inject } from '@angular/core';
-import { InputComponent } from '@shared/components/input/input.component';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ButtonDirective } from '@shared/directives/button';
-import { getUserMock } from './mocks/users.mock';
-import { AlertService } from '@shared/components/alert/alert.service';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '@core/auth/services/auth.service';
-import { Role } from './models/credentials.model';
-import { FeedbackDirective } from '@shared/directives/feedback';
 
 @Component({
-	selector: 'app-login',
-	standalone: true,
-	imports: [InputComponent, ReactiveFormsModule, ButtonDirective, FeedbackDirective],
-	templateUrl: './login.component.html',
-	styleUrl: './login.component.scss',
+  selector: 'app-login',
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+  ],
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-	router = inject(Router);
-	private _alertService = inject(AlertService);
-	private _authService = inject(AuthService);
+  loginForm: FormGroup;
+  errorMessage: string | null = null;
+  private fb = inject(FormBuilder);
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
-	formLogin = new FormGroup({
-		username: new FormControl('', [Validators.required]),
-		password: new FormControl('', [Validators.required]),
-	});
+  constructor() {
+    this.loginForm = this.fb.group({
+      username: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
+  }
 
-	submit() {
-		if (this.formLogin.invalid) {
-			this.formLogin.markAsTouched();
-			return;
-		}
+  onSubmit(): void {
+    if (this.loginForm.invalid) {
+      return;
+    }
+    this.errorMessage = null;
 
-		getUserMock(this.formLogin.value.username, this.formLogin.value.password).subscribe({
-			next: value => {
-				if (value.role === Role.PUBLIC) {
-					this._alertService.showAlert('warning', 'Usuário sem permissão de acesso', undefined, false, undefined, true);
-				} else {
-					this._alertService.clearAlerts();
-					this._authService.setCredentials(value);
-					this.router.navigate(['/home']);
-				}
-			},
-			error: message => {
-				this._alertService.showAlert('danger', message, undefined, false);
-			},
-		});
-	}
+    // A API espera 'x-www-form-urlencoded', então usamos FormData
+    const formData = new FormData();
+    formData.append('username', this.loginForm.value.username);
+    formData.append('password', this.loginForm.value.password);
+
+    this.authService.login(formData).subscribe({
+      next: () => {
+        this.router.navigate(['/news']); // Redireciona para a página de notícias após o login
+      },
+      error: (err) => {
+        this.errorMessage = 'Usuário ou senha inválidos.';
+        console.error('Erro no login:', err);
+      }
+    });
+  }
 }

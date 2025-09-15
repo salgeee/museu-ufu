@@ -12,74 +12,65 @@ import { Observable, throwError } from 'rxjs';
 import { AlertService } from '@shared/components/alert/alert.service';
 import { StateType } from '@shared/utils/get-icon-by-state.utils';
 
+
 export const KEY_HIDE_NOTIFICATION = 'hideNotification';
 
 export const globalInterceptor: HttpInterceptorFn = (
-	req: HttpRequest<any>,
-	next: HttpHandlerFn
+  req: HttpRequest<any>,
+  next: HttpHandlerFn
 ): Observable<HttpEvent<any>> => {
-	let clonedRequest = req;
+  // 1. Injete o AlertService AQUI, no contexto correto.
+  const alertService = inject(AlertService);
 
-	if (clonedRequest.params.has(KEY_HIDE_NOTIFICATION)) {
-		clonedRequest = clonedRequest.clone({
-			params: clonedRequest.params.delete(KEY_HIDE_NOTIFICATION),
-		});
-		return next(clonedRequest);
-	}
+  let clonedRequest = req;
 
-	return next(clonedRequest).pipe(catchError(error => errorHandler(error)));
+  if (clonedRequest.params.has(KEY_HIDE_NOTIFICATION)) {
+    clonedRequest = clonedRequest.clone({
+      params: clonedRequest.params.delete(KEY_HIDE_NOTIFICATION),
+    });
+    return next(clonedRequest);
+  }
+
+  // 2. Passe a instância do alertService para o errorHandler.
+  return next(clonedRequest).pipe(catchError(error => errorHandler(error, alertService)));
 };
 
-function errorHandler(response: HttpErrorResponse): Observable<HttpEvent<unknown>> {
-	let errorMessage: string = '';
-	const traceId = response.error?.traceId || '';
+// 3. Modifique a assinatura do errorHandler para receber o alertService.
+function errorHandler(response: HttpErrorResponse, alertService: AlertService): Observable<HttpEvent<unknown>> {
+  let errorMessage: string = '';
+  const traceId = response.error?.traceId || '';
 
-	if (response.error && response.error.message) {
-		errorMessage = response.error.message;
-	}
-	switch (response.status) {
-		case 0:
-			showErrorMessages(errorMessage, traceId, 'Problemas com conexão com o servidor.');
-			break;
+  if (response.error && response.error.detail) { // <-- API FastAPI geralmente usa 'detail'
+    errorMessage = response.error.detail;
+  } else if (response.error && response.error.message) {
+    errorMessage = response.error.message;
+  }
 
-		case HttpStatusCode.BadRequest:
-			showErrorMessages(errorMessage, traceId, 'Ocorreu um erro inesperado de servidor.', 'warning');
-			break;
+  // 4. Passe o alertService para a função showErrorMessages.
+  switch (response.status) {
+    case 0:
+      showErrorMessages(alertService, errorMessage, traceId, 'Problemas com conexão com o servidor.');
+      break;
+    case HttpStatusCode.BadRequest:
+      showErrorMessages(alertService, errorMessage, traceId, 'Ocorreu um erro inesperado de servidor.', 'warning');
+      break;
+    case HttpStatusCode.Unauthorized:
+      showErrorMessages(alertService, errorMessage, traceId, 'Usuário sem acesso, por favor logue novamente!');
+      break;
+    case HttpStatusCode.Forbidden:
+      showErrorMessages(alertService, errorMessage, traceId, 'Acesso negado, você não tem permissão para realizar essa operação!');
+      break;
+    // ... outros casos
+    default:
+      showErrorMessages(alertService, errorMessage, traceId, 'Ocorreu um erro inesperado de servidor.');
+      break;
+  }
 
-		case HttpStatusCode.Unauthorized:
-			showErrorMessages(errorMessage, traceId, 'Usuário sem acesso, por favor logue novamente!');
-			// _authService.logout();
-			break;
-
-		case HttpStatusCode.Forbidden:
-			showErrorMessages(errorMessage, traceId, 'Acesso negado, você não tem permissão para realizar essa operação!');
-			break;
-
-		case HttpStatusCode.NotFound:
-			showErrorMessages(errorMessage, traceId, 'Houve algum erro, rota não encontrada.');
-			break;
-
-		case HttpStatusCode.PayloadTooLarge:
-			showErrorMessages(errorMessage, traceId, 'Os dados enviados são grandes demais.');
-			break;
-
-		case HttpStatusCode.UnsupportedMediaType:
-			showErrorMessages(errorMessage, traceId, 'Os dados enviados não são suportados.');
-			break;
-
-		case HttpStatusCode.TooManyRequests:
-			showErrorMessages(errorMessage, traceId, 'Foram feitas muitas requisições em pouco tempo.');
-			break;
-
-		default:
-			showErrorMessages(errorMessage, traceId, 'Ocorreu um erro inesperado de servidor.');
-			break;
-	}
-
-	return throwError(() => response);
+  return throwError(() => response);
 }
 
-function showErrorMessages(message: string, traceId: string, defaultMessage?: string, type: StateType = 'danger') {
-	const alertService = inject(AlertService);
-	alertService.showAlert(type, message || defaultMessage, 'Alerta!', true, 5000);
+// 5. Modifique a assinatura de showErrorMessages para receber a instância, em vez de injetá-la.
+function showErrorMessages(alertService: AlertService, message: string, traceId: string, defaultMessage?: string, type: StateType = 'danger') {
+  // A injeção foi removida daqui.
+  alertService.showAlert(type, message || defaultMessage, 'Alerta!', true, 5000);
 }

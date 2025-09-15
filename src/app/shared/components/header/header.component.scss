@@ -2,6 +2,10 @@
 	display: block;
 }
 
+.mat-icon {
+  font-family: 'Material Icons', serif !important;
+}
+
 :host ::ng-deep {
 	a:not(:disabled):hover {
 		background-image: none !important;
@@ -63,12 +67,12 @@
 		.marca {
 			display: flex;
 			flex-direction: column;
-			
+
 			.logo {
 				a {
 					display: block;
 					cursor: pointer;
-					
+
 					img {
 						height: 40px;
 						width: auto;

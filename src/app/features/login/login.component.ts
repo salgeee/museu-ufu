@@ -50,8 +50,11 @@ export class LoginComponent {
     formData.append('password', this.loginForm.value.password);
 
     this.authService.login(formData).subscribe({
-      next: () => {
-        this.router.navigate(['/news']); // Redireciona para a página de notícias após o login
+      next: (user) => {
+        // Se a chamada for bem-sucedida, o user não será nulo
+        if (user) {
+          this.router.navigate(['/news']); // Redireciona para a página de notícias
+        }
       },
       error: (err) => {
         this.errorMessage = 'Usuário ou senha inválidos.';

@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Observable, BehaviorSubject, tap, of} from 'rxjs';
+import {Observable, BehaviorSubject, tap, of, switchMap} from 'rxjs';
 import { Router } from '@angular/router';
 
 export interface User {
@@ -53,12 +53,15 @@ export class AuthService {
     );
   }
 
-  login(credentials: FormData): Observable<TokenResponse> {
+  login(credentials: FormData): Observable<User | null> {
     return this.http.post<TokenResponse>(`${this.apiUrl}/login`, credentials).pipe(
+      // Primeiro, salvamos o token
       tap(response => {
         this.saveToken(response.access_token);
-        this.isAuthenticatedSubject.next(true); // Emite que o usuário está autenticado
-      })
+        this.isAuthenticatedSubject.next(true);
+      }),
+      // Em seguida, usamos o switchMap para MUDAR para a chamada que busca o usuário
+      switchMap(() => this.getMe())
     );
   }
 

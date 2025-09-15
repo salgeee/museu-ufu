@@ -5,13 +5,23 @@ import { MenuService } from '@app/core/services/menu.service';
 import { BarraBrasilComponent } from '../barra-brasil/barra-brasil.component';
 import { RouterLink } from '@angular/router';
 import { AccessibilityService } from '@app/services/accessibility.service';
-import { NgIf, AsyncPipe, NgOptimizedImage } from '@angular/common'; // Importe NgIf e AsyncPipe
-import { Observable } from 'rxjs'; // Importe Observable
+import {NgOptimizedImage, CommonModule} from '@angular/common'; // Importe NgIf e AsyncPipe
+import { Observable } from 'rxjs';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CdkMenuModule, BarraBrasilComponent, RouterLink, NgOptimizedImage, NgIf, AsyncPipe],
+  imports: [
+    CommonModule, // NgIf, AsyncPipe estão aqui
+    CdkMenuModule,
+    BarraBrasilComponent,
+    RouterLink,
+    NgOptimizedImage,
+    MatIconModule,    // Apenas o MÓDULO é necessário
+    MatButtonModule   // Apenas o MÓDULO é necessário
+  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
